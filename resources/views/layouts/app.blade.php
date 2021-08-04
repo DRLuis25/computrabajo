@@ -13,7 +13,7 @@
     @stack('css')
     <title>Hello, world!</title>
   </head>
-  <body class="d-flex flex-column h-100">
+  <body style="padding-bottom: 120px;">
     @include('layouts.header')
 
 	<div class="clearfix"></div>
@@ -21,11 +21,16 @@
     <section class="content">
         @yield('content')
     </section>
-    <footer class="footer mt-auto py-3 bg-light">
-        <div class="container">
-          <span class="text-muted">Place sticky footer content here.</span>
-        </div>
-      </footer>
+
+  <!-- Copy this code to have a working example -->
+  <footer class="bg-primary text-white text-center text-lg-start fixed-bottom">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      © 2020 Copyright:
+      <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
     <!-- Optional JavaScript; choose one of the two! -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->

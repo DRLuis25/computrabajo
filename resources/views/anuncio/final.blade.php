@@ -8,22 +8,22 @@
         <div class="row">
             <div class="sections sections-padding-0">
                 <div class="container">
-                    <div class="callout callout-4">
+                    <div class="">
                         <h6>Nombre anuncio</h6>
                         <div class="row">
                                 <div class="col-md-12">
-                                    <p>Gracias por calificar el trabajo de "NOMBRE"</p>
+                                    <h4>Gracias por calificar el trabajo de "NOMBRE"</h4>
                                     <br>
                                     <div class="">
                                         <div class="form-group">
-                                            <p>Las revisiones más largas dan a otros empleadores la
+                                            <p class="col-sm-8">Las revisiones más largas dan a otros empleadores la
                                                 confianza para contratar buenos trabajadores independientes,
                                                 como "NOMBRE", y ayuda a garantizar que empleadores como usted
                                                 continúen recibiendo nada más que la mejor calidad de trabajo.
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="callout-a "><a class="button-3" href="{{route('home')}}">Ir a mis anuncios</a></div>
+                                    <div class="form-group"><a class="btn btn-primary" href="{{route('home')}}">Ir a mis anuncios</a></div>
                                 </div>
                         </div>
                     </div><!-- End callout -->
