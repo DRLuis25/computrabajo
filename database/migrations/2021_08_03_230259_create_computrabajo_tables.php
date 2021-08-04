@@ -48,6 +48,7 @@ class CreateComputrabajoTables extends Migration
             $table->unsignedBigInteger('departamento_id');
             $table->unsignedBigInteger('ciudad_id');
             $table->string('titulo');
+            $table->string('descripcion');
             $table->double('pago_propuesto_min');
             $table->double('pago_propuesto_max');
             $table->char('estado',1);
@@ -67,7 +68,8 @@ class CreateComputrabajoTables extends Migration
             $table->unsignedBigInteger('anuncio_id');
             $table->string('descripcion');
             $table->double('importe');
-            $table->timestamp('tiempo');
+            $table->double('tiempo')->default(1); // numero días?
+            $table->char('unidad_tiempo',1)->default('1');//1: dias (temporal)
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('anuncio_id')->references('id')->on('anuncios');
             $table->timestamps();
@@ -88,15 +90,15 @@ class CreateComputrabajoTables extends Migration
             $table->unsignedBigInteger('anuncio_id');
             $table->char('estado_finalizado',1);
             $table->boolean('a_tiempo')->default(true);
-            $table->double('valoracion_calidad',1,1);
-            $table->double('valoracion_comunicacion',1,1);
-            $table->double('valoracion_pericia',1,1);
-            $table->double('valoracion_profesionalismo',1,1);
-            $table->double('valoracion_contratar',1,1);
+            $table->double('valoracion_calidad');
+            $table->double('valoracion_comunicacion');
+            $table->double('valoracion_pericia');
+            $table->double('valoracion_profesionalismo');
+            $table->double('valoracion_contratar');
             $table->string('comentario')->nullable();
-            $table->string('descripcion');
-            $table->double('importe');
-            $table->timestamp('tiempo');
+            //$table->string('descripcion');
+            //$table->double('importe');
+            //$table->timestamp('tiempo');
             $table->foreign('anuncio_id')->references('id')->on('anuncios');
             $table->timestamps();
             $table->softDeletes();

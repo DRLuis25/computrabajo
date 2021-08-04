@@ -9,18 +9,16 @@
             <div class="sections sections-padding-0">
                 <div class="container">
                     <div class="callout callout-4">
-                        <h6>Nombre anuncio</h6>
+                        <h6>{{$anuncio->titulo}}</h6>
                         <div class="row">
                             <div class="col-md-10">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Integer lorem quam, adipiscing condimentum tristique vel, eleifend sed turpis.
-                                    Pellentesque cursus arcu id magna euismod in elementum purus molestie.</p>
+                                <p>{{$anuncio->descripcion}}</p>
                                 <div class="row">
-                                    <div class="form-group col-sm-2">
-                                        <p>Trujillo, La Libertad</p>
+                                    <div class="form-group col-sm-3">
+                                        <p>{{$anuncio->ciudad->nombre}}, {{$anuncio->departamento->nombre}}</p>
                                     </div>
                                     <div class="form-group col-sm-2">
-                                        <p>Hace 4 días</p>
+                                        <p>{{$anuncio->created_at->diffForHumans()}}</p>
                                     </div>
                                     <div class="form-group col-sm-4">
                                         <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
@@ -29,7 +27,11 @@
                                         <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
                                         <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
                                         &nbsp;
-                                        <label for="">30 evaluaciones</label>
+                                        <label for="">{{$anuncio->detalleAnuncios[0]->user->detalleAnuncios->count()}} @if ($anuncio->detalleAnuncios[0]->user->detalleAnuncios->count() == 1)
+                                            evaluación
+                                            @else
+                                            evaluaciones
+                                        @endif</label>
                                     </div>
                                 </div>
                             </div>
@@ -61,6 +63,7 @@
             @csrf
             <div class="modal-body">
                 <div class="mb-3">
+                    <input type="text" name="anuncio_id" id="anuncio_id" value="{{$anuncio->id}}" hidden>
                     <label for="recipient-name" class="col-form-label">
                         Al finalizar este anuncio, se notificará al Empleador que no se requiere más trabajo
                         para este anuncio.

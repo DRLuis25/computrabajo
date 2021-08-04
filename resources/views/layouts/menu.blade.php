@@ -4,7 +4,7 @@
 <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
 <li><a href="#" class="nav-link px-2 text-white">About</a></li>
 <li>
-    <a href="{{route('anuncio.finalizar')}}" class="nav-link px-2 text-white">Finalizar Anuncio</a>
+    <a href="{{route('anuncio.finalizar','1')}}" class="nav-link px-2 text-white">Finalizar Anuncio 1</a>
 </li>
 
 <li>

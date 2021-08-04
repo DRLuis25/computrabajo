@@ -34,7 +34,7 @@ class Anuncio extends Model
     use SoftDeletes;
 
     public $table = 'anuncios';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -69,6 +69,7 @@ class Anuncio extends Model
         'departamento_id' => 'integer',
         'ciudad_id' => 'integer',
         'titulo' => 'string',
+        'descripcion' => 'string',
         'pago_propuesto_min' => 'float',
         'pago_propuesto_max' => 'float',
         'estado' => 'string',
@@ -88,6 +89,7 @@ class Anuncio extends Model
         'departamento_id' => 'required',
         'ciudad_id' => 'required',
         'titulo' => 'required|string|max:255',
+        'descripcion' => 'required|string|max:255',
         'pago_propuesto_min' => 'required|numeric',
         'pago_propuesto_max' => 'required|numeric',
         'estado' => 'required|string|max:1',
@@ -104,7 +106,7 @@ class Anuncio extends Model
      **/
     public function ciudad()
     {
-        return $this->belongsTo(\App\Models\Ciudade::class, 'ciudad_id');
+        return $this->belongsTo(\App\Models\Ciudad::class, 'ciudad_id');
     }
 
     /**
@@ -136,7 +138,7 @@ class Anuncio extends Model
      **/
     public function detalleAnuncios()
     {
-        return $this->hasMany(\App\Models\DetalleAnuncio::class, 'anuncio_id');
+        return $this->hasMany(\App\Models\detalleAnuncio::class, 'anuncio_id');
     }
 
     /**
@@ -144,7 +146,7 @@ class Anuncio extends Model
      **/
     public function userAnuncios()
     {
-        return $this->hasMany(\App\Models\UserAnuncio::class, 'anuncio_id');
+        return $this->hasMany(\App\Models\userAnuncio::class, 'anuncio_id');
     }
 
     /**
@@ -152,6 +154,6 @@ class Anuncio extends Model
      **/
     public function valoracionAnuncios()
     {
-        return $this->hasMany(\App\Models\ValoracionAnuncio::class, 'anuncio_id');
+        return $this->hasMany(\App\Models\valoracionAnuncio::class, 'anuncio_id');
     }
 }

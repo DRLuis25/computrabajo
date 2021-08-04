@@ -12,7 +12,7 @@
                         <h6>Nombre anuncio</h6>
                         <div class="row">
                                 <div class="col-md-12">
-                                    <h4>Gracias por calificar el trabajo de "NOMBRE"</h4>
+                                    <h4>Gracias por calificar el trabajo de {{$anuncio->detalleAnuncios[0]->user->name}}</h4>
                                     <br>
                                     <div class="">
                                         <div class="form-group">

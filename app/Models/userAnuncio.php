@@ -23,7 +23,7 @@ class userAnuncio extends Model
     use SoftDeletes;
 
     public $table = 'user_anuncio';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -51,7 +51,7 @@ class userAnuncio extends Model
         'anuncio_id' => 'integer',
         'descripcion' => 'string',
         'importe' => 'float',
-        'tiempo' => 'datetime'
+        'tiempo' => 'float'
     ];
 
     /**
@@ -64,7 +64,7 @@ class userAnuncio extends Model
         'anuncio_id' => 'required',
         'descripcion' => 'required|string|max:255',
         'importe' => 'required|numeric',
-        'tiempo' => 'required',
+        'tiempo' => 'required|numeric',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

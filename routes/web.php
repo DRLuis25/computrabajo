@@ -22,6 +22,6 @@ Auth::routes();
 Route::get('/admin', 'HomeController@index')->name('admin.home');
 
 Route::get('/anuncio/misanuncios','AnuncioController@index')->name('anuncio.misanuncios');
-Route::get('/anuncio/finalizar','AnuncioController@finalizar')->name('anuncio.finalizar');
+Route::get('/anuncio/finalizar/{id}','AnuncioController@finalizar')->name('anuncio.finalizar');
 Route::post('/anuncio/finalizar/valoracion','AnuncioController@valoracion')->name('anuncio.valoracion');
 Route::post('/anuncio/finalizar/final','AnuncioController@final')->name('anuncio.final');
