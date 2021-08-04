@@ -34,3 +34,8 @@ Route::post('/anuncio/finalizar/final',function ()
     $guardar = request()->all();
     return view('anuncio.final');
 })->name('anuncio.final');
+
+Route::get('/anuncio/misanuncios',function ()
+{
+    return view('anuncio.misanuncios');
+})->name('anuncio.misanuncios');
