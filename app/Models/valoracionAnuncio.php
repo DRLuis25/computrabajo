@@ -29,7 +29,7 @@ class valoracionAnuncio extends Model
     use SoftDeletes;
 
     public $table = 'valoracion_anuncios';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -48,9 +48,9 @@ class valoracionAnuncio extends Model
         'valoracion_profesionalismo',
         'valoracion_contratar',
         'comentario',
-        'descripcion',
-        'importe',
-        'tiempo'
+        //'descripcion',
+        //'importe',
+        //'tiempo'
     ];
 
     /**
@@ -69,9 +69,9 @@ class valoracionAnuncio extends Model
         'valoracion_profesionalismo' => 'float',
         'valoracion_contratar' => 'float',
         'comentario' => 'string',
-        'descripcion' => 'string',
-        'importe' => 'float',
-        'tiempo' => 'datetime'
+        //'descripcion' => 'string',
+        //'importe' => 'float',
+        //'tiempo' => 'datetime'
     ];
 
     /**
@@ -89,9 +89,9 @@ class valoracionAnuncio extends Model
         'valoracion_profesionalismo' => 'required|numeric',
         'valoracion_contratar' => 'required|numeric',
         'comentario' => 'nullable|string|max:255',
-        'descripcion' => 'required|string|max:255',
-        'importe' => 'required|numeric',
-        'tiempo' => 'required',
+        //'descripcion' => 'required|string|max:255',
+        //'importe' => 'required|numeric',
+        //'tiempo' => 'required',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
@@ -103,5 +103,10 @@ class valoracionAnuncio extends Model
     public function anuncio()
     {
         return $this->belongsTo(\App\Models\Anuncio::class, 'anuncio_id');
+    }
+    public static function findOrCreate($id)
+    {
+        $obj = static::where('anuncio_id','=',$id);
+        return $obj ?: new static;
     }
 }
