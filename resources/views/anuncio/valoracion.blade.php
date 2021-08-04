@@ -14,8 +14,8 @@
                             {!! Form::open(['route' => 'anuncio.final']) !!}
                                 <div class="col-md-12">
                                     <p class="col-sm-8">Por favor, deje un comentario y califique a "NOMBRE" en el proyecto "Nombre anuncio"</p>
-                                    <input type="text" name="anuncio_id" id="anuncio_id" value="{{$anuncio_id}}">
-                                    <input type="text" name="estado_finalizado" id="estado_finalizado" value="{{$termino}}">
+                                    <input type="text" name="anuncio_id" id="anuncio_id" value="{{$anuncio_id}}" hidden>
+                                    <input type="text" name="estado_finalizado" id="estado_finalizado" value="{{$termino}}" hidden>
                                     <div class="">
                                         <div class="form-group">
                                             <h4>Descripción del anuncio</h4>

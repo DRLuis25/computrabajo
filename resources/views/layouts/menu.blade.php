@@ -1,4 +1,4 @@
-<li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+<li><a href="{{route('home')}}" class="nav-link px-2 text-secondary">Home</a></li>
 <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
 <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
 <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
