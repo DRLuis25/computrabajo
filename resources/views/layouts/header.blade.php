@@ -1,18 +1,23 @@
-<header id="header">
-    <div class="container clearfix">
-        <div class="logo"><a href="{{route('home')}}"><img alt="" src="images/logo.png"><span>Business HTML Template</span></a></div>
-        <div class="header-search">
-            <div class="header-search-a"><i class="fa fa-search"></i></div>
-            <div class="header-search-form">
-                <form method="post">
-                    <input type="text" placeholder="Search Words Here">
-                </form>
-            </div>
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+
+          @include('layouts.menu')
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+        </form>
+
+        <div class="text-end">
+          <button type="button" class="btn btn-outline-light me-2">Login</button>
+          <button type="button" class="btn btn-warning">Sign-up</button>
         </div>
-        <nav class="navigation">
-            <ul>
-                @include('layouts.menu')
-            </ul>
-        </nav><!-- End navigation -->
-    </div><!-- End container -->
-</header><!-- End header -->
+      </div>
+    </div>
+  </header>

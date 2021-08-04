@@ -20,3 +20,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/admin', 'HomeController@index')->name('admin.home');
+
+Route::get('/anuncio/finalizar',function ()
+{
+    return view('anuncio.finalizar');
+})->name('anuncio.finalizar');
+Route::get('/anuncio/finalizar/valoracion',function ()
+{
+    return view('anuncio.valoracion');
+})->name('anuncio.valoracion');
+Route::post('/anuncio/finalizar/final',function ()
+{
+    $guardar = request()->all();
+    return view('anuncio.final');
+})->name('anuncio.final');
