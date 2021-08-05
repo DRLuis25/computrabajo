@@ -11,14 +11,64 @@
             </a>
             <div class="text-end">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary">Mis anuncios</a></li>
-                    <li><a href="#" class="nav-link px-2 text-secondary">Publicar un Anuncio</a></li>
+                    <li><a href="{{ route("anuncio.misanuncios") }}" class="nav-link px-2 text-secondary">Mis anuncios</a></li>
+                    <li><a href="{{ route("anuncio.publicaranuncio") }}" class="nav-link px-2 text-secondary">Publicar un Anuncio</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </header>
 
-Mis anuncios
+<div style="margin:2% 20% 5% 20%">
+    <div>
+        <h3 class="card-title">Mis Anuncios</h3>
+    </div>
+    <div class="input-group" style="margin: 2% 0% 5% 0%">
+        <input type="search" class="form-control rounded" placeholder="" aria-label="Search" aria-describedby="search-addon" />
+        <button type="button" class="btn btn-warning">BUSCAR</button>
+    </div>
+
+    <div class="">
+        <b>
+            <div class="card-body">
+                <div class="row g-0" style="text-align: center">
+                    <div class="col-sm-6 col-md-6"></div>
+                    <div class="col-sm-2 col-md-2">Monto</div>
+                    <div class="col-sm-2 col-md-2">Inscritos</div>
+                    <div class="col-sm-2 col-md-2">Acciones</div>
+                </div>
+            </div>
+        </b>
+    </div>
+
+    <div style="margin-bottom: 30px">
+        <div class="card">
+            <div class="card-body">
+                <div class="row g-0">
+                    <div class="col-sm-6 col-md-6">
+                        <h5 class="card-title" style="color: #2A5C98">Reparar Mueble de Escritorio</h5>
+                        <div>Trujillo</div>
+                        <div>Fecha de creación 22 de Julio</div>
+                    </div>
+                    <div class="col-sm-2 col-md-2" style="text-align: center; font-size: 20px; color:green">
+                        <b>
+                            <div>S/. 160.00</div>
+                            <div>S/. 100.00</div>
+                        </b>
+                    </div>
+                    <div class="col-sm-2 col-md-2" style="font-size: 40px; text-align: center; color:red">
+                        <div>8</div>
+                    </div>
+                    <div class="col-sm-2 col-md-2" style="text-align: center">
+                        <a href="#" style="font-size: 25px"><i class="fa fa-edit"></i></a>
+                        <div>Estado</div>
+                        <div>ACTIVO</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 @endsection
