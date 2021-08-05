@@ -23,7 +23,7 @@ class anuncioSeeder extends Seeder
         //$ciudades = factory(Ciudad::class,10)->create();
         $distrito = factory(Distrito::class)->create();
         $distritos = factory(Distrito::class,10)->create();
-        $oficios = factory(Oficio::class,10)->create();
+        //$oficios = factory(Oficio::class,10)->create();
         $user = User::create([
             'name' => 'Luis Guillermo',
             'apellidos' => 'Delgado Rodriguez',
@@ -34,7 +34,7 @@ class anuncioSeeder extends Seeder
         //Anuncio creado
         $anuncio = Anuncio::create([
             'user_id' => '1',
-            'oficio_id' => '1',
+            'oficio_id' => '32',
             'departamento_id' => $distrito->ciudad->departamento->id,
             'ciudad_id' => $distrito->ciudad->id,
             'distrito_id' => $distrito->id,

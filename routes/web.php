@@ -21,13 +21,10 @@ Auth::routes();
 
 Route::get('/admin', 'HomeController@index')->name('admin.home');
 
-Route::get('/anuncio/publicaranuncio',function ()
-{
-    return view('anuncio.publicaranuncio');
-})->name('anuncio.publicaranuncio');
-
 Route::get('/anuncio/misanuncios','AnuncioController@index')->name('anuncio.misanuncios');
 Route::get('/anuncio/finalizar/{id}','AnuncioController@finalizar')->name('anuncio.finalizar');
 Route::post('/anuncio/finalizar/valoracion','AnuncioController@valoracion')->name('anuncio.valoracion');
 Route::post('/anuncio/finalizar/final','AnuncioController@final')->name('anuncio.final');
+Route::get('/anuncio/publicar','AnuncioController@publicar')->name('anuncio.publicaranuncio');
+Route::get('/anuncio/editaranuncio/{id}','AnuncioController@editaranuncio')->name('anuncio.editaranuncio');
 

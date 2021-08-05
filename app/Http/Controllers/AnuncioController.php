@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Anuncio;
 use App\Models\valoracionAnuncio;
+use App\Models\Oficio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,5 +62,17 @@ class AnuncioController extends Controller
     {
         $anuncio = Anuncio::where('user_id', '=', Auth::user()->id)->get();
         return view('anuncio.misanuncios', compact('anuncio'));
+    }
+
+    public function publicar()
+    {
+        $oficio = Oficio::All();
+        return view('anuncio.publicaranuncio', compact('oficio'));
+    }
+
+    public function editaranuncio($id)
+    {
+        $anuncio = Anuncio::findOrFail($id);
+        return view('anuncio.editaranuncio', compact('anuncio'));
     }
 }
