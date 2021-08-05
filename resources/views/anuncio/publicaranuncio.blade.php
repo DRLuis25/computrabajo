@@ -19,6 +19,8 @@
     </div>
 </header>
 
+<form method="POST" action="{{route('anuncio.guardaranuncio')}}">
+@csrf
 <div style="margin-left:12%; width: 76%;">
     <div class="card">
         <div class="card-header" style="color:#2A5C98;">
@@ -29,19 +31,19 @@
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Fecha de expiración :</div>
                     <div class="col-4 col-md-4">
-                        <input type="date" class="form-control" name="fecha" id="fecha" aria-describedby="basic-addon1">
+                        <input type="date" class="form-control" name="fecha_expiracion" id="fecha_expiracion" aria-describedby="basic-addon1">
                     </div>
                 </div>
                 <div class="row g-0" style="padding:1%;">
                     <div class="col-sm-4 col-md-4">Estado :</div>
                     <div class="col-2 col-md-2">
-                        <input class="form-check-input" type="radio" name="radioestado" id="radioestado">
+                        <input class="form-check-input" type="radio" name="radioestado" id="radioestado" value="1">
                         <label class="form-check-label" for="flexRadioDefault1">
                             ACTIVO
                         </label>
                     </div>
                     <div class="col-2 col-md-2">
-                        <input class="form-check-input" type="radio" name="radioestado" id="radioestado">
+                        <input class="form-check-input" type="radio" name="radioestado" id="radioestado" value="0">
                         <label class="form-check-label" for="flexRadioDefault1">
                             INACTIVO
                         </label>
@@ -50,13 +52,13 @@
                 <div class="row g-0" style="padding:1%;">
                     <div class="col-sm-4 col-md-4">Mostrar e-mail de contacto :</div>
                     <div class="col-1 col-md-1">
-                        <input class="form-check-input" type="radio" name="radioemail" id="radioemail">
+                        <input class="form-check-input" type="radio" name="radioemail" id="radioemail" value="1">
                         <label class="form-check-label" for="flexRadioDefault1">
                             SI
                         </label>
                     </div>
                     <div class="col-1 col-md-1">
-                        <input class="form-check-input" type="radio" name="radioemail" id="radioemail">
+                        <input class="form-check-input" type="radio" name="radioemail" id="radioemail" value="0">
                         <label class="form-check-label" for="flexRadioDefault1">
                             NO
                         </label>
@@ -65,13 +67,13 @@
                 <div class="row g-0" style="padding:1%;">
                     <div class="col-sm-4 col-md-4">Mostrar telefono de contacto :</div>
                     <div class="col-1 col-md-1">
-                        <input class="form-check-input" type="radio" name="radiotelefono" id="radiotelefono">
+                        <input class="form-check-input" type="radio" name="radiotelefono" id="radiotelefono" value="1">
                         <label class="form-check-label" for="flexRadioDefault1">
                             SI
                         </label>
                     </div>
                     <div class="col-1 col-md-1">
-                        <input class="form-check-input" type="radio" name="radiotelefono" id="radiotelefono">
+                        <input class="form-check-input" type="radio" name="radiotelefono" id="radiotelefono" value="0">
                         <label class="form-check-label" for="flexRadioDefault1">
                             NO
                         </label>
@@ -80,13 +82,13 @@
                 <div class="row g-0" style="padding:1% 1% 3% 1%;">
                     <div class="col-sm-4 col-md-4">Mostrar dirección de contacto :</div>
                     <div class="col-1 col-md-1">
-                        <input class="form-check-input" type="radio" name="radiodireccion" id="radiodireccion">
+                        <input class="form-check-input" type="radio" name="radiodireccion" id="radiodireccion" value="1">
                         <label class="form-check-label" for="flexRadioDefault1">
                             SI
                         </label>
                     </div>
                     <div class="col-1 col-md-1">
-                        <input class="form-check-input" type="radio" name="radiodireccion" id="radiodireccion">
+                        <input class="form-check-input" type="radio" name="radiodireccion" id="radiodireccion" value="0">
                         <label class="form-check-label" for="flexRadioDefault1">
                             NO
                         </label>
@@ -110,7 +112,7 @@
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Oficio:</div>
                     <div class="col-sm-4 col-md-4">
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" name="idoficio" id="idoficio">
                             @foreach($oficio as $itemOficio)
                                 <option value="{{ $itemOficio->id }}">{{ $itemOficio->nombre }}</option>
                             @endforeach
@@ -120,31 +122,31 @@
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="form-group col-sm-8 col-md-8">
                         <label for="exampleFormControlTextarea1" style="margin-bottom:20px">Descripción de tareas :</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" name="descripcion" id="descripcion" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Pago:</div>
                     <div class="col-1 col-md-1">
-                        <input type="text" placeholder="Min" class="form-control" name="min" id="min" aria-describedby="basic-addon1">
+                        <input type="number" placeholder="Min" class="form-control" name="min" id="min" aria-describedby="basic-addon1">
                     </div>
                     <div class="col-1 col-md-1" style="margin: 0px 5px 0px 5px; text-align: center">-</div>
                     <div class="col-1 col-md-1">
-                        <input type="text" placeholder="Max" class="form-control" name="max" id="max" aria-describedby="basic-addon1">
+                        <input type="number" placeholder="Max" class="form-control" name="max" id="max" aria-describedby="basic-addon1">
                     </div>
                 </div>
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Departamento:</div>
                     <div class="col-sm-4 col-md-4">
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" name="departamento_id" id="departamento_id">
                             <option value="1">La Libertad</option>
                         </select>
                     </div>
                 </div>
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
-                    <div class="col-sm-4 col-md-4">Provincia:</div>
+                    <div class="col-sm-4 col-md-4">Ciudad:</div>
                     <div class="col-sm-4 col-md-4">
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" name="ciudad_id" id="ciudad_id">
                             <option value="1">Trujillo</option>
                         </select>
                     </div>
@@ -152,7 +154,7 @@
                 <div class="row g-0" style="padding:3% 1% 3% 1%;">
                     <div class="col-sm-4 col-md-4">Distrito:</div>
                     <div class="col-sm-4 col-md-4">
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" name="distrito_id" id="distrito_id">
                             <option value="1">Trujillo</option>
                         </select>
                     </div>
@@ -164,5 +166,7 @@
         <button type="submit" class="btn btn-warning" style="height: 50px; width: 400px;"><b>Publicar</button>
     </div>
 </div>
+
+</form>
 
 @endsection
