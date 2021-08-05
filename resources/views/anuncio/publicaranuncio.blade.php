@@ -34,7 +34,8 @@
                         <input type="date" class="form-control" name="fecha_expiracion" id="fecha_expiracion" aria-describedby="basic-addon1">
                     </div>
                 </div>
-                <div class="row g-0" style="padding:1%;">
+                <input type="text" hidden value="0" name="radioestado">
+                {{-- <div class="row g-0" style="padding:1%;">
                     <div class="col-sm-4 col-md-4">Estado :</div>
                     <div class="col-2 col-md-2">
                         <input class="form-check-input" type="radio" name="radioestado" id="radioestado" value="1">
@@ -48,7 +49,7 @@
                             INACTIVO
                         </label>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row g-0" style="padding:1%;">
                     <div class="col-sm-4 col-md-4">Mostrar e-mail de contacto :</div>
                     <div class="col-1 col-md-1">
