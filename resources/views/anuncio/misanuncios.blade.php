@@ -47,7 +47,7 @@
             <div class="card-body">
                 <div class="row g-0">
                     <div class="col-sm-6 col-md-6">
-                        <h5 class="card-title" style="color: #2A5C98">{{ $itemAnuncio->titulo }}</h5>
+                        <h5 class="card-title" style="color: #2A5C98"><a href="{{route('anuncio.finalizar',[$itemAnuncio->id])}}" >{{ $itemAnuncio->titulo }}</a> </h5>
                         <div>{{$itemAnuncio->departamento->nombre}} - {{$itemAnuncio->ciudad->nombre}} - {{$itemAnuncio->distrito->nombre}}</div>
                         <div>Fecha de expiración {{ $itemAnuncio->fecha_expiracion}}</div>
                     </div>
