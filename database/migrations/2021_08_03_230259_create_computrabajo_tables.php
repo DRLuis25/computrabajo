@@ -85,6 +85,7 @@ class CreateComputrabajoTables extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
         Schema::create('valoracion_anuncios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('anuncio_id');

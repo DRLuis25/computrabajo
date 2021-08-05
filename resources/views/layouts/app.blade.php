@@ -7,13 +7,14 @@
 
     <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+     <!-- -Link estilos jhan-->
+     <link rel="stylesheet" href="{{ URL::asset('css/jhan.css') }} ">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     @stack('css')
-    <title>Hello, world!</title>
+    <title>Grupo2</title>
   </head>
-  <body style="padding-bottom: 120px;">
+  <body style="padding-bottom: 120px;" >
     @include('layouts.header')
 
 	<div class="clearfix"></div>
