@@ -28,17 +28,8 @@ Route::post('/anuncio/finalizar/final','AnuncioController@final')->name('anuncio
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+Route::get('/anuncio/publicar','AnuncioController@publicar')->name('anuncio.publicaranuncio');
+Route::get('/anuncio/editaranuncio/{id}','AnuncioController@editaranuncio')->name('anuncio.editaranuncio');
 
 /*rutas Jhan */
 Route::resource('contactarEmpleador', 'PropuestasController');
