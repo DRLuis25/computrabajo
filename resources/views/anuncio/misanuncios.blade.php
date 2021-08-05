@@ -42,16 +42,14 @@
     </div>
 
     @foreach($anuncio as $itemAnuncio)
-        
-    @endforeach
     <div style="margin-bottom: 30px">
         <div class="card">
             <div class="card-body">
                 <div class="row g-0">
                     <div class="col-sm-6 col-md-6">
                         <h5 class="card-title" style="color: #2A5C98">{{ $itemAnuncio->titulo }}</h5>
-                        <div>{{ $itemAnuncio->ciudad->nombre }}</div>
-                        <div>Fecha de creación {{ $itemAnuncio->ciudad->nombre }}</div>
+                        <div>{{$itemAnuncio->departamento_id}} - {{$itemAnuncio->ciudad_id}} - {{$itemAnuncio->distrito_id}}</div>
+                        <div>Fecha de expiración {{ $itemAnuncio->fecha_expiracion}}</div>
                     </div>
                     <div class="col-sm-2 col-md-2" style="text-align: center; font-size: 20px; color:green">
                         <b>
@@ -60,7 +58,7 @@
                         </b>
                     </div>
                     <div class="col-sm-2 col-md-2" style="font-size: 40px; text-align: center; color:red">
-                        <div>{{ $itemAnuncio->publicacion->count() }}</div>
+                        <div>{{ $itemAnuncio->publicacion == null ? '0' : $itemAnuncio->user->count() }}</div>
                     </div>
                     <div class="col-sm-2 col-md-2" style="text-align: center">
                         <a href="#" style="font-size: 25px"><i class="fa fa-edit"></i></a>

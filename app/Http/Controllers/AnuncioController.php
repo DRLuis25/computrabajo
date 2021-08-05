@@ -59,7 +59,7 @@ class AnuncioController extends Controller
     }
     public function index()
     {
-        $anuncio = Anuncio::All();
+        $anuncio = Anuncio::where('user_id', '=', Auth::user()->id)->get();
         return view('anuncio.misanuncios', compact('anuncio'));
     }
 }
