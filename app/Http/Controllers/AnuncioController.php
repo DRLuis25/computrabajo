@@ -30,7 +30,18 @@ class AnuncioController extends Controller
     public function final(Request $request)
     {
         //return request()->all();
-        $valoracion = valoracionAnuncio::firstOrCreate(['anuncio_id'=>$request->anuncio_id]);
+        $valoracion = valoracionAnuncio::firstOrCreate(['anuncio_id'=>$request->anuncio_id],
+        [
+            'anuncio_id' => $request->anuncio_id,
+            'estado_finalizado' => $request->estado_finalizado,
+            'a_tiempo' => $request->a_tiempo,
+            'valoracion_calidad' => $request->star ?? 0,
+            'valoracion_comunicacion' => $request->star2 ?? 0,
+            'valoracion_pericia' => $request->star3?? 0,
+            'valoracion_profesionalismo' => $request->star4 ?? 0,
+            'valoracion_contratar' => $request->star5 ?? 0,
+            'comentario' => $request->comentario
+        ]);
         $valoracion->anuncio_id = $request->anuncio_id;
         $valoracion->estado_finalizado = $request->estado_finalizado;
         $valoracion->a_tiempo = $request->a_tiempo;
