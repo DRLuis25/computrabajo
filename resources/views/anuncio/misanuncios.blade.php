@@ -49,7 +49,7 @@
                     <div class="col-sm-6 col-md-6">
                         <h5 class="card-title" style="color: #2A5C98"><a href="{{route('anuncio.finalizar',[$itemAnuncio->id])}}" >{{ $itemAnuncio->titulo }}</a> </h5>
                         <div>{{$itemAnuncio->departamento->nombre}} - {{$itemAnuncio->ciudad->nombre}} - {{$itemAnuncio->distrito->nombre}}</div>
-                        <div>Fecha de expiración {{ $itemAnuncio->fecha_expiracion}}</div>
+                        <div>Fecha de expiración {{ date_format($itemAnuncio->fecha_expiracion, 'd/m/Y') }}</div>
                     </div>
                     <div class="col-sm-2 col-md-2" style="text-align: center; font-size: 20px; color:green">
                         <b>

@@ -29,6 +29,7 @@ Route::post('/anuncio/finalizar/final','AnuncioController@final')->name('anuncio
 Route::get('/publicacion/{id}','PublicacionController@comienzo')->name('publicacion.comienzo');
 
 Route::get('/anuncio/publicar','AnuncioController@publicar')->name('anuncio.publicaranuncio');
+Route::post('/anuncio/guardar','AnuncioController@guardaranuncio')->name('anuncio.guardaranuncio');
 Route::get('/anuncio/editaranuncio/{id}','AnuncioController@editaranuncio')->name('anuncio.editaranuncio');
 
 /*rutas Jhan */
