@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Anuncio
  * @package App\Models
- * @version August 3, 2021, 11:16 pm UTC
+ * @version August 5, 2021, 3:09 am UTC
  *
- * @property \App\Models\Ciudade $ciudad
+ * @property \App\Models\Ciudad $ciudad
  * @property \App\Models\Departamento $departamento
+ * @property \App\Models\Distrito $distrito
  * @property \App\Models\Oficio $oficio
  * @property \App\Models\User $user
  * @property \Illuminate\Database\Eloquent\Collection $detalleAnuncios
@@ -21,7 +22,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $oficio_id
  * @property integer $departamento_id
  * @property integer $ciudad_id
+ * @property integer $distrito_id
  * @property string $titulo
+ * @property string $descripcion
+ * @property string|\Carbon\Carbon $fecha_expiracion
  * @property number $pago_propuesto_min
  * @property number $pago_propuesto_max
  * @property string $estado
@@ -48,7 +52,10 @@ class Anuncio extends Model
         'oficio_id',
         'departamento_id',
         'ciudad_id',
+        'distrito_id',
         'titulo',
+        'descripcion',
+        'fecha_expiracion',
         'pago_propuesto_min',
         'pago_propuesto_max',
         'estado',
@@ -68,8 +75,10 @@ class Anuncio extends Model
         'oficio_id' => 'integer',
         'departamento_id' => 'integer',
         'ciudad_id' => 'integer',
+        'distrito_id' => 'integer',
         'titulo' => 'string',
         'descripcion' => 'string',
+        'fecha_expiracion' => 'datetime',
         'pago_propuesto_min' => 'float',
         'pago_propuesto_max' => 'float',
         'estado' => 'string',
@@ -88,8 +97,10 @@ class Anuncio extends Model
         'oficio_id' => 'required',
         'departamento_id' => 'required',
         'ciudad_id' => 'required',
+        'distrito_id' => 'required',
         'titulo' => 'required|string|max:255',
         'descripcion' => 'required|string|max:255',
+        'fecha_expiracion' => 'required',
         'pago_propuesto_min' => 'required|numeric',
         'pago_propuesto_max' => 'required|numeric',
         'estado' => 'required|string|max:1',
@@ -120,6 +131,14 @@ class Anuncio extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
+    public function distrito()
+    {
+        return $this->belongsTo(\App\Models\Distrito::class, 'distrito_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
     public function oficio()
     {
         return $this->belongsTo(\App\Models\Oficio::class, 'oficio_id');
@@ -138,7 +157,7 @@ class Anuncio extends Model
      **/
     public function detalleAnuncios()
     {
-        return $this->hasMany(\App\Models\detalleAnuncio::class, 'anuncio_id');
+        return $this->hasMany(\App\Models\DetalleAnuncio::class, 'anuncio_id');
     }
 
     /**
@@ -146,7 +165,7 @@ class Anuncio extends Model
      **/
     public function userAnuncios()
     {
-        return $this->hasMany(\App\Models\userAnuncio::class, 'anuncio_id');
+        return $this->hasMany(\App\Models\UserAnuncio::class, 'anuncio_id');
     }
 
     /**
@@ -154,6 +173,6 @@ class Anuncio extends Model
      **/
     public function valoracionAnuncios()
     {
-        return $this->hasMany(\App\Models\valoracionAnuncio::class, 'anuncio_id');
+        return $this->hasMany(\App\Models\ValoracionAnuncio::class, 'anuncio_id');
     }
 }

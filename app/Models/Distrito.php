@@ -6,22 +6,21 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Ciudad
+ * Class Distrito
  * @package App\Models
  * @version August 5, 2021, 3:40 am UTC
  *
- * @property \App\Models\Departamento $departamento
+ * @property \App\Models\Ciudade $ciudad
  * @property \Illuminate\Database\Eloquent\Collection $anuncios
- * @property \Illuminate\Database\Eloquent\Collection $distritos
- * @property integer $departamento_id
+ * @property integer $ciudad_id
  * @property string $nombre
  */
-class Ciudad extends Model
+class Distrito extends Model
 {
     use SoftDeletes;
 
-    public $table = 'ciudades';
-    
+    public $table = 'distritos';
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -31,7 +30,7 @@ class Ciudad extends Model
 
 
     public $fillable = [
-        'departamento_id',
+        'ciudad_id',
         'nombre'
     ];
 
@@ -42,7 +41,7 @@ class Ciudad extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'departamento_id' => 'integer',
+        'ciudad_id' => 'integer',
         'nombre' => 'string'
     ];
 
@@ -52,7 +51,7 @@ class Ciudad extends Model
      * @var array
      */
     public static $rules = [
-        'departamento_id' => 'required',
+        'ciudad_id' => 'required',
         'nombre' => 'required|string',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
@@ -62,9 +61,9 @@ class Ciudad extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function departamento()
+    public function ciudad()
     {
-        return $this->belongsTo(\App\Models\Departamento::class, 'departamento_id');
+        return $this->belongsTo(\App\Models\Ciudad::class, 'ciudad_id');
     }
 
     /**
@@ -72,14 +71,6 @@ class Ciudad extends Model
      **/
     public function anuncios()
     {
-        return $this->hasMany(\App\Models\Anuncio::class, 'ciudad_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function distritos()
-    {
-        return $this->hasMany(\App\Models\Distrito::class, 'ciudad_id');
+        return $this->hasMany(\App\Models\Anuncio::class, 'distrito_id');
     }
 }
