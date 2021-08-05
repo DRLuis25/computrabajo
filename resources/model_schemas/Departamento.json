@@ -62,5 +62,9 @@
     {
         "type": "relation",
         "relation": "1tm,Anuncio,departamento_id"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,Ciudade,departamento_id"
     }
 ]

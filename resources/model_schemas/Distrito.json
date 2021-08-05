@@ -12,7 +12,7 @@
         "inView": false
     },
     {
-        "name": "departamento_id",
+        "name": "ciudad_id",
         "dbType": "bigInteger,false,true",
         "htmlType": null,
         "validations": "required",
@@ -73,14 +73,10 @@
     },
     {
         "type": "relation",
-        "relation": "mt1,Departamento,departamento_id"
+        "relation": "mt1,Ciudade,ciudad_id"
     },
     {
         "type": "relation",
-        "relation": "1tm,Anuncio,ciudad_id"
-    },
-    {
-        "type": "relation",
-        "relation": "1tm,Distrito,ciudad_id"
+        "relation": "1tm,Anuncio,distrito_id"
     }
 ]

@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Departamento
  * @package App\Models
- * @version August 3, 2021, 11:15 pm UTC
+ * @version August 5, 2021, 3:39 am UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection $anuncios
+ * @property \Illuminate\Database\Eloquent\Collection $ciudades
  * @property string $nombre
  */
 class Departamento extends Model
@@ -18,7 +19,7 @@ class Departamento extends Model
     use SoftDeletes;
 
     public $table = 'departamentos';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -47,7 +48,10 @@ class Departamento extends Model
      * @var array
      */
     public static $rules = [
-        'nombre' => 'required|string'
+        'nombre' => 'required|string',
+        'created_at' => 'nullable',
+        'updated_at' => 'nullable',
+        'deleted_at' => 'nullable'
     ];
 
     /**
@@ -56,5 +60,13 @@ class Departamento extends Model
     public function anuncios()
     {
         return $this->hasMany(\App\Models\Anuncio::class, 'departamento_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function ciudades()
+    {
+        return $this->hasMany(\App\Models\Ciudad::class, 'departamento_id');
     }
 }
