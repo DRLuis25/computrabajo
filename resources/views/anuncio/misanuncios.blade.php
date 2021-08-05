@@ -47,7 +47,13 @@
             <div class="card-body">
                 <div class="row g-0">
                     <div class="col-sm-6 col-md-6">
-                        <h5 class="card-title" style="color: #2A5C98"><a href="{{route('anuncio.finalizar',[$itemAnuncio->id])}}" >{{ $itemAnuncio->titulo }}</a> </h5>
+                        <h5 class="card-title" style="color: #2A5C98">
+                            @if ($itemAnuncio->estado=='1')
+                            <a href="{{route('anuncio.finalizar',[$itemAnuncio->id])}}" >{{ $itemAnuncio->titulo }}</a>
+                            @else
+                            {{ $itemAnuncio->titulo }}
+                            @endif
+                        </h5>
                         <div>{{$itemAnuncio->departamento->nombre}} - {{$itemAnuncio->ciudad->nombre}} - {{$itemAnuncio->distrito->nombre}}</div>
                         <div>Fecha de expiración {{ date_format($itemAnuncio->fecha_expiracion, 'd/m/Y') }}</div>
                     </div>
@@ -61,9 +67,21 @@
                         <div><a href="{{route('publicacion.comienzo',$itemAnuncio->id)}}" style="text-decoration:none">{{ $itemAnuncio->publicacion == null ? '0' : $itemAnuncio->user->count() }}</a></div>
                     </div>
                     <div class="col-sm-2 col-md-2" style="text-align: center">
-                        <a href="{{ route("anuncio.editaranuncio", $itemAnuncio->id) }}" style="font-size: 25px"><i class="fa fa-edit"></i></a>
+                        @if ($itemAnuncio->estado == 0)
+                            <a href="{{ route("anuncio.editaranuncio", $itemAnuncio->id) }}" style="font-size: 25px"><i class="fa fa-edit"></i></a>
+                        @endif
                         <div>Estado</div>
-                        <div>{{ $itemAnuncio->estado == 1 ? 'ACTIVO' : 'INACTIVO'}}</div>
+                        <div>
+                            @if ($itemAnuncio->estado == 0)
+                                ACTIVO
+                            @else
+                                @if ($itemAnuncio->estado == 1)
+                                    EN PROCESO
+                                @else
+                                    FINALIZADO
+                                @endif
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
