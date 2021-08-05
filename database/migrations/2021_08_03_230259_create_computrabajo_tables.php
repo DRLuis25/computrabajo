@@ -25,6 +25,12 @@ class CreateComputrabajoTables extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+        Schema::create('distritos', function (Blueprint $table) {
+            $table->id();
+            $table->text('nombre');
+            $table->timestamps();
+            $table->softDeletes();
+        });
         Schema::create('oficios', function (Blueprint $table) {
             $table->id();
             $table->text('nombre');
@@ -47,8 +53,10 @@ class CreateComputrabajoTables extends Migration
             $table->unsignedBigInteger('oficio_id');
             $table->unsignedBigInteger('departamento_id');
             $table->unsignedBigInteger('ciudad_id');
+            $table->unsignedBigInteger('distrito_id');
             $table->string('titulo');
             $table->string('descripcion');
+            $table->timestamp('fecha_expiracion');
             $table->double('pago_propuesto_min');
             $table->double('pago_propuesto_max');
             $table->char('estado',1);
@@ -59,6 +67,7 @@ class CreateComputrabajoTables extends Migration
             $table->foreign('oficio_id')->references('id')->on('oficios');
             $table->foreign('departamento_id')->references('id')->on('departamentos');
             $table->foreign('ciudad_id')->references('id')->on('ciudades');
+            $table->foreign('distrito_id')->references('id')->on('distritos');
             $table->timestamps();
             $table->softDeletes();
         });

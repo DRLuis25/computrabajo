@@ -4,6 +4,7 @@ use App\Models\Anuncio;
 use App\Models\Ciudad;
 use App\Models\Departamento;
 use App\Models\detalleAnuncio;
+use App\Models\Distrito;
 use App\Models\Oficio;
 use App\Models\userAnuncio;
 use App\User;
@@ -18,8 +19,9 @@ class anuncioSeeder extends Seeder
      */
     public function run()
     {
-        $ciudades = factory(Ciudad::class,10)->create();
         $departamentos = factory(Departamento::class,10)->create();
+        $ciudades = factory(Ciudad::class,10)->create();
+        $distritos = factory(Distrito::class,10)->create();
         $oficios = factory(Oficio::class,10)->create();
         $user = User::create([
             'name' => 'Luis Guillermo',
@@ -34,8 +36,10 @@ class anuncioSeeder extends Seeder
             'oficio_id' => '1',
             'departamento_id' => '1',
             'ciudad_id' => '1',
+            'distrito_id' => '1',
             'titulo' => 'Necesito pintor casa 3 pisos',
             'descripcion' => 'Necesito pintor que tenga experiencia en pintado de maquinaria, equipos y accesorios así también para apoyar en las labores del taller cuando se necesite.',
+            'fecha_expiracion' => '2021-09-01',
             'pago_propuesto_min' => '750',
             'pago_propuesto_max' => '1000',
             'estado' => '0',
