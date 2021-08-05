@@ -58,7 +58,7 @@
                         </b>
                     </div>
                     <div class="col-sm-2 col-md-2" style="font-size: 40px; text-align: center; color:red">
-                        <div>{{ $itemAnuncio->publicacion == null ? '0' : $itemAnuncio->user->count() }}</div>
+                        <div><a href="{{route('publicacion.comienzo',$itemAnuncio->id)}}" style="text-decoration:none">{{ $itemAnuncio->publicacion == null ? '0' : $itemAnuncio->user->count() }}</a></div>
                     </div>
                     <div class="col-sm-2 col-md-2" style="text-align: center">
                         <a href="{{ route("anuncio.editaranuncio", $itemAnuncio->id) }}" style="font-size: 25px"><i class="fa fa-edit"></i></a>
