@@ -9,121 +9,130 @@
             <div class="sections sections-padding-0">
                 <div class="container">
                     <div class="callout callout-4">
-                        <h6>Nombre anuncio</h6>
+                        <h6>{{$anuncio->titulo}}</h6>
                         <div class="row">
                             <div class="col-md-10">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lorem quam, adipiscing condimentum tristique vel, eleifend sed turpis. Pellentesque cursus arcu id magna euismod in elementum purus molestie.</p>
-                                <br>
-                                <div class="">
-                                    <div class="form-group col-sm-2">
-                                        <p>Trujillo, La Libertad</p>
+                                <p>{{$anuncio->descripcion}}</p>
+                                <div class="row">
+                                    <div class="form-group col-sm-3">
+                                        <p>{{$anuncio->ciudad->nombre}}, {{$anuncio->departamento->nombre}}</p>
                                     </div>
                                     <div class="form-group col-sm-2">
-                                        <p>Hace 4 días</p>
+                                        <p>{{$anuncio->created_at->diffForHumans()}}</p>
                                     </div>
-                                    <div class="">
+                                    <div class="form-group col-sm-4">
                                         <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
                                         <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
                                         <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
                                         <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
                                         <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
-                                        <label for="">30 evaluaciones</label>
+                                        &nbsp;
+                                        <label for="">{{$anuncio->detalleAnuncios[0]->user->detalleAnuncios->count()}} @if ($anuncio->detalleAnuncios[0]->user->detalleAnuncios->count() == 1)
+                                            evaluación
+                                            @else
+                                            evaluaciones
+                                        @endif</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <div class="callout-a ">
-                                    {{-- <button type="button" class="button-3"
-                                        data-toggle="modal" data-target="#processModal"
-                                        data-whatever="Registrar">
+                                <div>
+                                    <button type="button" class="btn btn-danger"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        data-bs-whatever="@mdo">
                                         Finalizar
-                                    </button> --}}
-                                    <div class="callout-a "><a class="button-3" href="{{route('anuncio.valoracion')}}">Finalizar</a>
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div><!-- End callout -->
-                    <div class="gap"></div>
                 </div><!-- End container -->
             </div><!-- End sections -->
         </div><!-- End row -->
     </div><!-- End container -->
 </div><!-- End sections -->
 
-{{--
-<div class="modal fade" id="processModal" tabindex="-1" role="dialog" aria-labelledby="processModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="processModalLabel">New message</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+            <h5 class="modal-title" id="exampleModalLabel">¿Finalizar Anuncio?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-            <form action="" id="createProcess-form">
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label for="name" class="col-form-label">@lang('models/processes.fields.name'):</label>
-                        <input type="text" id="name" name="name" required class="form-control">
-                    </div>
-                    <div class="form-group col-12">
-                        <label for="description" class="col-form-label">@lang('models/processes.fields.description'):</label>
-                        <input type="text" class="form-control" name="description" id="description" required>
-                    </div>
+        <form id="finalizarAnuncio-form" method="POST" action="{{route('anuncio.valoracion')}}">
+            @csrf
+            <div class="modal-body">
+                <div class="mb-3">
+                    <input type="text" name="anuncio_id" id="anuncio_id" value="{{$anuncio->id}}" hidden>
+                    <label for="recipient-name" class="col-form-label">
+                        Al finalizar este anuncio, se notificará al Empleador que no se requiere más trabajo
+                        para este anuncio.
+                    </label>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <input type="submit" value="Guardar" class="btn btn-primary" id="checkBtn">
+                <p>¿Cuáles son los términos para finalizar este anuncio?</p>
+                <div class="form-check form-check-inline">
+                    <label class="checkbox-inline">
+                        <input type="radio" id="si" name="termino" value="1" required> Estoy satisfecho, se han cumplido todos los requisitos de mi anuncio.
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="radio" id="no" name="termino" value="0"> El Empleador no puede completar mi anuncio.
+                    </label>
                 </div>
-            </form>
-        </div>
-      </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="submit" name="" id="" class="btn btn-primary">
+            </div>
+        </form>
     </div>
-  </div> --}}
+  </div>
+</div>
 @push('scripts')
     <script>
-        $('#processModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var recipient = button.data('whatever') // Extract info from data-* attributes
-            var modal = $(this)
-            //modal.find('.modal-title').text(recipient + ' proceso processMapId:')
-        });
-        $('#createProcess-form').on('submit', function(e){
-            e.preventDefault();
-            checked = $("input[type=checkbox]:checked").length;
+        $(function () {
+            $('#finalizarAnuncio-form').on('submit', function(e){
+            //e.preventDefault();
+            console.log($('#finalizarAnuncio-form').serialize());
+                /* $.ajax({
+                    url: '{{route('anuncio.final')}}', //this is the submit URL
+                    type: 'POST', //or POST
+                    headers: {
+                        'X-CSRF-Token': '{{ csrf_token() }}',
+                    },
+                    data: $('#createProcess-form').serialize(),
+                    success: function(data){
+                        if(data.status==200){
+                            console.log(data);
+                            alert('Registrado correctamente');
+                            $('#createProcess-form').trigger('reset');
+                            $('#processModal').modal('toggle');
+                            $('.data-table-process').DataTable().ajax.reload();
+                            console.log("reload");
+                            //replaceDiagram(); Update Mapa proceso
+                        }
+                        else if (data.status==500) {
+                            console.log(data.e);
+                            alert("Error al registrar. Registro duplicado");
+                        }
 
-            if(!checked) {
-                alert("Debes marcar al menos un tipo de proceso.");
-                return false;
-            }
-            console.log($('#createProcess-form').serialize());
-            $.ajax({
-                url: '{{route('anuncio.final')}}', //this is the submit URL
-                type: 'POST', //or POST
-                headers: {
-                    'X-CSRF-Token': '{{ csrf_token() }}',
-                },
-                data: $('#createProcess-form').serialize(),
-                success: function(data){
-                    if(data.status==200){
-                        console.log(data);
-                        alert('Registrado correctamente');
-                        $('#createProcess-form').trigger('reset');
-                        $('#processModal').modal('toggle');
-                        $('.data-table-process').DataTable().ajax.reload();
-                        console.log("reload");
-                        //replaceDiagram(); Update Mapa proceso
-                    }
-                    else if (data.status==500) {
-                        console.log(data.e);
-                        alert("Error al registrar. Registro duplicado");
-                    }
-
-                },
+                    },
+                }); */
             });
-        });
+        })
+
+        var exampleModal = document.getElementById('exampleModal')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            // Button that triggered the modal
+            var button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            var recipient = button.getAttribute('data-bs-whatever')
+            var modalTitle = exampleModal.querySelector('.modal-title')
+            var modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+            modalTitle.textContent = '¿Finalizar Anuncio?'// + recipient
+            //modalBodyInput.value = recipient
+        })
+
     </script>
 
   @endpush

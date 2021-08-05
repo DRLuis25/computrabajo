@@ -21,7 +21,7 @@ class detalleAnuncio extends Model
     use SoftDeletes;
 
     public $table = 'detalle_anuncio';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -75,6 +75,6 @@ class detalleAnuncio extends Model
      **/
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class, 'user_id');
+        return $this->belongsTo(\App\User::class, 'user_id');
     }
 }

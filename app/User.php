@@ -39,4 +39,36 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function anuncios()
+    {
+        return $this->hasMany(\App\Models\Anuncio::class, 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function detalleAnuncios()
+    {
+        return $this->hasMany(\App\Models\DetalleAnuncio::class, 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function userAnuncios()
+    {
+        return $this->hasMany(\App\Models\UserAnuncio::class, 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function userOficios()
+    {
+        return $this->hasMany(\App\Models\UserOficio::class, 'user_id');
+    }
 }

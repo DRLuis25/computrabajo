@@ -21,26 +21,13 @@ Auth::routes();
 
 Route::get('/admin', 'HomeController@index')->name('admin.home');
 
-Route::get('/anuncio/finalizar',function ()
-{
-    return view('anuncio.finalizar');
-})->name('anuncio.finalizar');
-Route::get('/anuncio/finalizar/valoracion',function ()
-{
-    return view('anuncio.valoracion');
-})->name('anuncio.valoracion');
-Route::post('/anuncio/finalizar/final',function ()
-{
-    $guardar = request()->all();
-    return view('anuncio.final');
-})->name('anuncio.final');
-
-Route::get('/anuncio/misanuncios',function ()
-{
-    return view('anuncio.misanuncios');
-})->name('anuncio.misanuncios');
-
 Route::get('/anuncio/publicaranuncio',function ()
 {
     return view('anuncio.publicaranuncio');
 })->name('anuncio.publicaranuncio');
+
+Route::get('/anuncio/misanuncios','AnuncioController@index')->name('anuncio.misanuncios');
+Route::get('/anuncio/finalizar/{id}','AnuncioController@finalizar')->name('anuncio.finalizar');
+Route::post('/anuncio/finalizar/valoracion','AnuncioController@valoracion')->name('anuncio.valoracion');
+Route::post('/anuncio/finalizar/final','AnuncioController@final')->name('anuncio.final');
+
