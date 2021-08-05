@@ -59,6 +59,7 @@ class AnuncioController extends Controller
     }
     public function index()
     {
-        return view('anuncio.misanuncios');
+        $anuncio = Anuncio::All();
+        return view('anuncio.misanuncios', compact('anuncio'));
     }
 }

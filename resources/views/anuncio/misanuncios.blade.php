@@ -41,33 +41,37 @@
         </b>
     </div>
 
+    @foreach($anuncio as $itemAnuncio)
+        
+    @endforeach
     <div style="margin-bottom: 30px">
         <div class="card">
             <div class="card-body">
                 <div class="row g-0">
                     <div class="col-sm-6 col-md-6">
-                        <h5 class="card-title" style="color: #2A5C98">Reparar Mueble de Escritorio</h5>
-                        <div>Trujillo</div>
-                        <div>Fecha de creación 22 de Julio</div>
+                        <h5 class="card-title" style="color: #2A5C98">{{ $itemAnuncio->titulo }}</h5>
+                        <div>{{ $itemAnuncio->ciudad->nombre }}</div>
+                        <div>Fecha de creación {{ $itemAnuncio->ciudad->nombre }}</div>
                     </div>
                     <div class="col-sm-2 col-md-2" style="text-align: center; font-size: 20px; color:green">
                         <b>
-                            <div>S/. 160.00</div>
-                            <div>S/. 100.00</div>
+                            <div>{{ $itemAnuncio->pago_propuesto_min }}</div>
+                            <div>{{ $itemAnuncio->pago_propuesto_max }}</div>
                         </b>
                     </div>
                     <div class="col-sm-2 col-md-2" style="font-size: 40px; text-align: center; color:red">
-                        <div>8</div>
+                        <div>{{ $itemAnuncio->publicacion->count() }}</div>
                     </div>
                     <div class="col-sm-2 col-md-2" style="text-align: center">
                         <a href="#" style="font-size: 25px"><i class="fa fa-edit"></i></a>
                         <div>Estado</div>
-                        <div>ACTIVO</div>
+                        <div>{{ $itemAnuncio->estado == 1 ? 'ACTIVO' : 'INACTIVO'}}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @endforeach
 </div>
 </div>
 
