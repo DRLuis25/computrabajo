@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Ciudad
  * @package App\Models
- * @version August 3, 2021, 11:15 pm UTC
+ * @version August 5, 2021, 3:40 am UTC
  *
+ * @property \App\Models\Departamento $departamento
  * @property \Illuminate\Database\Eloquent\Collection $anuncios
+ * @property \Illuminate\Database\Eloquent\Collection $distritos
+ * @property integer $departamento_id
  * @property string $nombre
  */
 class Ciudad extends Model
@@ -28,6 +31,7 @@ class Ciudad extends Model
 
 
     public $fillable = [
+        'departamento_id',
         'nombre'
     ];
 
@@ -38,6 +42,7 @@ class Ciudad extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'departamento_id' => 'integer',
         'nombre' => 'string'
     ];
 
@@ -47,8 +52,20 @@ class Ciudad extends Model
      * @var array
      */
     public static $rules = [
-        'nombre' => 'required|string'
+        'departamento_id' => 'required',
+        'nombre' => 'required|string',
+        'created_at' => 'nullable',
+        'updated_at' => 'nullable',
+        'deleted_at' => 'nullable'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function departamento()
+    {
+        return $this->belongsTo(\App\Models\Departamento::class, 'departamento_id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -56,5 +73,13 @@ class Ciudad extends Model
     public function anuncios()
     {
         return $this->hasMany(\App\Models\Anuncio::class, 'ciudad_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function distritos()
+    {
+        return $this->hasMany(\App\Models\Distrito::class, 'ciudad_id');
     }
 }

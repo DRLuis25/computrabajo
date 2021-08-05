@@ -12,6 +12,18 @@
         "inView": false
     },
     {
+        "name": "departamento_id",
+        "dbType": "bigInteger,false,true",
+        "htmlType": null,
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
         "name": "nombre",
         "dbType": "text,65535",
         "htmlType": "textarea",
@@ -61,6 +73,14 @@
     },
     {
         "type": "relation",
+        "relation": "mt1,Departamento,departamento_id"
+    },
+    {
+        "type": "relation",
         "relation": "1tm,Anuncio,ciudad_id"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,Distrito,ciudad_id"
     }
 ]

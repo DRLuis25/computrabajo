@@ -19,8 +19,9 @@ class anuncioSeeder extends Seeder
      */
     public function run()
     {
-        $departamentos = factory(Departamento::class,10)->create();
-        $ciudades = factory(Ciudad::class,10)->create();
+        //$departamentos = factory(Departamento::class,10)->create();
+        //$ciudades = factory(Ciudad::class,10)->create();
+        $distrito = factory(Distrito::class)->create();
         $distritos = factory(Distrito::class,10)->create();
         $oficios = factory(Oficio::class,10)->create();
         $user = User::create([
@@ -34,9 +35,9 @@ class anuncioSeeder extends Seeder
         $anuncio = Anuncio::create([
             'user_id' => '1',
             'oficio_id' => '1',
-            'departamento_id' => '1',
-            'ciudad_id' => '1',
-            'distrito_id' => '1',
+            'departamento_id' => $distrito->ciudad->departamento->id,
+            'ciudad_id' => $distrito->ciudad->id,
+            'distrito_id' => $distrito->id,
             'titulo' => 'Necesito pintor casa 3 pisos',
             'descripcion' => 'Necesito pintor que tenga experiencia en pintado de maquinaria, equipos y accesorios así también para apoyar en las labores del taller cuando se necesite.',
             'fecha_expiracion' => '2021-09-01',
