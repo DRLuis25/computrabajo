@@ -48,7 +48,7 @@
                 <div class="row g-0">
                     <div class="col-sm-6 col-md-6">
                         <h5 class="card-title" style="color: #2A5C98">{{ $itemAnuncio->titulo }}</h5>
-                        <div>{{$itemAnuncio->departamento_id}} - {{$itemAnuncio->ciudad_id}} - {{$itemAnuncio->distrito_id}}</div>
+                        <div>{{$itemAnuncio->departamento->nombre}} - {{$itemAnuncio->ciudad->nombre}} - {{$itemAnuncio->distrito->nombre}}</div>
                         <div>Fecha de expiración {{ $itemAnuncio->fecha_expiracion}}</div>
                     </div>
                     <div class="col-sm-2 col-md-2" style="text-align: center; font-size: 20px; color:green">
@@ -61,7 +61,7 @@
                         <div><a href="{{route('publicacion.comienzo',$itemAnuncio->id)}}" style="text-decoration:none">{{ $itemAnuncio->publicacion == null ? '0' : $itemAnuncio->user->count() }}</a></div>
                     </div>
                     <div class="col-sm-2 col-md-2" style="text-align: center">
-                        <a href="#" style="font-size: 25px"><i class="fa fa-edit"></i></a>
+                        <a href="{{ route("anuncio.editaranuncio", $itemAnuncio->id) }}" style="font-size: 25px"><i class="fa fa-edit"></i></a>
                         <div>Estado</div>
                         <div>{{ $itemAnuncio->estado == 1 ? 'ACTIVO' : 'INACTIVO'}}</div>
                     </div>

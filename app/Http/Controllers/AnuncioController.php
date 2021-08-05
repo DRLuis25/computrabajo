@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Anuncio;
 use App\Models\valoracionAnuncio;
+use App\Models\Oficio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,18 @@ class AnuncioController extends Controller
     public function final(Request $request)
     {
         //return request()->all();
-        $valoracion = valoracionAnuncio::firstOrCreate(['anuncio_id'=>$request->anuncio_id]);
+        $valoracion = valoracionAnuncio::firstOrCreate(['anuncio_id'=>$request->anuncio_id],
+        [
+            'anuncio_id' => $request->anuncio_id,
+            'estado_finalizado' => $request->estado_finalizado,
+            'a_tiempo' => $request->a_tiempo,
+            'valoracion_calidad' => $request->star ?? 0,
+            'valoracion_comunicacion' => $request->star2 ?? 0,
+            'valoracion_pericia' => $request->star3?? 0,
+            'valoracion_profesionalismo' => $request->star4 ?? 0,
+            'valoracion_contratar' => $request->star5 ?? 0,
+            'comentario' => $request->comentario
+        ]);
         $valoracion->anuncio_id = $request->anuncio_id;
         $valoracion->estado_finalizado = $request->estado_finalizado;
         $valoracion->a_tiempo = $request->a_tiempo;
@@ -61,5 +73,17 @@ class AnuncioController extends Controller
     {
         $anuncio = Anuncio::where('user_id', '=', Auth::user()->id)->get();
         return view('anuncio.misanuncios', compact('anuncio'));
+    }
+
+    public function publicar()
+    {
+        $oficio = Oficio::All();
+        return view('anuncio.publicaranuncio', compact('oficio'));
+    }
+
+    public function editaranuncio($id)
+    {
+        $anuncio = Anuncio::findOrFail($id);
+        return view('anuncio.editaranuncio', compact('anuncio'));
     }
 }
