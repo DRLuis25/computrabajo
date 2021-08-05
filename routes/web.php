@@ -39,3 +39,8 @@ Route::get('/anuncio/misanuncios',function ()
 {
     return view('anuncio.misanuncios');
 })->name('anuncio.misanuncios');
+
+Route::get('/anuncio/publicaranuncio',function ()
+{
+    return view('anuncio.publicaranuncio');
+})->name('anuncio.publicaranuncio');
