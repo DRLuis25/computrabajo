@@ -12,10 +12,22 @@
         "inView": false
     },
     {
+        "name": "ciudad_id",
+        "dbType": "bigInteger,false,true",
+        "htmlType": null,
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
         "name": "nombre",
         "dbType": "text,65535",
         "htmlType": "textarea",
-        "validations": "required|string|string",
+        "validations": "required|string",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -27,7 +39,7 @@
         "name": "created_at",
         "dbType": "datetime:nullable",
         "htmlType": "date",
-        "validations": "nullable|nullable",
+        "validations": "nullable",
         "searchable": false,
         "fillable": false,
         "primary": false,
@@ -39,7 +51,7 @@
         "name": "updated_at",
         "dbType": "datetime:nullable",
         "htmlType": "date",
-        "validations": "nullable|nullable",
+        "validations": "nullable",
         "searchable": false,
         "fillable": false,
         "primary": false,
@@ -51,13 +63,17 @@
         "name": "deleted_at",
         "dbType": "datetime:nullable",
         "htmlType": "date",
-        "validations": "nullable|nullable",
+        "validations": "nullable",
         "searchable": false,
         "fillable": false,
         "primary": false,
         "inForm": false,
         "inIndex": false,
         "inView": false
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Ciudade,ciudad_id"
     },
     {
         "type": "relation",

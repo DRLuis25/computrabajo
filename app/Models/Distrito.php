@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Distrito
  * @package App\Models
- * @version August 5, 2021, 3:03 am UTC
+ * @version August 5, 2021, 3:40 am UTC
  *
+ * @property \App\Models\Ciudade $ciudad
  * @property \Illuminate\Database\Eloquent\Collection $anuncios
+ * @property integer $ciudad_id
  * @property string $nombre
  */
 class Distrito extends Model
@@ -18,7 +20,7 @@ class Distrito extends Model
     use SoftDeletes;
 
     public $table = 'distritos';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -28,6 +30,7 @@ class Distrito extends Model
 
 
     public $fillable = [
+        'ciudad_id',
         'nombre'
     ];
 
@@ -38,6 +41,7 @@ class Distrito extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'ciudad_id' => 'integer',
         'nombre' => 'string'
     ];
 
@@ -47,11 +51,20 @@ class Distrito extends Model
      * @var array
      */
     public static $rules = [
+        'ciudad_id' => 'required',
         'nombre' => 'required|string',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function ciudad()
+    {
+        return $this->belongsTo(\App\Models\Ciudad::class, 'ciudad_id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

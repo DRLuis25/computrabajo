@@ -21,15 +21,19 @@ class CreateComputrabajoTables extends Migration
         });
         Schema::create('ciudades', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('departamento_id');
             $table->text('nombre');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('departamento_id')->references('id')->on('departamentos');
         });
         Schema::create('distritos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('ciudad_id');
             $table->text('nombre');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('ciudad_id')->references('id')->on('ciudades');
         });
         Schema::create('oficios', function (Blueprint $table) {
             $table->id();
