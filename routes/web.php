@@ -25,8 +25,6 @@ Route::get('/anuncio/misanuncios','AnuncioController@index')->name('anuncio.misa
 Route::get('/anuncio/finalizar/{id}','AnuncioController@finalizar')->name('anuncio.finalizar');
 Route::post('/anuncio/finalizar/valoracion','AnuncioController@valoracion')->name('anuncio.valoracion');
 Route::post('/anuncio/finalizar/final','AnuncioController@final')->name('anuncio.final');
-<<<<<<< HEAD
-
 
 
 Route::get('/anuncio/publicar','AnuncioController@publicar')->name('anuncio.publicaranuncio');
@@ -35,5 +33,3 @@ Route::get('/anuncio/editaranuncio/{id}','AnuncioController@editaranuncio')->nam
 /*rutas Jhan */
 Route::resource('contactarEmpleador', 'PropuestasController');
 /*Fin rutas Jhan */
-=======
->>>>>>> ca363e60ed1d92867abfda2d520fe02620e24754
