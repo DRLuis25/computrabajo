@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  * @version August 5, 2021, 3:09 am UTC
  *
- * @property \App\Models\Ciudade $ciudad
+ * @property \App\Models\Ciudad $ciudad
  * @property \App\Models\Departamento $departamento
  * @property \App\Models\Distrito $distrito
  * @property \App\Models\Oficio $oficio
@@ -38,7 +38,7 @@ class Anuncio extends Model
     use SoftDeletes;
 
     public $table = 'anuncios';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -117,7 +117,7 @@ class Anuncio extends Model
      **/
     public function ciudad()
     {
-        return $this->belongsTo(\App\Models\Ciudade::class, 'ciudad_id');
+        return $this->belongsTo(\App\Models\Ciudad::class, 'ciudad_id');
     }
 
     /**
