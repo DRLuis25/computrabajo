@@ -122,40 +122,41 @@ justify-content: flex-end;
     display: flex;
     flex-direction: row;
 }
-.tu{
-    display: inline-block;
-}
+
 .D_Izquierda{
+    display: flex;
+    flex-direction: column;
     margin-left: 7.5vw;
     width: 60vw;
     height: 45vh;
     background: #ffffff;
     padding: 10px;
     box-shadow: 0px 0px 5px 1px#b1abab;
+   
 }
-.D_Izquierda>i{
-    font-size: 30px;
-    margin-left:1vw;
-    
+.caja1{
+    display: grid;
+    align-items: end;
+    grid-template-columns: 3vw 8vw 40vw auto;
+  
 }
-.D_Izquierda>.spanizq{
-    margin-left: 2vw;
-    font-weight: bold;
+.caja1>i{
+    font-size: 35px;
 }
-.D_Izquierda>.calificacion{
-    margin-left: 5vw;
+
+.caja2{
+    display: grid;
+    padding: 0 3.5vw 0 3.5vw;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
 }
-.D_Izquierda>.soles{
-    margin-left: 21vw;
-    font-weight: bold;
-    
-}
-.D_Izquierda>.dias{
-    margin-left: 40vw;
-    
+.D_botones{
+    margin-top: 16vh;
+    margin-left: 45vw;
 }
 
 
+/* Caja de Promedios */
 .D_Derecha{
     margin-left: 2vw;
     width: 22vw;
