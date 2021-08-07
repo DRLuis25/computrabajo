@@ -41,9 +41,12 @@ class PropuestasController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id =1 ;//auth()->user()->user_id; 
+        $user_id =auth()->user()->id; 
         $anuncio_id =1;
         $unidad = 1;
+        $datos_otros_usuarios_postulantes = User::join('user_anuncio','users.id','=','user_anuncio.user_id')
+                                          ->select('users.name','users.email','users.calificacion_colaborador','user_anuncio.descripcion','user_anuncio.importe','user_anuncio.tiempo')
+                                          ->get();
         $data = request()->validate([
             'importe'=>'required',
             'dias'=> 'required',
@@ -62,7 +65,8 @@ class PropuestasController extends Controller
             $user_anuncio->importe = $request->importe;
             $user_anuncio->tiempo = $request->dias;
             $user_anuncio->unidad_tiempo = $unidad;
-            //echo $user_anuncio;
+            echo $user_anuncio;
+            //echo $datos_otros_usuarios_postulantes;
             $user_anuncio->save();
             //Variables
             $desc = $request->descripcion;
@@ -70,7 +74,7 @@ class PropuestasController extends Controller
             $tiem = $request->dias;
            // $datosusuario=User::where('id','=',$user_id)->first();
            // print_r($datosusuario);
-            return view('contactarEmpleador.Propuestas',compact('desc','monto','tiem'));
+            return view('contactarEmpleador.Propuestas',compact('desc','monto','tiem','datos_otros_usuarios_postulantes'));
  
     }
 
