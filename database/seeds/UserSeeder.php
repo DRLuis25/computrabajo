@@ -13,6 +13,13 @@ class UserSeeder extends Seeder
     public function run()
     {
         $user = new User();
+        $user->name = "Luis Guillermo";
+        $user->apellidos = "Delgado Rodriguez";
+        $user->email = "ldelgado@unitru.edu.pe";
+        $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"; // password
+        $user->save();
+        
+        $user = new User();
         $user->name = "Bryan Alejandro";
         $user->apellidos = "Romero Osorio";
         $user->email = "bromero@unitru.edu.pe";
@@ -22,7 +29,7 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->name = "Maximo Alexander";
         $user->apellidos = "Fernández Munóz";
-        $user->email = "mfernandez@unitru.edu.pe";
+        $user->email = "mfernandezm@unitru.edu.pe";
         $user->password = "$2y$10$7/xG2DyptIBjd5pW7OfTKegmryR.m7wqoleQQlSv1rwFCj1H0Mxlm"; // 123456789
         $user->save();
 
@@ -39,5 +46,7 @@ class UserSeeder extends Seeder
         $user->email = "jrodriguezcr@unitru.edu.pe";
         $user->password = "$2y$10$7/xG2DyptIBjd5pW7OfTKegmryR.m7wqoleQQlSv1rwFCj1H0Mxlm"; // 123456789
         $user->save();
+
+        $users = factory(User::class,10)->create();
     }
 }

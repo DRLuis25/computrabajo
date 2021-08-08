@@ -14,7 +14,7 @@ class CiudadSeeder extends Seeder
     {
         // AMAZONAS ---------------------
 
-        $cudad = new Ciudad();
+        $ciudad = new Ciudad();
         $ciudad->nombre = "BAGUA";
         $ciudad->departamento_id = 1;
         $ciudad->save();
