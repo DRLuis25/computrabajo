@@ -1,0 +1,94 @@
+
+.M_link{
+    text-decoration: none;
+    color: black;
+}
+.M_link:hover{
+    color: black;
+}
+.buscador{
+    width: 70vw;
+    margin-left: 5vw;
+}
+.M_diseño{
+    display: grid;
+    grid-template-columns:25vw 70vw;
+
+}
+.M_section{
+    margin-left: 3vw;
+    margin-top: 4vh;
+    height: 70vh;
+    padding: 10px;
+    box-shadow: 0px 0px 5px 1px#b1abab;
+}
+.M_rango{
+    display: grid;
+    grid-template-columns: 10vw 10vw;
+   
+}
+.M_rango>div>.input-group{
+    margin-left: -2vw;
+}
+.M_aside{
+    margin-left: 2vw;
+    margin-top: 4vh;
+    box-shadow: 0px 0px 5px 1px#b1abab;
+}
+.mejores_resultados{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-content: center;
+    justify-content: space-between;
+    height: 10vh;
+    border-bottom: 1px solid #b1abab;
+}
+.mejores_resultados>span{
+    font-weight: bold;
+    font-size: 22px;   
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.M_select{
+    width: 130px;
+}
+.resultados{
+    display: grid;
+    grid-template-rows:10vh 20vh auto ;
+    padding: 10px;
+    height: 40vh;
+    border-bottom: 1px solid #b1abab;
+}
+.resultados:hover{
+    background: #f0f0f0;
+}
+.M_caja1{
+    display: grid;
+    grid-template-columns: 56vw 10vw;
+    
+}
+.titulo{
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 17px;
+    color: #1073cb;
+}
+.M_hace{
+   grid-column-start:2;
+   grid-column-end:2;
+   margin-left: -2vw;
+   font-size: 13px;
+   color: #b7b3b3;
+}
+.M_caja2{
+  
+}
+.M_caja3{
+    display: grid;
+    grid-template-columns: 15vw auto;
+    align-content: center;
+    justify-content:start;
+   
+   
+}
+

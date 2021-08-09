@@ -35,4 +35,3 @@ Route::get('/anuncio/editaranuncio/{id}','AnuncioController@editaranuncio')->nam
 /*rutas Jhan */
 Route::resource('contactarEmpleador', 'PropuestasController');
 /*Fin rutas Jhan */
-
