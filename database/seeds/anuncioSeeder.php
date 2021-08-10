@@ -22,9 +22,9 @@ class anuncioSeeder extends Seeder
         $anuncio = Anuncio::create([
             'user_id' => '1',
             'oficio_id' => '32',
-            'departamento_id' => $distrito->ciudad->departamento->id,
-            'ciudad_id' => $distrito->ciudad->id,
-            'distrito_id' => $distrito->id,
+            'departamento_id' => 12,
+            'ciudad_id' => 122,
+            'distrito_id' => 1222,
             'titulo' => 'Necesito pintor casa 3 pisos',
             'descripcion' => 'Necesito pintor que tenga experiencia en pintado de maquinaria, equipos y accesorios así también para apoyar en las labores del taller cuando se necesite.',
             'fecha_expiracion' => '2021-09-01',

@@ -17,7 +17,7 @@ class DepartamentoSeeder extends Seeder
         $departamento->save();
 
         $departamento = new Departamento();
-        $departamento->nombre = "ANCASH";
+        $departamento->nombre = "ÁNCASH";
         $departamento->save();
         
         $departamento = new Departamento();
@@ -45,7 +45,7 @@ class DepartamentoSeeder extends Seeder
         $departamento->save();
         
         $departamento = new Departamento();
-        $departamento->nombre = "HUANUCO";
+        $departamento->nombre = "HUÁNUCO";
         $departamento->save();
         
         $departamento = new Departamento();
@@ -53,7 +53,7 @@ class DepartamentoSeeder extends Seeder
         $departamento->save();
         
         $departamento = new Departamento();
-        $departamento->nombre = "JUNIN";
+        $departamento->nombre = "JUNÍN";
         $departamento->save();
         
         $departamento = new Departamento();
@@ -106,6 +106,14 @@ class DepartamentoSeeder extends Seeder
         
         $departamento = new Departamento();
         $departamento->nombre = "UCAYALI";
+        $departamento->save();
+
+        $departamento = new Departamento();
+        $departamento->nombre = "LIMA - PROVINCIAS";
+        $departamento->save();
+
+        $departamento = new Departamento();
+        $departamento->nombre = "CALLAO";
         $departamento->save();
     }
 }
