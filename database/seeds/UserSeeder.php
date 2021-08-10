@@ -34,6 +34,13 @@ class UserSeeder extends Seeder
         $user->save();
 
         $user = new User();
+        $user->name = "Ricardo Martín";
+        $user->apellidos = "Rubio Cabanillas";
+        $user->email = "rrubioc@unitru.edu.pe";
+        $user->password = "$2y$10$7/xG2DyptIBjd5pW7OfTKegmryR.m7wqoleQQlSv1rwFCj1H0Mxlm"; // 123456789
+        $user->save();
+
+        $user = new User();
         $user->name = "Jhan Jeyson";
         $user->apellidos = "Gutierrez Flores";
         $user->email = "jgutierrezf@unitru.edu.pe";
