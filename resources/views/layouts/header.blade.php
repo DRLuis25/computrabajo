@@ -28,7 +28,7 @@
             @else
                 <div class="text-end">
                     <a href="{{route('login')}}" type="button" class="btn btn-outline-light me-2">Ingresar</a>
-                    <a type="button" class="btn btn-warning">Registrarse</a>
+                    <a href="{{route('register')}}" type="button" class="btn btn-warning">Registrarse</a>
                 </div>
             @endif
 
