@@ -81,6 +81,59 @@ class AnuncioController extends Controller
         return view('anuncio.publicaranuncio', compact('oficio'));
     }
 
+    public function guardaranuncio(Request $request)
+    {
+        $data = request()->validate([
+            'fecha_expiracion' => 'required',
+            'radioestado' => 'required',
+            'radioemail' => 'required',
+            'radiotelefono' => 'required',
+            'radiodireccion' => 'required',
+            'titulo' => 'required',
+            'idoficio' => 'required',
+            'descripcion' => 'required',
+            'min' => 'required',
+            'max' => 'required',
+            'departamento_id' => 'required',
+            'ciudad_id' => 'required',
+            'distrito_id' => 'required'
+        ],
+        [
+            'fecha_expiracion.required' => 'Ingrese la fecha',
+            'radioestado.required' => 'Seleccione el estado',
+            'radioemail.required' => 'Seleccione si desea mostrar su email de contacto',
+            'radiotelefono.required' => 'Seleccione si desea mostrar su telefono de contacto',
+            'radiodireccion.required' => 'Seleccione si desea mostrar su dirección de contacto',
+            'titulo.required' => 'Ingrese el título del aviso',
+            'idoficio.required' => 'Seleccione el oficio',
+            'descripcion.required' => 'Ingrese una descripción para las tareas',
+            'min.required' => 'Ingrese el monto mínimo aofrecido',
+            'max.required' => 'Ingrese el monto máximo aofrecido',
+            'departamento_id.required' => 'Seleccione el departamento',
+            'ciudad_id.required' => 'Seleccione la ciudad',
+            'distrito_id.required' => 'Seleccione el distrito'
+        ]);
+
+        $anuncio = new Anuncio();
+        $anuncio->fecha_expiracion = $request->fecha_expiracion;
+        $anuncio->estado = $request->radioestado;
+        $anuncio->ver_email = $request->radioemail;
+        $anuncio->ver_celular = $request->radiotelefono;
+        $anuncio->ver_direccion = $request->radiodireccion;
+        $anuncio->titulo = $request->titulo;
+        $anuncio->oficio_id = $request->idoficio;
+        $anuncio->descripcion = $request->descripcion;
+        $anuncio->pago_propuesto_min = $request->min;
+        $anuncio->pago_propuesto_max = $request->max;
+        $anuncio->departamento_id = $request->departamento_id;
+        $anuncio->ciudad_id = $request->ciudad_id;
+        $anuncio->distrito_id = $request->distrito_id;
+        $anuncio->user_id = Auth::user()->id;
+        $anuncio->save();
+
+        return redirect()->route('anuncio.misanuncios');
+    }
+
     public function editaranuncio($id)
     {
         $anuncio = Anuncio::findOrFail($id);
