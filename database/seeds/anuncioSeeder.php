@@ -59,3 +59,7 @@ class anuncioSeeder extends Seeder
         //Llenar tabla valoración anuncio y cambiar anuncio->estado = 2;
     }
 }
+
+
+
+
