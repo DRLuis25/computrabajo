@@ -139,16 +139,18 @@
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Departamento:</div>
                     <div class="col-sm-4 col-md-4">
-                        <select class="form-select" aria-label="Default select example" name="departamento_id" id="departamento_id">
-                            <option value="1">La Libertad</option>
+                        <select class="form-select" aria-label="Default select example" name="departamento_id" id="departamento_id" onchange="mostrarCiudades()">
+                            <option value="">Selecciona</option>
+                            @foreach($departamento as $itemDepartamento)
+                                <option value="{{$itemDepartamento['id']}}">{{$itemDepartamento['nombre']}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Ciudad:</div>
                     <div class="col-sm-4 col-md-4">
-                        <select class="form-select" aria-label="Default select example" name="ciudad_id" id="ciudad_id">
-                            <option value="1">Trujillo</option>
+                        <select class="form-select" aria-label="Default select example" name="ciudad_id" id="ciudad_id" onchange="mostrarDistritos()">
                         </select>
                     </div>
                 </div>
@@ -156,7 +158,6 @@
                     <div class="col-sm-4 col-md-4">Distrito:</div>
                     <div class="col-sm-4 col-md-4">
                         <select class="form-select" aria-label="Default select example" name="distrito_id" id="distrito_id">
-                            <option value="1">Trujillo</option>
                         </select>
                     </div>
                 </div>
@@ -169,5 +170,36 @@
 </div>
 
 </form>
+
+@endsection
+
+@section('script')
+
+
+<script>
+    function mostrarCiudades() {
+        idDepartamento = $('#departamento_id').val();
+        $('#ciudad_id').empty();
+        $('#distrito_id').empty();
+        $.get('/getCiudad/' + idDepartamento, function(data) {
+            var ciudad = '<option value="" id="ciudad_id">- Seleccione Provincia -</option>'
+            for (var i = 0; i < data.length; i++)
+                ciudad += '<option value="' + data[i].id + '">' + data[i].nombre + '</option>';
+            $("#ciudad_id").html(ciudad);
+        });
+    }
+
+    function mostrarDistritos() {
+        $('#distrito_id').empty();
+        idCiudad = $('#ciudad_id').val();
+        $.get('/getDistrito/' + idCiudad, function(data) {
+            var distrito = '<option value="" id="distrito_id">- Seleccione Distrito -</option>'
+            for (var i = 0; i < data.length; i++)
+                distrito += '<option value="' + data[i].id + '">' + data[i].nombre + '</option>';
+            $("#distrito_id").html(distrito);
+        });
+    }
+
+</script>
 
 @endsection

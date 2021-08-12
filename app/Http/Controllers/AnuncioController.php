@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Anuncio;
 use App\Models\valoracionAnuncio;
 use App\Models\Oficio;
+use App\Models\Departamento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -78,7 +79,8 @@ class AnuncioController extends Controller
     public function publicar()
     {
         $oficio = Oficio::All();
-        return view('anuncio.publicaranuncio', compact('oficio'));
+        $departamento = Departamento::All();
+        return view('anuncio.publicaranuncio', compact('oficio', 'departamento'));
     }
 
     public function guardaranuncio(Request $request)

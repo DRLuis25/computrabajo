@@ -64,7 +64,7 @@
                         </b>
                     </div>
                     <div class="col-sm-2 col-md-2" style="font-size: 40px; text-align: center; color:red">
-                        <div><a href="{{route('publicacion.comienzo',$itemAnuncio->id)}}" style="text-decoration:none">{{ $itemAnuncio->publicacion == null ? '0' : $itemAnuncio->user->count() }}</a></div>
+                        <div><a href="{{route('publicacion.comienzo',$itemAnuncio->id)}}" style="text-decoration:none">{{ $itemAnuncio->userAnuncios == null ? '0' : $itemAnuncio->userAnuncios->count() }}</a></div>
                     </div>
                     <div class="col-sm-2 col-md-2" style="text-align: center">
                         @if ($itemAnuncio->estado == 0)

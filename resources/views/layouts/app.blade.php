@@ -47,6 +47,8 @@
     -->
     @stack('scripts')
 
+    @yield('script')
+
     
   </body>
 </html>

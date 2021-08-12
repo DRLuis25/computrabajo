@@ -32,6 +32,11 @@ Route::get('/anuncio/publicar','AnuncioController@publicar')->name('anuncio.publ
 Route::post('/anuncio/guardar','AnuncioController@guardaranuncio')->name('anuncio.guardaranuncio');
 Route::get('/anuncio/editaranuncio/{id}','AnuncioController@editaranuncio')->name('anuncio.editaranuncio');
 
+// Mostrar Datos
+Route::get('getCiudad/{idDepartamento}', 'DatosController@listarCiudades');
+
+Route::get('getDistrito/{idCiudad}', 'DatosController@listarDistritos');
+
 /*rutas Jhan */
 Route::resource('contactarEmpleador', 'PropuestasController');
 //Route::get('contactarEmpleador/{id}', 'PropuestaController@probar' );
