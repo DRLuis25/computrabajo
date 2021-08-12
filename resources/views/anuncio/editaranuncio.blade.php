@@ -29,7 +29,7 @@
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Fecha de expiración :</div>
                     <div class="col-4 col-md-4">
-                        <input type="date" class="form-control" name="fecha" id="fecha" value="{{ date_format($anuncio->fecha_expiracion, 'd/m/Y') }}" aria-describedby="basic-addon1">
+                        <input type="date" class="form-control" name="fecha" id="fecha" value="{{ date_format($anuncio->fecha_expiracion, 'Y-m-d') }}" aria-describedby="basic-addon1">
                     </div>
                 </div>
                 <div class="row g-0" style="padding:1%;">
