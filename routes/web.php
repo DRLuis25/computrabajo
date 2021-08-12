@@ -37,10 +37,12 @@ Route::get('getCiudad/{idDepartamento}', 'DatosController@listarCiudades');
 
 Route::get('getDistrito/{idCiudad}', 'DatosController@listarDistritos');
 
+Route::resource('perfilUsuario', 'UserController');
 /*rutas Jhan */
 Route::resource('contactarEmpleador', 'PropuestasController');
 //Route::get('contactarEmpleador/{id}', 'PropuestaController@probar' );
 /*Fin rutas Jhan */
+
 /*rutas Miguel */
 Route::resource('filtros', 'FiltrosController');
 /*Fin rutas Miguel */

@@ -2,34 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anuncio;
-use App\User;
 use Illuminate\Http\Request;
 
-class FiltrosController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request){
-            $query = trim($request->get('search'));
-
-            $anuncios =User::join('anuncios','users.id','=','anuncios.user_id')
-            ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador')
-            ->where('anuncios.titulo','LIKE','%'.$query.'%')
-            ->orderBy('anuncios.id','asc')
-            ->get();
-            return view('filtros.inicio',['anuncios' => $anuncios, 'search'=>$query]);
-        }
-       
-      //  $anuncios = User::join('anuncios','users.id','=','anuncios.user_id')
-       //                                   ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador')
-        //                                  ->get();
-      //  return view('filtros.inicio',compact('anuncios'));
+        //
+        return view('perfil.index');
     }
 
     /**
@@ -40,6 +25,7 @@ class FiltrosController extends Controller
     public function create()
     {
         //
+        return view('perfil.editarPerfil');
     }
 
     /**
@@ -73,6 +59,7 @@ class FiltrosController extends Controller
     public function edit($id)
     {
         //
+        
     }
 
     /**

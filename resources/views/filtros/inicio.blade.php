@@ -1,12 +1,21 @@
 @extends('welcome')
 @section('content')
+<form  >
     <div class="buscador">
         <div class="input-group">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+            <input type="search" class="form-control rounded" name="search" placeholder="Search" aria-label="Search"
                 aria-describedby="search-addon" />
-            <button type="button" class="btn btn-primary">Buscar Empleos</button>
-        </div>
+            <button type="submit" class="btn btn-primary">Buscar Empleos</button>
+        </div> <br>
+        <h6>
+            @if ($search)
+            <div class="alert alert-primary" role="alert">
+                Los resultados para tu busqueda '{{$search}}' son : 
+            </div>
+            @endif   
+        </h6>
     </div>
+</form>
 
     <div class="M_diseño">
         <section class="M_section">
@@ -37,7 +46,7 @@
             <article class="mejores_resultados">
                 <span>Mejores Resultados</span>
                 <label>ordenar por
-                    <select class="M_select form-select-sm " aria-label="Default select example">
+                    <select class="M_select form-select-sm " name="select" aria-label="Default select example">
                         <option selected>Más reciente</option>
                         <option value="1">Más antiguo</option>
                         <option value="2">El precio más bajo</option>
