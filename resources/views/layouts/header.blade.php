@@ -8,7 +8,6 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-
                 @include('layouts.menu')
             </ul>
 
@@ -16,10 +15,23 @@
                 <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
             </form>
 
-            <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2">Login</button>
-                <button type="button" class="btn btn-warning">Sign-up</button>
-            </div>
+            @if (Auth::check())
+                <div class="text-end">
+                    <a href="#" class="btn btn-outline-light me-2"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Salir
+                        </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            @else
+                <div class="text-end">
+                    <a href="{{route('login')}}" type="button" class="btn btn-outline-light me-2">Ingresar</a>
+                    <a type="button" class="btn btn-warning">Registrarse</a>
+                </div>
+            @endif
+
         </div>
     </div>
 </header>
@@ -36,7 +48,7 @@
             <div class="text-end">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="{{route("anuncio.misanuncios")}}" class="nav-link px-2 text-secondary">Empleador</a></li>
-                    <li><a href="#" class="nav-link px-2 text-secondary">Colaborador</a></li>
+                    <li><a href="{{route("anuncio.misanuncios")}}" class="nav-link px-2 text-secondary">Colaborador</a></li>
                 </ul>
             </div>
         </div>

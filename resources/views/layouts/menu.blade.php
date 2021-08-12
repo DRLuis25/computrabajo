@@ -1,8 +1,8 @@
-<li><a href="{{route('home')}}" class="nav-link px-2 text-secondary">Inicio</a></li>
-<li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-<li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-<li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-<li><a href="#" class="nav-link px-2 text-white">About</a></li>
+<li><a href="{{route('home')}}" class="nav-link px-2 text-white">Inicio</a></li>
+<li><a href="#" class="nav-link px-2 text-white">Empleos</a></li>
+<li><a href="#" class="nav-link px-2 text-white">Trabajadores</a></li>
+<li><a href="#" class="nav-link px-2 text-white">Nosotros</a></li>
+
 <li>
 
 </li>
