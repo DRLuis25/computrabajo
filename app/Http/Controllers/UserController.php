@@ -25,6 +25,7 @@ class UserController extends Controller
     public function create()
     {
         //
+        return view('perfil.editarPerfil');
     }
 
     /**
@@ -55,10 +56,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
         //
-        return view('perfil.editarPerfil');
+        
     }
 
     /**
