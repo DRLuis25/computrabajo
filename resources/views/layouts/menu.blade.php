@@ -8,5 +8,5 @@
 </li>
 
 <li>
-    <a href="{{route('admin.home')}}" class="nav-link px-2 text-white">Admin</a>
+    <a href="{{route('admin.home')}}" class="nav-link px-2 text-white">Administrador</a>
 </li>
