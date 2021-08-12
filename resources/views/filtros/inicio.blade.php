@@ -46,7 +46,7 @@
             <article class="mejores_resultados">
                 <span>Mejores Resultados</span>
                 <label>ordenar por
-                    <select class="M_select form-select-sm " aria-label="Default select example">
+                    <select class="M_select form-select-sm " name="select" aria-label="Default select example">
                         <option selected>Más reciente</option>
                         <option value="1">Más antiguo</option>
                         <option value="2">El precio más bajo</option>

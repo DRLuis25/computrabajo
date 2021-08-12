@@ -114,6 +114,8 @@ class PropuestasController extends Controller
         $datos_otros_usuarios_postulantes = User::join('user_anuncio', 'user_anuncio.user_id', '=', 'users.id')
         ->where('user_anuncio.anuncio_id', '=', $anuncio_id)
         ->select('users.name', 'users.email', 'users.calificacion_colaborador', 'user_anuncio.descripcion', 'user_anuncio.importe', 'user_anuncio.tiempo')
+        ->orderBy('user_anuncio.anuncio_id','desc')
+        ->take(1)
         ->get();
 
         $user_anuncio = userAnuncio::where('id', '=', $id)->first();
