@@ -20,7 +20,7 @@ class anuncioSeeder extends Seeder
     public function run()
     {
         $anuncio = Anuncio::create([
-            'user_id' => '1',
+            'user_id' => '2',
             'oficio_id' => '32',
             'departamento_id' => 12,
             'ciudad_id' => 122,
