@@ -36,6 +36,7 @@ Route::get('/anuncio/editaranuncio/{id}','AnuncioController@editaranuncio')->nam
 Route::resource('contactarEmpleador', 'PropuestasController');
 //Route::get('contactarEmpleador/{id}', 'PropuestaController@probar' );
 /*Fin rutas Jhan */
+
 /*rutas Miguel */
 Route::resource('filtros', 'FiltrosController');
 /*Fin rutas Miguel */
