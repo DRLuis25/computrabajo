@@ -104,13 +104,13 @@
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Título del anuncio :</div>
                     <div class="col-4 col-md-4">
-                        <input type="text" class="form-control" name="titulo" id="titulo" aria-describedby="basic-addon1" value={{ $anuncio->titulo }}>
+                        <input type="text" class="form-control" name="titulo" id="titulo" value="{{ $anuncio->titulo }}">
                     </div>
                 </div>
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Oficio:</div>
                     <div class="col-sm-4 col-md-4">
-                        <input type="text" class="form-control" name="oficio" id="oficio" aria-describedby="basic-addon1" value={{ $anuncio->oficio->nombre }}>
+                        <input type="text" class="form-control" name="oficio" id="oficio" aria-describedby="basic-addon1" value="{{ $anuncio->oficio->nombre }}" disabled>
                     </div>
                 </div>
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
@@ -132,19 +132,19 @@
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Departamento:</div>
                     <div class="col-sm-4 col-md-4">
-                        <input type="text" class="form-control" name="departamento_id" id="departamento_id" aria-describedby="basic-addon1" value={{ $anuncio->departamento->nombre }} disabled>
+                        <input type="text" class="form-control" name="departamento_id" id="departamento_id" aria-describedby="basic-addon1" value="{{ $anuncio->departamento->nombre }}" disabled>
                     </div>
                 </div>
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Provincia:</div>
                     <div class="col-sm-4 col-md-4">
-                        <input type="text" class="form-control" name="provincia_id" id="provincia_id" aria-describedby="basic-addon1" value={{ $anuncio->ciudad->nombre }} disabled>
+                        <input type="text" class="form-control" name="provincia_id" id="provincia_id" aria-describedby="basic-addon1" value="{{ $anuncio->ciudad->nombre }}" disabled>
                     </div>
                 </div>
                 <div class="row g-0" style="padding:3% 1% 3% 1%;">
                     <div class="col-sm-4 col-md-4">Distrito:</div>
                     <div class="col-sm-4 col-md-4">
-                        <input type="text" class="form-control" name="distrito_id" id="distrito_id" aria-describedby="basic-addon1" value={{ $anuncio->distrito->nombre }} disabled>
+                        <input type="text" class="form-control" name="distrito_id" id="distrito_id" aria-describedby="basic-addon1" value="{{ $anuncio->distrito->nombre }}" disabled>
                     </div>
                 </div>
             </li>
