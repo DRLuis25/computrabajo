@@ -13,14 +13,23 @@ class FiltrosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request){
+            $query = trim($request->get('search'));
+
+            $anuncios =User::join('anuncios','users.id','=','anuncios.user_id')
+            ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador')
+            ->where('anuncios.titulo','LIKE','%'.$query.'%')
+            ->orderBy('anuncios.id','asc')
+            ->get();
+            return view('filtros.inicio',['anuncios' => $anuncios, 'search'=>$query]);
+        }
        
-        $anuncios = User::join('anuncios','users.id','=','anuncios.user_id')
-                                          ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador')
-                                          ->get();
-      //  echo $anuncios;
-        return view('filtros.inicio',compact('anuncios'));
+      //  $anuncios = User::join('anuncios','users.id','=','anuncios.user_id')
+       //                                   ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador')
+        //                                  ->get();
+      //  return view('filtros.inicio',compact('anuncios'));
     }
 
     /**
