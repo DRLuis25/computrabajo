@@ -69,6 +69,13 @@
                             <span style="margin-left: 2vw">Precio Fijo</span>
                             <span class="fa fa-user">
                                 <?php $num = $item->calificacion_empleador;
+                                if ($num == 0) {
+                        echo '<i class="fa fa-star" ></i>
+                                                                                          <i class="fa fa-star" ></i>
+                                                                                          <i class="fa fa-star" ></i>
+                                                                                          <i class="fa fa-star" ></i>
+                                                                                          <i class="fa fa-star" ></i>';
+                    }
                                 if ($num == 1) {
                                     echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
                                           <i class="fa fa-star" ></i>

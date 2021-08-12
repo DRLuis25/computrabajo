@@ -54,6 +54,13 @@ class UserSeeder extends Seeder
         $user->password = "$2y$10$7/xG2DyptIBjd5pW7OfTKegmryR.m7wqoleQQlSv1rwFCj1H0Mxlm"; // 123456789
         $user->save();
 
+        $user = new User();
+        $user->name = "Miguel Enrique";
+        $user->apellidos = "Zavaleta Rojas";
+        $user->email = "mzavaleta@unitru.edu.pe";
+        $user->password = "$2y$10$7/xG2DyptIBjd5pW7OfTKegmryR.m7wqoleQQlSv1rwFCj1H0Mxlm"; // 123456789
+        $user->save();
+
         $users = factory(User::class,10)->create();
     }
 }
