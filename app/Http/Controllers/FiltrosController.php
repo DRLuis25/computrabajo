@@ -17,7 +17,7 @@ class FiltrosController extends Controller
     {
        
         $anuncios = User::join('anuncios','users.id','=','anuncios.user_id')
-                                          ->select('anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador')
+                                          ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador')
                                           ->get();
       //  echo $anuncios;
         return view('filtros.inicio',compact('anuncios'));

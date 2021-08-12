@@ -16,23 +16,24 @@
             <div class="detallessuperior2">
                 <h3>Detalles de la oferta</h3>
                
-                <form  method="post" action="{{route('contactarEmpleador.store')}}" id="formulario">
+                <form  method="post" action="{{route('contactarEmpleador.update',$user_anuncio->id)}}">
                     @csrf
+                    @method('put')
                     <div class="inputs">
 
                         <div>
                             <p class="p1">Importe de la oferta</p>
                             <div class="input-group">
                                 <span class="input-group-addon">S/.</span>
-                                <input type="text" class="form-control" name="importe" id="importe">
+                                <input type="text" class="form-control" name="importe" value="{{$user_anuncio->importe}}">
                                 <span class="input-group-addon">Soles</span>
                             </div>
                         </div>
-                        <input  name="id_oc" type="hidden" value="<?php echo $_GET['ide']; ?>">
+                        
                         <div>
                             <p class="p2">Este trabajo se entregara en</p>
                             <div class="input-group" style="margin-left:7Vw;">
-                                <input type="text" class="form-control" name="dias" id="dias">
+                                <input type="text" class="form-control" name="dias" value="{{$user_anuncio->tiempo}}">
                                 <span class="input-group-addon">Dias</span>
                             </div>
                         </div>
@@ -41,11 +42,11 @@
                     <br>
                     <div class="dettallesinferior">
                         <h5>Describe tu propuesta</h5>
-                        <textarea class="form-control" rows="3" name="descripcion"></textarea>
+                        <textarea class="form-control" rows="3" name="descripcion" >{{$user_anuncio->descripcion}}</textarea>
                     </div>
 
                     <div class="acomodarboton">
-                        <input type="submit" value="Postular a este trabajo" class="btn btn-primary">
+                        <input type="submit" value="ACTUALIZAR ANUNCIO" class="btn btn-primary">
                     </div>
 
                 </form>
@@ -75,17 +76,5 @@
 
         </aside>
     </div>
-<script>
-  window.addEventListener("load", function() {
-  formulario.importe.addEventListener("keypress", soloNumeros, false);
-  formulario.dias.addEventListener("keypress", soloNumeros, false);
-});
-
-function soloNumeros(e){
-  var key = window.event ? e.which : e.keyCode;
-  if (key < 48 || key > 57) {
-    e.preventDefault();
-  }
-}
-</script>
+    
 @endsection
