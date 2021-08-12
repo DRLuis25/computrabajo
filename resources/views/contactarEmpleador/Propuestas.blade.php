@@ -3,7 +3,7 @@
 @section('content')
     <div class="navegacionBotones">
         <button type="button" class="btn btn-primary">Detalles</button>
-        <button type="button" class="btn btn-primary">Propuestas</button>
+        <button type="button" class="btn btn-warning">Propuestas</button>
     </div>
     <h4 class="tupropuesta">Tu propuesta</h4>
     <div class="D_CajaPadre">
@@ -96,7 +96,18 @@
         </section>
 
         <aside class="D_Derecha">
-
+            <div>
+                <h6>Presupuesto</h6> 
+                <span>S/. {{$presupuesto->pago_propuesto_min}} - {{$presupuesto->pago_propuesto_max}} PEN</span>
+            </div>
+            <div>
+                <h6>Postulantes</h6>
+                <span>{{$total_postulantes}}</span>
+            </div>
+            <div>
+                <h6>Oferta media</h6>
+                <span>{{$promedio}}</span>
+            </div>
         </aside>
     </div><br>
     <h4 class="tupropuesta">Otras propuestas</h4>

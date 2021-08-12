@@ -42,10 +42,17 @@ class PropuestasController extends Controller
         $user_id = auth()->user()->id;
         $anuncio_id = $request->id_oc;
         $unidad = 1;
+        //mostrar otros postulantes
         $datos_otros_usuarios_postulantes = User::join('user_anuncio', 'user_anuncio.user_id', '=', 'users.id')
             ->where('user_anuncio.anuncio_id', '=', $anuncio_id)
             ->select('users.name', 'users.email', 'users.calificacion_colaborador', 'user_anuncio.descripcion', 'user_anuncio.importe', 'user_anuncio.tiempo')
             ->get();
+            //mostrar rango de precios
+            $presupuesto = userAnuncio::join('anuncios', 'user_anuncio.anuncio_id', '=', 'anuncios.id')
+            ->select('anuncios.pago_propuesto_min','anuncios.pago_propuesto_max')
+            ->first();
+ 
+
         $data = request()->validate([
             'importe' => 'required',
             'dias' => 'required',
@@ -71,9 +78,13 @@ class PropuestasController extends Controller
         $monto = $request->importe;
         $tiem = $request->dias;
         $ultimo = userAnuncio::latest('id')->first();
-        // echo $ultimo; 
+       
+        $total_postulantes= userAnuncio::count('user_id');
+        $suma= userAnuncio::sum('importe');
+        $promedio = $suma/$total_postulantes;
+       
 
-        return view('contactarEmpleador.Propuestas', compact('ultimo', 'desc', 'monto', 'tiem', 'datos_otros_usuarios_postulantes'));
+        return view('contactarEmpleador.Propuestas', compact('ultimo', 'desc', 'monto', 'tiem', 'datos_otros_usuarios_postulantes','total_postulantes','presupuesto','promedio'));
     }
 
 
@@ -118,6 +129,11 @@ class PropuestasController extends Controller
         ->take(1)
         ->get();
 
+        //mostrar rango de precios
+        $presupuesto = userAnuncio::join('anuncios', 'user_anuncio.anuncio_id', '=', 'anuncios.id')
+        ->select('anuncios.pago_propuesto_min','anuncios.pago_propuesto_max')
+        ->first();
+
         $user_anuncio = userAnuncio::where('id', '=', $id)->first();
         $user_anuncio->id = $id;
         $user_anuncio->user_id = auth()->user()->id;
@@ -130,9 +146,11 @@ class PropuestasController extends Controller
         $monto = $request->importe;
         $tiem = $request->dias;
         
-        
+        $total_postulantes= userAnuncio::count('user_id');
+        $suma= userAnuncio::sum('importe');
+        $promedio = $suma/$total_postulantes;
 
-        return view('contactarEmpleador.Propuestas', compact('ultimo', 'desc', 'monto', 'tiem', 'datos_otros_usuarios_postulantes'));
+        return view('contactarEmpleador.Propuestas', compact('ultimo', 'desc', 'monto', 'tiem', 'datos_otros_usuarios_postulantes','total_postulantes','presupuesto','promedio'));
     }
 
     /**
