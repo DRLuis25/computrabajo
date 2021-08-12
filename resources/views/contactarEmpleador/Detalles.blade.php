@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="navegacionBotones">
-        <button type="button" class="btn btn-primary">Detalles</button>
+        <button type="button" class="btn btn-warning">Detalles</button>
         <button type="button" class="btn btn-primary">Propuestas</button>
     </div>
    
