@@ -18,8 +18,10 @@
         </div>
     </div>
 </header>
-
-<div style="margin-left:12%; width: 76%;">
+<form method="POST" action="{{ route('anuncio.update', $anuncio->id) }}" class="form-horizontal form-label-left">
+    @csrf
+    @method('put')
+    <div style="margin-left:12%; width: 76%;">
     <div class="card">
         <div class="card-header" style="color:#2A5C98;">
             <b>Características del Anuncio</b>
@@ -29,68 +31,73 @@
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Fecha de expiración :</div>
                     <div class="col-4 col-md-4">
-                        <input type="date" class="form-control" name="fecha" id="fecha" value="{{ date_format($anuncio->fecha_expiracion, 'Y-m-d') }}" aria-describedby="basic-addon1">
-                    </div>
-                </div>
-                <div class="row g-0" style="padding:1%;">
-                    <div class="col-sm-4 col-md-4">Estado :</div>
-                    <div class="col-2 col-md-2">
-                        <input class="form-check-input" type="radio" name="radioestado" id="radioestado" {{ $anuncio->estado == 1 ? 'checked' : '' }}>
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            ACTIVO
-                        </label>
-                    </div>
-                    <div class="col-2 col-md-2">
-                        <input class="form-check-input" type="radio" name="radioestado" id="radioestado" {{ $anuncio->estado == 0 ? 'checked' : '' }}>
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            INACTIVO
-                        </label>
+                        <input type="date" class="form-control @error('fecha_expiracion') is-invalid @enderror" name="fecha_expiracion" id="fecha_expiracion" value="{{ date_format($anuncio->fecha_expiracion, 'Y-m-d') }}" aria-describedby="basic-addon1">
+                        @error('fecha_expiracion')
+                        <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="row g-0" style="padding:1%;">
                     <div class="col-sm-4 col-md-4">Mostrar e-mail de contacto :</div>
                     <div class="col-1 col-md-1">
-                        <input class="form-check-input" type="radio" name="radioemail" id="radioemail" {{ $anuncio->ver_email == true ? 'checked' : '' }}>
+                        <input class="form-check-input" type="radio" name="radioemail" id="radioemail" {{ $anuncio->ver_email == true ? 'checked' : '' }} value="1">
                         <label class="form-check-label" for="flexRadioDefault1">
                             SI
                         </label>
                     </div>
                     <div class="col-1 col-md-1">
-                        <input class="form-check-input" type="radio" name="radioemail" id="radioemail" {{ $anuncio->ver_email == false ? 'checked' : '' }}>
+                        <input class="form-check-input" type="radio" name="radioemail" id="radioemail" {{ $anuncio->ver_email == false ? 'checked' : '' }} value="0">
                         <label class="form-check-label" for="flexRadioDefault1">
                             NO
                         </label>
                     </div>
+                    @error('radioemail')
+                        <div class="col-2 col-md-2" id="validationServer03Feedback" style="font-size: 10pt; color:#DD5557">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="row g-0" style="padding:1%;">
                     <div class="col-sm-4 col-md-4">Mostrar telefono de contacto :</div>
                     <div class="col-1 col-md-1">
-                        <input class="form-check-input" type="radio" name="radiotelefono" id="radiotelefono" {{ $anuncio->ver_celular == true ? 'checked' : '' }}>
+                        <input class="form-check-input" type="radio" name="radiotelefono" id="radiotelefono" {{ $anuncio->ver_celular == true ? 'checked' : '' }} value="1">
                         <label class="form-check-label" for="flexRadioDefault1">
                             SI
                         </label>
                     </div>
                     <div class="col-1 col-md-1">
-                        <input class="form-check-input" type="radio" name="radiotelefono" id="radiotelefono" {{ $anuncio->ver_celular == false ? 'checked' : '' }}>
+                        <input class="form-check-input" type="radio" name="radiotelefono" id="radiotelefono" {{ $anuncio->ver_celular == false ? 'checked' : '' }} value="0">
                         <label class="form-check-label" for="flexRadioDefault1">
                             NO
                         </label>
                     </div>
+                    @error('radiotelefono')
+                        <div class="col-2 col-md-2" id="validationServer03Feedback" style="font-size: 10pt; color:#DD5557">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="row g-0" style="padding:1% 1% 3% 1%;">
                     <div class="col-sm-4 col-md-4">Mostrar dirección de contacto :</div>
                     <div class="col-1 col-md-1">
-                        <input class="form-check-input" type="radio" name="radiodireccion" id="radiodireccion" {{ $anuncio->ver_direccion == true ? 'checked' : '' }}>
+                        <input class="form-check-input" type="radio" name="radiodireccion" id="radiodireccion" {{ $anuncio->ver_direccion == true ? 'checked' : '' }} value="1">
                         <label class="form-check-label" for="flexRadioDefault1">
                             SI
                         </label>
                     </div>
                     <div class="col-1 col-md-1">
-                        <input class="form-check-input" type="radio" name="radiodireccion" id="radiodireccion" {{ $anuncio->ver_direccion == false ? 'checked' : '' }}>
+                        <input class="form-check-input" type="radio" name="radiodireccion" id="radiodireccion" {{ $anuncio->ver_direccion == false ? 'checked' : '' }} value="0">
                         <label class="form-check-label" for="flexRadioDefault1">
                             NO
                         </label>
                     </div>
+                    @error('radiodireccion')
+                        <div class="col-2 col-md-2" id="validationServer03Feedback" style="font-size: 10pt; color:#DD5557">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
             </li>
         </ul>
@@ -104,7 +111,12 @@
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Título del anuncio :</div>
                     <div class="col-4 col-md-4">
-                        <input type="text" class="form-control" name="titulo" id="titulo" value="{{ $anuncio->titulo }}">
+                        <input type="text" class="form-control @error('titulo') is-invalid @enderror" name="titulo" id="titulo" value="{{ $anuncio->titulo }}">
+                        @error('titulo')
+                        <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
@@ -115,18 +127,33 @@
                 </div>
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="form-group col-sm-8 col-md-8">
-                        <label for="exampleFormControlTextarea1" style="margin-bottom:20px">Descripción de tareas :</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $anuncio->descripcion }}</textarea>
+                        <label for="descripcion" style="margin-bottom:20px">Descripción de tareas :</label>
+                        <textarea class="form-control @error('descripcion') is-invalid @enderror" id="descripcion" name="descripcion" rows="3">{{ $anuncio->descripcion }}</textarea>
+                        @error('descripcion')
+                        <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
                     <div class="col-sm-4 col-md-4">Pago:</div>
                     <div class="col-1 col-md-1">
-                        <input type="text" placeholder="Min" class="form-control" name="min" id="min" aria-describedby="basic-addon1" value="{{ $anuncio->pago_propuesto_min }}">
+                        <input type="text" placeholder="Min" class="form-control @error('min') is-invalid @enderror" name="min" id="min" aria-describedby="basic-addon1" value="{{ $anuncio->pago_propuesto_min }}">
+                        @error('min')
+                        <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="col-1 col-md-1" style="margin: 0px 5px 0px 5px; text-align: center">-</div>
                     <div class="col-1 col-md-1">
-                        <input type="text" placeholder="Max" class="form-control" name="max" id="max" aria-describedby="basic-addon1" value="{{ $anuncio->pago_propuesto_max }}">
+                        <input type="text" placeholder="Max" class="form-control @error('max') is-invalid @enderror" name="max" id="max" aria-describedby="basic-addon1" value="{{ $anuncio->pago_propuesto_max }}">
+                        @error('max')
+                        <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="row g-0" style="padding:3% 1% 1% 1%;">
@@ -151,8 +178,9 @@
         </ul>
     </div>
     <div style="text-align:center; padding: 4% 0% 6% 0%">
-        <button type="submit" class="btn btn-warning" style="height: 50px; width: 400px;"><b>Guardar</button>
+        <button type="submit" class="btn btn-warning" style="height: 50px; width: 400px;"><b>Editar</button>
     </div>
-</div>
+    </div>
+</form>
 
 @endsection

@@ -31,6 +31,7 @@ Route::get('/publicacion/{id}','PublicacionController@comienzo')->name('publicac
 Route::get('/anuncio/publicar','AnuncioController@publicar')->name('anuncio.publicaranuncio');
 Route::post('/anuncio/guardar','AnuncioController@guardaranuncio')->name('anuncio.guardaranuncio');
 Route::get('/anuncio/editaranuncio/{id}','AnuncioController@editaranuncio')->name('anuncio.editaranuncio');
+Route::put('/anuncio/updateanuncio/{id}','AnuncioController@updateanuncio')->name('anuncio.update');
 
 // Mostrar Datos
 Route::get('getCiudad/{idDepartamento}', 'DatosController@listarCiudades');
