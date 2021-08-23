@@ -26,7 +26,10 @@ Route::get('/anuncio/finalizar/{id}','AnuncioController@finalizar')->name('anunc
 Route::post('/anuncio/finalizar/valoracion','AnuncioController@valoracion')->name('anuncio.valoracion');
 Route::post('/anuncio/finalizar/final','AnuncioController@final')->name('anuncio.final');
 
+//Ruta Jai ver propuestas
 Route::get('/publicacion/{id}','PublicacionController@comienzo')->name('publicacion.comienzo');
+
+
 
 Route::get('/anuncio/publicar','AnuncioController@publicar')->name('anuncio.publicaranuncio');
 Route::post('/anuncio/guardar','AnuncioController@guardaranuncio')->name('anuncio.guardaranuncio');
@@ -38,6 +41,8 @@ Route::get('getCiudad/{idDepartamento}', 'DatosController@listarCiudades');
 Route::get('getDistrito/{idCiudad}', 'DatosController@listarDistritos');
 
 Route::resource('perfilUsuario', 'UserController');
+
+
 /*rutas Jhan */
 Route::resource('contactarEmpleador', 'PropuestasController');
 //Route::get('contactarEmpleador/{id}', 'PropuestaController@probar' );

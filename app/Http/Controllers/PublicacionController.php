@@ -89,7 +89,6 @@ class PublicacionController extends Controller
     {
         //Abrir anuncio
         $publicacion = userAnuncio::where('anuncio_id','=',$id)->get();
-    
-        return view('publicacion.comienzo',compact('publicacion'));
+        return view('publicacion.comienzo',compact('publicacion'))->with('anuncio_id',$id);
     }
 }
