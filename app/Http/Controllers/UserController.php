@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -59,7 +60,7 @@ class UserController extends Controller
     public function edit($id)
     {
         //
-        
+
     }
 
     /**
@@ -84,4 +85,17 @@ class UserController extends Controller
     {
         //
     }
+    public function desactivar($id)
+    {
+        //
+
+        $user=User::findOrFail($id);
+        $user->estado=0;
+
+        $user->save();
+
+        return redirect()->route('admin.home');
+
+    }
+
 }

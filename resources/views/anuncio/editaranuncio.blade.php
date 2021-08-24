@@ -18,9 +18,11 @@
         </div>
     </div>
 </header>
+
 <form method="POST" action="{{ route('anuncio.update', $anuncio->id) }}" class="form-horizontal form-label-left">
     @csrf
     @method('put')
+    
     <div style="margin-left:12%; width: 76%;">
     <div class="card">
         <div class="card-header" style="color:#2A5C98;">
@@ -182,5 +184,6 @@
     </div>
     </div>
 </form>
+
 
 @endsection
