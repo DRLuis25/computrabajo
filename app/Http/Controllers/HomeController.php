@@ -25,6 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $usuarios=DB::select('CALL `SP_USUARIOS`()');
+
         return view('layouts.admin.home',compact('usuarios'));
     }
 

@@ -90,9 +90,9 @@ class UserController extends Controller
         //
 
         $user=User::findOrFail($id);
-        $user->estado=0;
 
-        $user->save();
+
+        $user->delete();
 
         return redirect()->route('admin.home');
 

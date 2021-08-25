@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container" style="text-align: center" >
-    <h5 style="font-size: 50px;font-family:courier,arial,helvética;">USUARIOS REGISTRADOS</h5>
+    <h5>Usuarios registrados</h5>
     <div class="card">
         <div class="card-body">
-            <table class="table">
+            <table class="table tabla" id="tabla" >
                 <thead class="thead-dark">
                 <tr>
 
@@ -57,7 +57,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-        <form method="POST" action="/admin/usuarios/{{$usuario->id}}">
+        <form method="POST" action="">
             @method('post')
             @csrf
       <div class="modal-header">
@@ -97,5 +97,39 @@
             modal.find('.modal-footer #post_id').val(post_id);
             modal.find('form').attr('action','/admin/usuarios/' + post_id);
         })
+
+
+        $(document).ready(function() {
+            $('.tabla').DataTable(
+                {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'pageLength',
+
+                        'excelHtml5',
+                        {
+                            extend: 'pdfHtml5',
+                            title: '',
+                            exportOptions: {
+                                columns: function (idx, data, node) {
+                                    if (node.innerHTML == "Accion" || node.hidden)
+                                        return false;
+                                    return true;
+                                }
+                            }
+                        }
+
+                    ]
+                }
+            );
+        } );
     </script>
+
+
+
+
+
+
+
 @endsection
+
