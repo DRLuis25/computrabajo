@@ -90,6 +90,7 @@ class PublicacionController extends Controller
     {
         //Abrir anuncio
         $publicacion = userAnuncio::where('anuncio_id','=',$id)->get();
+
        /*  foreach($publicacion as $item){
             if($item->anuncio->detalleAnuncios[0]->anuncio_id!=null)
             {
@@ -111,5 +112,6 @@ class PublicacionController extends Controller
         $contrato->importe=$importe;
         $contrato->save();
         return redirect()->route('publicacion.comienzo',$idanuncion);
+        return view('publicacion.comienzo',compact('publicacion'))->with('anuncio_id',$id);
     }
 }
