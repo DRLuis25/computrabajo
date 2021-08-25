@@ -47,8 +47,19 @@
                     
                     <p>Desde {{$item->anuncio->ciudad->nombre}}</p>
                     <div class="button-group mb-1">
-                        <button type="button" class="btn btn-primary btn-sm">Contratar</button>
-                        <a href="https://wa.me/+51941881489"  target="_blank" class="btn btn-success btn-sm" ><i class="fab fa-whatsapp"></i>Whatsapp</a>
+                        @if ($parametro==1)
+                            <form  method="get" action="{{route('contrato',[$item->id,$item->anuncio_id,$item->importe])}}">
+                            <button type="submit" class="btn btn-primary btn-sm">Contratar</button>
+                            <a href="https://wa.me/+51941881489"  target="_blank" class="btn btn-success btn-sm" ><i class="fab fa-whatsapp"></i>Whatsapp</a>
+                            </form>
+                        @else
+                            <form  method="get" action="{{route('contrato',[$item->id,$item->anuncio_id,$item->importe])}}">
+                            <button type="submit" class="btn btn-primary btn-sm">Contratar</button>
+                            <a href="https://wa.me/+51941881489"  target="_blank" class="btn btn-success btn-sm" ><i class="fab fa-whatsapp"></i>Whatsapp</a>
+                            </form>
+                        @endif
+                        
+                        
                     </div>
                     
                 </div>
@@ -76,30 +87,34 @@
     @endforeach
 
 </div>
+
 <div class="col-sm-2 col-md-2 border" style="margin:0% 0% 0% 2%">
+    <form action="">
         <h4 class="text-center">Filtros</h4>
             <div class="">
                 <p>Monto</p>
                 <div class="input-group mb-3">
-                    <input type="number" class="form-control" placeholder="Minimo" >
+                    <input type="number" class="form-control" placeholder="Minimo" min="1" pattern="^[0-9]+" >
                     <span class="input-group-text">-</span>
-                    <input type="number" class="form-control" placeholder="Maximo" >
+                    <input type="number" class="form-control" placeholder="Maximo" min="1" pattern="^[0-9]+" >
                 </div>
             </div>
             <br>
             <div>
                 <p>Calificacion</p>
                 <div class="input-group mb-3">
-                    <input type="number" class="form-control" placeholder="Minimo" >
+                    <input type="number" class="form-control" placeholder="Minimo" min="1" pattern="^[0-9]+" >
                     <span class="input-group-text">-</span>
-                    <input type="number" class="form-control" placeholder="Maximo" >
+                    <input type="number" class="form-control" placeholder="Maximo"  min="1" pattern="^[0-9]+">
                 </div>
             </div>
             <br>
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-success">Buscar</button>
             </div>
+        </form>
 </div>
+
 
 
 </div>
