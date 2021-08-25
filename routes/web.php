@@ -27,6 +27,7 @@ Route::post('/anuncio/finalizar/valoracion','AnuncioController@valoracion')->nam
 Route::post('/anuncio/finalizar/final','AnuncioController@final')->name('anuncio.final');
 
 Route::get('/publicacion/{id}','PublicacionController@comienzo')->name('publicacion.comienzo');
+Route::get('/publicacion/contrato/{id}/{id2}/{id3}','PublicacionController@contrato')->name('contrato');
 
 Route::get('/anuncio/publicar','AnuncioController@publicar')->name('anuncio.publicaranuncio');
 Route::post('/anuncio/guardar','AnuncioController@guardaranuncio')->name('anuncio.guardaranuncio');

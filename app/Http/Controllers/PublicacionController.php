@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\userAnuncio;
+use App\Models\detalleAnuncio;
 
 
 class PublicacionController extends Controller
@@ -89,7 +90,26 @@ class PublicacionController extends Controller
     {
         //Abrir anuncio
         $publicacion = userAnuncio::where('anuncio_id','=',$id)->get();
-    
-        return view('publicacion.comienzo',compact('publicacion'));
+       /*  foreach($publicacion as $item){
+            if($item->anuncio->detalleAnuncios[0]->anuncio_id!=null)
+            {
+                $parametro=1;
+            }
+        } */
+        $temporal= detalleAnuncio::where('anuncio_id','=',$id)->get();
+        if ($temporal!=null){
+            $parametro=1;
+        }else{
+            $parametro=0;
+        }
+        return view('publicacion.comienzo',compact('publicacion','temporal','parametro'));
+    }
+    public function contrato($idanuncion,$idusuario,$importe){
+        $contrato= new detalleAnuncio();
+        $contrato->anuncio_id=$idanuncion;
+        $contrato->user_id=$idusuario;
+        $contrato->importe=$importe;
+        $contrato->save();
+        return redirect()->route('publicacion.comienzo',$idanuncion);
     }
 }
