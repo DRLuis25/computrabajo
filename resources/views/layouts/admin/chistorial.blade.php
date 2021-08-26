@@ -33,6 +33,7 @@
                 <a href="{{route('admin.historial',$duser->id)}}" ><button type="button" class="btn btn-primary">EMPLEADOR</button></a>
 
                 <a ><button type="button" class="btn btn-primary"> COLABORADOR</button></a>
+
             <div class="card-body" >
                     <table class="table" id="datosusuarios">
                         <thead class="thead-dark">

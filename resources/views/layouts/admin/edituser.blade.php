@@ -19,7 +19,7 @@
                 <form action="{{ route('admin.actualizar', $duser->id) }}" method="POST">
                     @csrf
                     @method('put')
-                    <div class="row">
+                    <div class="row" >
                         <div class="form-group mb-3 col-6">
                         <label for="exampleInputEmail1" class="form-label">Nombres</label>
                         <input type="text" value="{{$duser->name}}" class="form-control" id="name" name="name" aria-describedby="emailHelp">
@@ -28,7 +28,7 @@
                         <div class="form-group mb-3 col-6">
                             <label for="exampleInputEmail1" class="form-label">Apellidos</label>
                             <input type="text" value="{{$duser->apellidos}}" class="form-control" id="apellidos" name="apellidos" aria-describedby="emailHelp">
-                            </div>
+                        </div>
 
                             <div class="form-group mb-3 col-6">
                             <label for="exampleInputEmail1" class="form-label">Direccion</label>
@@ -62,8 +62,10 @@
 
 
 
-                    <button type="submit" class="btn btn-danger">Submit</button>
-                    <a type="button" class="btn btn-primary" >Cancelar</a>
+                    <div style="text-align: center" >
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                    <a type="button" class="btn btn-primary" href="{{ route('admin.home') }}" >Cancelar</a>
+                    </div>
                 </form>
             </div>
         </div>

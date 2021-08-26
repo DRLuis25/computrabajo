@@ -1,26 +1,26 @@
 @extends('layouts.admin.app')
 
 @section('content')
-<div class="container" style="text-align: center" >
+
     <h5>Usuarios registrados</h5>
     <div class="card">
         <div class="card-body">
-            <table class="table tabla" id="tabla" >
+            <table class="table tabla" id="tabla" style="text-align: center" >
                 <thead class="thead-dark">
                 <tr>
 
                     <th scope="col">Nombres</th>
                     <th scope="col">Apellidos</th>
-                    <th scope="col">Direccion</th>
-                    <th scope="col">celular</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Celular</th>
                     <th scope="col">Correo</th>
-                    <th scope="col">calificacion</th>
-                    <th scope="col">Accion</th>
+                    <th scope="col">Calificación</th>
+                    <th scope="col">Acción</th>
 
                 </tr>
                 </thead>
 
-                <tbody>
+                <tbody >
                     @foreach ($usuarios as $usuario)
                     <tr>
                         <td>{{$usuario->name}}</td>
@@ -30,11 +30,9 @@
                         <td>{{$usuario->email}}</td>
                         <td>{{$usuario->calificacion_empleador}}</td>
                         <td> <a href="{{route('admin.historial',['id' => $usuario->id])}}" type="button" ><i class="fas fa-eye"></i></a>
-                            <a href="{{route('admin.editar',['id' => $usuario->id])}}" type="button" ><i class="fas fa-edit"></i></a>
-
+                            <a href="{{route('admin.editar',['id' => $usuario->id])}}" type="button" ><i class="fas fa-edit" style="color:black;"></i></a>
                             <!-- Button trigger modal -->
-                            <a class="btn" data-toggle="modal" data-target="#exampleModal" data-userid="{{$usuario->id}}">
-                                <i class="fas fa-trash-alt"></i>
+                            <a type="button" data-toggle="modal" data-target="#exampleModal" data-userid="{{$usuario->id}}" ><i class="fas fa-trash-alt " style="color: red;"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -105,8 +103,18 @@
                     dom: 'Bfrtip',
                     buttons: [
                         'pageLength',
+                        {
+                            extend: 'excelHtml5',
+                            title: '',
+                            exportOptions: {
+                                columns: function (idx, data, node) {
+                                    if (node.innerHTML == "Accion" || node.hidden)
+                                        return false;
+                                    return true;
+                                }
+                            }
+                        },
 
-                        'excelHtml5',
                         {
                             extend: 'pdfHtml5',
                             title: '',

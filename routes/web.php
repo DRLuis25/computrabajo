@@ -24,7 +24,8 @@ Route::get('/admin/historial/{id}', 'HistorialControler@index')->name('admin.his
 Route::get('/admin/chistorial/{id}', 'ChistorialController@index')->name('admin.chistorial');
 Route::get('/admin/editar/{id}', 'EditarController@index')->name('admin.editar');
 Route::put('/admin/edituser/{id}', 'EditarController@editaralusuario')->name('admin.actualizar');
-Route::get('/admin/rdiarios', 'RdiariosController@index')->name('admin.rdiarios');
+Route::get('/admin/rdiarios/{mes}/{dia}', 'RdiariosController@index')->name('admin.rdiarios');
+Route::get('/admin/rmensuales/{mes}', 'RdiariosController@mensual')->name('admin.mensuales');
 Route::post('/admin/usuarios/{id}', 'UserController@desactivar')->name('admin.eliminar');
 
 
