@@ -5,12 +5,13 @@
     <div class="form-group row">
         <select name="mes" id="mes" class="form-control col-2" required>
             <option value="">Seleccione un mes</option>
-            <option value="1">Enero</option>
+            <option value="01">Enero</option>
             <option value="08">Agosto</option>
         </select>
         <select name="dia" id="dia" class="form-control col-2" required>
             <option value="">Seleccione un dia</option>
             <option value="25">25</option>
+            <option value="26" selected>26</option>
         </select>
         <input type="submit" value="Consultar" class="btn btn-primary col-1">
     </div>
@@ -65,8 +66,8 @@
         let mes = $('#mes').val();
         let dia = $('#dia').val();
         $.get(`/admin/rdiarios/${mes}/${dia}`,function (res, sta) {
-            datas[0].data = res.datos;
-            myChart.data = datas;
+
+            myChart.data.datasets[0].data = res.datos;
             myChart.update();
         });
     })
