@@ -1,7 +1,7 @@
 @extends('welcome')
 @section('content')
     
-    <div style="margin-left: 300px; margin-right: 300px">
+    <div style="margin-left: 350px; margin-right: 350px">
 
         {{-- <a href="perfilUsuario.edit" class="btn btn-success" style="float: right">EDITAR PERFIL</a> --}}
 
