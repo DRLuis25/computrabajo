@@ -33,7 +33,7 @@ class modelUser extends Model
     use SoftDeletes;
 
     public $table = 'users';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -134,5 +134,9 @@ class modelUser extends Model
     public function userOficios()
     {
         return $this->hasMany(\App\Models\UserOficio::class, 'user_id');
+    }
+    public function getFullNameAttribute()
+    {
+        return $this->apellidos.' '.$this->name;
     }
 }

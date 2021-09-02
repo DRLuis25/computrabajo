@@ -1,24 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
-<header class="p-3">
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
-            </a>
-            <div class="text-end">
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="{{ route("anuncio.misanuncios") }}" class="nav-link px-2 text-secondary">Mis anuncios</a></li>
-                    <li><a href="{{ route("anuncio.publicaranuncio") }}" class="nav-link px-2 text-secondary">Publicar un Anuncio</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</header>
-
+@include('anuncio.header')
 <div style="margin:2% 20% 5% 20%">
     <div>
         <h3 class="card-title">Mis Anuncios</h3>
@@ -58,7 +40,7 @@
                         </h5>
                         <div>{{$itemAnuncio->departamento->nombre}} - {{$itemAnuncio->ciudad->nombre}} - {{$itemAnuncio->distrito->nombre}}</div>
                         <div>Expira el {{ date_format($itemAnuncio->fecha_expiracion, 'd/m/Y') }}</div>
-                        
+
                     </div>
                     <div class="col-sm-2 col-md-2" style="display: table; text-align: center; font-size: 20px; color:green">
                         <div style="display: table-cell; vertical-align: middle;">
@@ -80,15 +62,7 @@
                         @endif
                         <div>Estado</div>
                         <div>
-                            @if ($itemAnuncio->estado == 0)
-                                INACTIVO
-                            @else
-                                @if ($itemAnuncio->estado == 1)
-                                    EN PROCESO
-                                @else
-                                    FINALIZADO
-                                @endif
-                            @endif
+                            {{$itemAnuncio->estado_anuncio}}
                         </div>
                     </div>
                     </div>

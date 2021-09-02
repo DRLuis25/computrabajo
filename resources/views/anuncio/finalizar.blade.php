@@ -1,26 +1,76 @@
 @extends('layouts.app')
 @section('content')
+@include('anuncio.header')
 <div class="sections">
     <div class="container">
-        <div class="sections-title">
-            <div class="sections-title-h3"><h3>Mis Anuncios</h3></div>
-        </div><!-- End sections-title -->
-        <div class="row">
-            <div class="sections sections-padding-0">
-                <div class="container">
-                    <div class="callout callout-4">
-                        <h6>{{$anuncio->titulo}}</h6>
+        <div class="card">
+            <div class="card-body m-3">
+              <h5 class="card-title">Detalle Anuncio</h5>
+              <p class="card-text"><h3>{{$anuncio->titulo}}</h3></p>
+                <h5>Descripción del anuncio</h5>
+                <div class="row">
+                    <div class="container">
                         <div class="row">
                             <div class="col-md-10">
-                                <p>{{$anuncio->descripcion}}</p>
-                                <div class="row">
-                                    <div class="form-group col-sm-3">
-                                        <p>{{$anuncio->ciudad->nombre}}, {{$anuncio->departamento->nombre}}</p>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="">
+                                                <p style="margin: 0;
+                                                text-align: justify;">
+                                                    {{$anuncio->descripcion}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="container">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">Ubicación</th>
+                                                            <td>{{$anuncio->ciudad->nombre}}, {{$anuncio->departamento->nombre}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Fecha publicación</th>
+                                                            <td>{{$anuncio->created_at->diffForHumans()}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Estado</th>
+                                                            <td>{{$anuncio->estado_anuncio}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-2">
-                                        <p>{{$anuncio->created_at->diffForHumans()}}</p>
-                                    </div>
-                                    <div class="form-group col-sm-4">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div >
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        data-bs-whatever="@mdo">
+                                        Finalizar anuncio
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End row -->
+                <h5>Colaboradores</h5>
+                <div class="container row">
+                    @foreach ($anuncio->userAnuncios as $item)
+                    <div class="card col-3 text-center">
+                        <img class="card-img-top" src="https://freepikpsd.com/media/2019/10/default-user-profile-image-png-6-Transparent-Images.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$item->user->full_name}}</h5>
+                            <p class="card-text" style="margin: 0; text-align: justify;">
+                                {{$item->user->acerca_de_mi}}
+                            </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="form-group">
                                         <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
                                         <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
                                         <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
@@ -33,23 +83,17 @@
                                             evaluaciones
                                         @endif</label>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div>
-                                    <button type="button" class="btn btn-danger"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                        data-bs-whatever="@mdo">
-                                        Finalizar
-                                    </button>
-                                </div>
-                            </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="" class="btn btn-secondary">Perfil</a>
+                                </li>
+                            </ul>
                         </div>
-                    </div><!-- End callout -->
-                </div><!-- End container -->
-            </div><!-- End sections -->
-        </div><!-- End row -->
-    </div><!-- End container -->
+                    @endforeach
+                </div><!-- End row -->
+            </div>
+        </div>
+    </div>
 </div><!-- End sections -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

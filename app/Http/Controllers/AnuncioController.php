@@ -28,8 +28,10 @@ class AnuncioController extends Controller
     {
         //return request()->all();
         $anuncio_id = request()->anuncio_id;
+        $anuncio = Anuncio::find($anuncio_id);
         $termino = request()->termino;
-        return view('anuncio.valoracion',compact('anuncio_id','termino'));
+
+        return view('anuncio.valoracion',compact('anuncio','anuncio_id','termino'));
     }
     public function final(Request $request)
     {
