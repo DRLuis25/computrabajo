@@ -89,29 +89,31 @@ class PublicacionController extends Controller
     public function comienzo($id)
     {
         //Abrir anuncio
-        $publicacion = userAnuncio::where('anuncio_id','=',$id)->get();
-
-       /*  foreach($publicacion as $item){
-            if($item->anuncio->detalleAnuncios[0]->anuncio_id!=null)
-            {
-                $parametro=1;
-            }
-        } */
+        $publicacion = userAnuncio::where('anuncio_id','=',$id)->where('temporal','=','1')->get();
         $temporal= detalleAnuncio::where('anuncio_id','=',$id)->get();
-        if ($temporal!=null){
-            $parametro=1;
-        }else{
-            $parametro=0;
-        }
-        return view('publicacion.comienzo',compact('publicacion','temporal','parametro'));
+        return view('publicacion.comienzo',compact('publicacion','temporal'));
     }
-    public function contrato($idanuncion,$idusuario,$importe){
+    public function contrato($idusuario,$idanuncion,$importe,$descripcion,$dias){
         $contrato= new detalleAnuncio();
         $contrato->anuncio_id=$idanuncion;
         $contrato->user_id=$idusuario;
         $contrato->importe=$importe;
+        $contrato->descripcion=$descripcion;
+        $contrato->dia=$dias;
+    
         $contrato->save();
+        
+        /* $publicacion=userAnuncio::findOrFail($idanuncion,$idusuario);
+        dd($publicacion) */
+
+        $publicacion = userAnuncio::where('anuncio_id','=',$idanuncion)->where('user_id','=',$idusuario)->get();
+        
+        $publicacion[0]->temporal="0";
+        $publicacion[0]->save();
+        
+        // $publicacion->temporal='0';
+        //$publicacion->save(); 
         return redirect()->route('publicacion.comienzo',$idanuncion);
-        return view('publicacion.comienzo',compact('publicacion'))->with('anuncio_id',$id);
+        //return view('publicacion.comienzo',compact('publicacion'))->with('anuncio_id',$id);
     }
 }

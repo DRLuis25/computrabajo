@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $descripcion
  * @property number $importe
  * @property string|\Carbon\Carbon $tiempo
+ *  @property number $temporal
  */
 class userAnuncio extends Model
 {
@@ -37,7 +38,8 @@ class userAnuncio extends Model
         'anuncio_id',
         'descripcion',
         'importe',
-        'tiempo'
+        'tiempo',
+        'temporal'
     ];
 
     /**
@@ -51,7 +53,8 @@ class userAnuncio extends Model
         'anuncio_id' => 'integer',
         'descripcion' => 'string',
         'importe' => 'float',
-        'tiempo' => 'float'
+        'tiempo' => 'float',
+        'temporal'=> 'integer'
     ];
 
     /**

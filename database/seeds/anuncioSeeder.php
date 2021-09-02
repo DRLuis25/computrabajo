@@ -42,14 +42,17 @@ class anuncioSeeder extends Seeder
             'anuncio_id' => $anuncio->id,
             'descripcion' => 'Ofrezco terminar el trabajo a tiempo, atención las 24h',
             'importe' => '950',
-            'tiempo' => '2'
+            'tiempo' => '2',
+            'temporal'=> '0'
         ]);
 
         //Se selecciona un usuario para el trabajo
         $detalleAnuncio = detalleAnuncio::create([
             'anuncio_id' => $anuncio->id,
             'user_id' => $userAnuncio->user_id,
-            'importe' => $userAnuncio->importe
+            'importe' => $userAnuncio->importe,
+            'descripcion'=> $userAnuncio->descripcion,
+            'dia'=> $userAnuncio->tiempo
         ]);
         
         //Actualizar estado anuncio

@@ -38,7 +38,7 @@ Route::post('/anuncio/finalizar/final','AnuncioController@final')->name('anuncio
 
 //Ruta Jai ver propuestas
 Route::get('/publicacion/{id}','PublicacionController@comienzo')->name('publicacion.comienzo');
-Route::get('/publicacion/contrato/{id}/{id2}/{id3}','PublicacionController@contrato')->name('contrato');
+Route::get('/publicacion/contrato/{id}/{id2}/{id3}/{id4}/{id5}','PublicacionController@contrato')->name('contrato');
 
 
 
