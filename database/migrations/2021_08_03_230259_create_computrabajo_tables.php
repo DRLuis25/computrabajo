@@ -83,6 +83,7 @@ class CreateComputrabajoTables extends Migration
             $table->double('importe');
             $table->double('tiempo')->default(1); // numero días?
             $table->char('unidad_tiempo',1)->default('1');//1: dias (temporal)
+            $table->BigInteger('temporal')->default('1');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('anuncio_id')->references('id')->on('anuncios');
             $table->timestamps();
@@ -93,6 +94,8 @@ class CreateComputrabajoTables extends Migration
             $table->unsignedBigInteger('anuncio_id');
             $table->unsignedBigInteger('user_id'); //El que publica el anuncio
             $table->double('importe');
+            $table->string('descripcion');
+            $table->BigInteger('dia');
             $table->foreign('anuncio_id')->references('id')->on('anuncios');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

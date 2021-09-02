@@ -33,7 +33,9 @@ class detalleAnuncio extends Model
     public $fillable = [
         'anuncio_id',
         'user_id',
-        'importe'
+        'importe',
+        'descripcion',
+        'dia'
     ];
 
     /**
@@ -45,7 +47,9 @@ class detalleAnuncio extends Model
         'id' => 'integer',
         'anuncio_id' => 'integer',
         'user_id' => 'integer',
-        'importe' => 'float'
+        'importe' => 'float',
+        'descripcion'=> 'string',
+        'dia'=>'integer'
     ];
 
     /**
