@@ -16,6 +16,7 @@
      </a>
     <a href="{{route('admin.mensuales',date("m"))}}"
        class="nav-link">
+       
         <p>MENSUALES</p>
     </a>
 
