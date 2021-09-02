@@ -35,7 +35,74 @@ class anuncioSeeder extends Seeder
             'ver_celular' => true,
             'ver_direccion' => true
         ]);
+        
+        $anuncio = Anuncio::create([
+            'user_id' => '2',
+            'oficio_id' => '32',
+            'departamento_id' => 12,
+            'ciudad_id' => 122,
+            'distrito_id' => 1222,
+            'titulo' => 'Necesito pintor casa 2 pisos- trabajo rapido',
+            'descripcion' => 'Necesito pintor que tenga experiencia en pintado de maquinaria, equipos y accesorios así también para apoyar en las labores del taller cuando se necesite.',
+            'fecha_expiracion' => '2021-09-01',
+            'pago_propuesto_min' => '750',
+            'pago_propuesto_max' => '1000',
+            'estado' => '0',
+            'ver_email' => true,
+            'ver_celular' => true,
+            'ver_direccion' => true
+        ]);
 
+        $anuncio = Anuncio::create([
+            'user_id' => '3',
+            'oficio_id' => '32',
+            'departamento_id' => 12,
+            'ciudad_id' => 122,
+            'distrito_id' => 1222,
+            'titulo' => 'Necesito pintor casa 3 pisos',
+            'descripcion' => 'Necesito pintor que tenga experiencia en pintado de maquinaria, equipos y accesorios así también para apoyar en las labores del taller cuando se necesite.',
+            'fecha_expiracion' => '2021-09-01',
+            'pago_propuesto_min' => '750',
+            'pago_propuesto_max' => '1000',
+            'estado' => '0',
+            'ver_email' => true,
+            'ver_celular' => true,
+            'ver_direccion' => true
+        ]);
+
+        $anuncio = Anuncio::create([
+            'user_id' => '4',
+            'oficio_id' => '32',
+            'departamento_id' => 12,
+            'ciudad_id' => 122,
+            'distrito_id' => 1222,
+            'titulo' => 'Necesito pintor casa 3 pisos',
+            'descripcion' => 'Necesito pintor que tenga experiencia en pintado de maquinaria, equipos y accesorios así también para apoyar en las labores del taller cuando se necesite.',
+            'fecha_expiracion' => '2021-09-01',
+            'pago_propuesto_min' => '750',
+            'pago_propuesto_max' => '1000',
+            'estado' => '0',
+            'ver_email' => true,
+            'ver_celular' => true,
+            'ver_direccion' => true
+        ]);
+
+        $anuncio = Anuncio::create([
+            'user_id' => '5',
+            'oficio_id' => '32',
+            'departamento_id' => 12,
+            'ciudad_id' => 122,
+            'distrito_id' => 1222,
+            'titulo' => 'Necesito pintor casa 3 pisos',
+            'descripcion' => 'Necesito pintor que tenga experiencia en pintado de maquinaria, equipos y accesorios así también para apoyar en las labores del taller cuando se necesite.',
+            'fecha_expiracion' => '2021-09-01',
+            'pago_propuesto_min' => '750',
+            'pago_propuesto_max' => '1000',
+            'estado' => '0',
+            'ver_email' => true,
+            'ver_celular' => true,
+            'ver_direccion' => true
+        ]);
         //Usuario que postula
         $userAnuncio = userAnuncio::create([
             'user_id' => '3',
