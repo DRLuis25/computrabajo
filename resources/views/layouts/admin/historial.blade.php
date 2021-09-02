@@ -8,38 +8,36 @@
 
     @endsection
 
-
-        <form class="row">
-            <div class="mb-3 col-6">
-            <label for="exampleInputEmail1" class="form-label" >Nombres</label>
-            <input type="text" value="{{$duser->name}}" class="form-control" id="name" aria-describedby="emailHelp" disabled>
-            </div>
-
-            <div class="mb-3 col-6">
-            <label for="exampleInputEmail1" class="form-label">Apellidos</label>
-            <input type="text" value="{{$duser->apellidos}}" class="form-control" id="apellidos" aria-describedby="emailHelp" disabled>
-            </div>
-
-            <div class="mb-3 col-6">
-            <label for="exampleInputEmail1" class="form-label">Direccion</label>
-            <input type="text" value="{{$duser->direccion}}" class="form-control" id="direccion" aria-describedby="emailHelp" disabled>
-            </div>
-
-        </form>
+    <h5 style="margin-left:42%">DATOS DEL USUARIOS</h5>
 
         <div class="card" >
-                <h5>HISTORIAL DEL USUARIO</h5>
 
-                {{-- <a><button type="button" class="btn btn-primary">EMPLEADOR</button></a>
+            <div class="card-body">
+                <form class="row">
+                    <div class="mb-3 col-6">
+                    <label for="exampleInputEmail1" class="form-label" >Nombres</label>
+                    <input type="text" value="{{$duser->name}}" class="form-control" id="name" aria-describedby="emailHelp" disabled>
+                    </div>
 
-                <a href="{{route('admin.chistorial',$duser->id)}}" ><button type="button" class="btn btn-primary"> COLABORADOR</button></a> --}}
+                    <div class="mb-3 col-6">
+                    <label for="exampleInputEmail1" class="form-label">Apellidos</label>
+                    <input type="text" value="{{$duser->apellidos}}" class="form-control" id="apellidos" aria-describedby="emailHelp" disabled>
+                    </div>
 
+                    <div class="mb-3 col-6">
+                    <label for="exampleInputEmail1" class="form-label">Dirección</label>
+                    <input type="text" value="{{$duser->direccion}}" class="form-control" id="direccion" aria-describedby="emailHelp" disabled>
+                    </div>
 
-
+                </form>
             </div>
 
 
-            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        </div>
+        <h5 style="margin-left:41%">HISTORIAL DEL USUARIO</h5>
+        <div class="card" >
+
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="margin:20px">
                 <li class="nav-item" role="presentation">
                   <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">EMPLEADOR</a>
                 </li>
@@ -51,14 +49,14 @@
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="card-body" >
 
-                        <table class="table" id="datosusuarios" class="table datosusuarios">
+                        <table class="table" id="datosusuarios" class="table datosusuarios ">
                             <thead class="thead-dark">
                             <tr>
 
-                                <th scope="col">Publicacion</th>
-                                <th scope="col">Titulo</th>
+                                <th scope="col">Publicación</th>
+                                <th scope="col">Título</th>
                                 <th scope="col">Oficio</th>
-                                <th scope="col">Decripcion</th>
+                                <th scope="col">Decripción</th>
                                 <th scope="col">Ciudad</th>
                                 <th scope="col">Colaborador</th>
                                 <th scope="col">Estado</th>
@@ -123,7 +121,7 @@
 
               </div>
 
-
+            </div>
 
 
 @endsection

@@ -59,7 +59,7 @@
             @method('post')
             @csrf
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">ELIMINAR USUARIO</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -71,8 +71,8 @@
 
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" onclick="$(this).closest('form').submit();">Eliminar</a>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <a class="btn btn-danger" onclick="$(this).closest('form').submit();" style="color: rgb(248, 231, 231);">Eliminar</a>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
 
       </div>
     </form>

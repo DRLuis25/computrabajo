@@ -11,7 +11,7 @@ class RdiariosController extends Controller
     public function index($mes, $dia, Request $request)
     {
         if($request->ajax()){
-            $publicados = DB::select('call SP_T_PUBLICADOS(?,?)', array($mes,$dia));
+            $publicados = DB::select('call SP_T_ASIGNADOS(?,?)', array($mes,$dia));
             $enespera = DB::select('call SP_T_EN_ESPERA(?,?)', array($mes,$dia));
             foreach ($publicados as $key) {
                 $x =(array)$key;
@@ -19,8 +19,8 @@ class RdiariosController extends Controller
             foreach ($enespera as $key) {
                 $y =(array)$key;
             }
-            $labels = array('publicados','En espera');
-            $datos = array($x['publicados'],$y['enespera']);
+            $labels = array('Asignados','En espera');
+            $datos = array($x['asignados'],$y['enespera']);
             return response()->json([
                 'labels'=>$labels,
                 'datos'=>$datos

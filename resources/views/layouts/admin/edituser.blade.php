@@ -31,7 +31,7 @@
                         </div>
 
                             <div class="form-group mb-3 col-6">
-                            <label for="exampleInputEmail1" class="form-label">Direccion</label>
+                            <label for="exampleInputEmail1" class="form-label">Dirección</label>
                             <input type="text" value="{{$duser->direccion}}" class="form-control" id="direccion" name="direccion" aria-describedby="emailHelp">
                             </div>
 
