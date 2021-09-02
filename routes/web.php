@@ -52,6 +52,7 @@ Route::get('getCiudad/{idDepartamento}', 'DatosController@listarCiudades');
 
 Route::get('getDistrito/{idCiudad}', 'DatosController@listarDistritos');
 
+
 Route::resource('perfilUsuario', 'UserController');
 
 

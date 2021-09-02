@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
+use App\Models\modelUser;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -15,7 +17,8 @@ class UserController extends Controller
     public function index()
     {
         //
-        return view('perfil.index');
+        $usuario = modelUser::findOrFail(Auth::user()->id);
+        return view('perfil.index',compact('usuario'));
     }
 
     /**
@@ -26,7 +29,6 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('perfil.editarPerfil');
     }
 
     /**
@@ -48,7 +50,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -60,6 +62,8 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $usuario = modelUser::findOrFail($id);
+        return view('perfil.editarPerfil', compact('usuario'));
 
     }
 
@@ -72,7 +76,31 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $data = request()->validate([
+            'name' => 'required',
+            'apellidos' => 'required',
+            'direccion' => 'required',
+            'acerca' => 'required',
+            'experiencia' => 'required',
+        ],
+        [
+            'name.required' => 'Ingrese el nombre',
+            'apellidos.required' => 'Ingrese los apellidos',
+            'direccion.required' => 'Ingrese la direccion',
+            'acerca.required' => 'Complete el campo',
+            'experiencia.required' => 'Complete el campo',
+        ]);
+
+        $usuario = modelUser::findOrFail($id);
+        $usuario->name = $request->name;
+        $usuario->apellidos = $request->apellidos;
+        $usuario->direccion = $request->direccion;
+        $usuario->acerca_de_mi = $request->acerca;
+        $usuario->experiencia = $request->experiencia;
+        $usuario->save();
+
+        return redirect()->route('perfilUsuario.index');
     }
 
     /**
