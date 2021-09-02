@@ -10,7 +10,7 @@
     </a>
     <p style="color:white">REPORTES</p>
 
-    <a href="{{route('admin.rdiarios',['mes'=>date("m"),'dia'=>date("d")])}}"
+    <a href="{{route('admin.rdiarios',['mes'=>date("m"),'dia'=>date("d"),'fecha'=>date("Y-m-d")])}}"
         class="nav-link">
          <p>DIARIOS</p>
      </a>
