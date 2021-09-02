@@ -89,6 +89,6 @@ class UserSeeder extends Seeder
         $user->experiencia = "Ninguna";
         $user->save();
 
-        $users = factory(User::class,10)->create();
+       // $users = factory(User::class,10)->create();
     }
 }
