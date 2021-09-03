@@ -58,7 +58,7 @@
             <div class="EncabezadoAside">
                 <p>Como escribir una oferta ganadora</p>
             </div>
-            <div class="cuerpo">
+            <div class="cuerpo" id="cuerpo">
                 <br>
                 <span>Las grandes ofertas son  </span> <br>
                 <span>aquellas que:</span>
@@ -79,6 +79,7 @@
   window.addEventListener("load", function() {
   formulario.importe.addEventListener("keypress", soloNumeros, false);
   formulario.dias.addEventListener("keypress", soloNumeros, false);
+  document.getElementById('text-end').style.display = 'none';
 });
 
 function soloNumeros(e){
@@ -87,5 +88,8 @@ function soloNumeros(e){
     e.preventDefault();
   }
 }
+
+
+
 </script>
 @endsection
