@@ -111,6 +111,19 @@ class Anuncio extends Model
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
+    public function getestadoAnuncioAttribute()
+    {
+        switch ($this->estado) {
+            case '0':
+                return 'INACTIVO';
+            case '1':
+                return 'EN PROCESO';
+            case '2':
+                return 'FINALIZADO';
+            default:
+                return 'NN';
+        }
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

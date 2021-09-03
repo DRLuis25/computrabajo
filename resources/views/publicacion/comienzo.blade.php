@@ -22,7 +22,64 @@
 <div class="row">
 <div class="col-md-8 col-sm-8 "  style="margin:2% 2% 6% 5%">
     <div>
-        <h3 class="card-title">Mis Propuestas</h3>
+        <h3 class="card-title">Contratados</h3>
+    </div>
+    @foreach ($temporal as $item)
+        
+    
+    <div class="container border">
+        <div>
+            <div class="d-flex align-items-stretch">
+                <div class="col-1">
+                    <i class="fas fa-address-card fa-4x"></i>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-2">
+                    <br>  
+                    <p>{{$item->user->name}} </p>
+                    <br>
+                    <p>Completado en {{$item->dia}} días</p>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-4">
+                    <br>
+                    <p>{{$item->descripcion}}</p>
+                    
+                    <p>Desde {{$item->anuncio->ciudad->nombre}}</p>
+                    <div class="button-group mb-1">
+                            {{-- <form  method="get" action="{{route('contrato',[$item->user_id,$item->anuncio_id,$item->importe])}}">
+                            <button type="submit" class="btn btn-primary btn-sm">Contratar</button> --}}
+                            <a href="https://wa.me/+51941881489"  target="_blank" class="btn btn-success btn-sm" ><i class="fab fa-whatsapp"></i>Whatsapp</a>
+                            {{-- </form> --}}
+
+                    </div>
+                    
+                </div>
+                <div class="col-3">
+                    <br>
+                    <div class="align-self-center">
+                        <div>
+                            <p>S/. {{$item->importe}}</p>
+                            <div class="form-group">
+                                <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
+                                <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
+                                <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
+                                <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
+                                <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
+                                &nbsp;
+                            </div>
+                            <p>100 % trabajo completado</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+
+    <div>
+        <h3 class="card-title">Propuestas</h3>
     </div>
     @foreach ($publicacion as $item)
         
@@ -47,8 +104,10 @@
                     
                     <p>Desde {{$item->anuncio->ciudad->nombre}}</p>
                     <div class="button-group mb-1">
-                        <button type="button" class="btn btn-primary btn-sm">Contratar</button>
-                        <a href="https://wa.me/+51941881489"  target="_blank" class="btn btn-success btn-sm" ><i class="fab fa-whatsapp"></i>Whatsapp</a>
+                            <form  method="get" action="{{route('contrato',[$item->user_id,$item->anuncio_id,$item->importe,$item->descripcion,$item->tiempo])}}">
+                            <button type="submit" class="btn btn-primary btn-sm">Contratar</button>
+                            <a href="https://wa.me/+51941881489"  target="_blank" class="btn btn-success btn-sm" ><i class="fab fa-whatsapp"></i>Whatsapp</a>
+                            </form>
                     </div>
                     
                 </div>
@@ -76,30 +135,34 @@
     @endforeach
 
 </div>
+
 <div class="col-sm-2 col-md-2 border" style="margin:0% 0% 0% 2%">
+    <form action="">
         <h4 class="text-center">Filtros</h4>
             <div class="">
                 <p>Monto</p>
                 <div class="input-group mb-3">
-                    <input type="number" class="form-control" placeholder="Minimo" >
+                    <input type="number" class="form-control" placeholder="Minimo" min="1" pattern="^[0-9]+" >
                     <span class="input-group-text">-</span>
-                    <input type="number" class="form-control" placeholder="Maximo" >
+                    <input type="number" class="form-control" placeholder="Maximo" min="1" pattern="^[0-9]+" >
                 </div>
             </div>
             <br>
             <div>
                 <p>Calificacion</p>
                 <div class="input-group mb-3">
-                    <input type="number" class="form-control" placeholder="Minimo" >
+                    <input type="number" class="form-control" placeholder="Minimo" min="1" pattern="^[0-9]+" >
                     <span class="input-group-text">-</span>
-                    <input type="number" class="form-control" placeholder="Maximo" >
+                    <input type="number" class="form-control" placeholder="Maximo"  min="1" pattern="^[0-9]+">
                 </div>
             </div>
             <br>
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-success">Buscar</button>
             </div>
+        </form>
 </div>
+
 
 
 </div>

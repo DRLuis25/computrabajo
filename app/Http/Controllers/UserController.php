@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\userAnuncio;
-use App\Models\detalleAnuncio;
+use App\Models\modelUser;
+use Illuminate\Support\Facades\Auth;
 
 
-class PublicacionController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class PublicacionController extends Controller
     public function index()
     {
         //
-        return view('publicacion.index');
-
+        $usuario = modelUser::findOrFail(Auth::user()->id);
+        return view('perfil.index',compact('usuario'));
     }
 
     /**
@@ -50,7 +50,7 @@ class PublicacionController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -62,6 +62,9 @@ class PublicacionController extends Controller
     public function edit($id)
     {
         //
+        $usuario = modelUser::findOrFail($id);
+        return view('perfil.editarPerfil', compact('usuario'));
+
     }
 
     /**
@@ -73,7 +76,31 @@ class PublicacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $data = request()->validate([
+            'name' => 'required',
+            'apellidos' => 'required',
+            'direccion' => 'required',
+            'acerca' => 'required',
+            'experiencia' => 'required',
+        ],
+        [
+            'name.required' => 'Ingrese el nombre',
+            'apellidos.required' => 'Ingrese los apellidos',
+            'direccion.required' => 'Ingrese la direccion',
+            'acerca.required' => 'Complete el campo',
+            'experiencia.required' => 'Complete el campo',
+        ]);
+
+        $usuario = modelUser::findOrFail($id);
+        $usuario->name = $request->name;
+        $usuario->apellidos = $request->apellidos;
+        $usuario->direccion = $request->direccion;
+        $usuario->acerca_de_mi = $request->acerca;
+        $usuario->experiencia = $request->experiencia;
+        $usuario->save();
+
+        return redirect()->route('perfilUsuario.index');
     }
 
     /**
@@ -86,34 +113,17 @@ class PublicacionController extends Controller
     {
         //
     }
-    public function comienzo($id)
+    public function desactivar($id)
     {
-        //Abrir anuncio
-        $publicacion = userAnuncio::where('anuncio_id','=',$id)->where('temporal','=','1')->get();
-        $temporal= detalleAnuncio::where('anuncio_id','=',$id)->get();
-        return view('publicacion.comienzo',compact('publicacion','temporal'));
-    }
-    public function contrato($idusuario,$idanuncion,$importe,$descripcion,$dias){
-        $contrato= new detalleAnuncio();
-        $contrato->anuncio_id=$idanuncion;
-        $contrato->user_id=$idusuario;
-        $contrato->importe=$importe;
-        $contrato->descripcion=$descripcion;
-        $contrato->dia=$dias;
-    
-        $contrato->save();
-        
-        /* $publicacion=userAnuncio::findOrFail($idanuncion,$idusuario);
-        dd($publicacion) */
+        //
 
-        $publicacion = userAnuncio::where('anuncio_id','=',$idanuncion)->where('user_id','=',$idusuario)->get();
-        
-        $publicacion[0]->temporal="0";
-        $publicacion[0]->save();
-        
-        // $publicacion->temporal='0';
-        //$publicacion->save(); 
-        return redirect()->route('publicacion.comienzo',$idanuncion);
-        //return view('publicacion.comienzo',compact('publicacion'))->with('anuncio_id',$id);
+        $user=User::findOrFail($id);
+
+
+        $user->delete();
+
+        return redirect()->route('admin.home');
+
     }
+
 }

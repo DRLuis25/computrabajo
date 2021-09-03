@@ -9,20 +9,21 @@
             <div class="sections sections-padding-0">
                 <div class="container">
                     <div class="callout callout-4">
-                        <h4>Nombre anuncio</h4>
+                        <h4>{{$anuncio->titulo}}</h4>
                         <div class="row">
                             {!! Form::open(['route' => 'anuncio.final']) !!}
                                 <div class="col-md-12">
-                                    <p class="col-sm-8">Por favor, deje un comentario y califique a "NOMBRE" en el proyecto "Nombre anuncio"</p>
+                                    <p class="col-sm-8">Por favor, deje un comentario y califique a @foreach ($anuncio->userAnuncios as $item)
+                                        {{$item->user->name}}
+                                    @endforeach en el proyecto "{{$anuncio->titulo}}"</p>
                                     <input type="text" name="anuncio_id" id="anuncio_id" value="{{$anuncio_id}}" hidden>
                                     <input type="text" name="estado_finalizado" id="estado_finalizado" value="{{$termino}}" hidden>
                                     <div class="">
                                         <div class="form-group">
                                             <h4>Descripción del anuncio</h4>
-                                            <p class="col-sm-8">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                Voluptates fugiat ut accusamus sit libero quasi numquam quis
-                                                consequatur doloremque eius, veniam totam architecto ex eum
-                                                distinctio sequi excepturi dolores ipsa.</p>
+                                            <p class="col-sm-8">
+                                                {{$anuncio->descripcion}}
+                                            </p>
                                         </div>
                                         <div class="form-group">
                                             <h4>¿Fue entregado a tiempo?</h4>
@@ -137,9 +138,11 @@
                                         </div>
                                         <div class="form-group">
                                             <h4>¿El empleador hizo un gran trabajo?</h4>
-                                            <p class="col-sm-8">Ayude a "NOMBRE" a ganar su próximo proyecto contándoles a todos un poco sobre él.
+                                            <p class="col-sm-8">Ayude a  @foreach ($anuncio->userAnuncios as $item)
+                                                {{$item->user->name}}
+                                            @endforeach  a ganar su próximo proyecto contándoles a todos un poco sobre él.
                                                 Las revisiones más largas dan a otros empleadores la confianza para contratar buenos trabajadores
-                                                independientes, como "NOMBRE", y ayuda a garantizar que empleadores como usted continúen recibiendo
+                                                independientes, como @foreach ($anuncio->userAnuncios as $item) {{$item->user->name}} @endforeach , y ayuda a garantizar que empleadores como usted continúen recibiendo
                                                 nada más que la mejor calidad de trabajo.
                                             </p>
                                             <h5>Comentario</h5>

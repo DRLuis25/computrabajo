@@ -11,13 +11,12 @@
                 @include('layouts.menu')
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-            </form>
-
             @if (Auth::check())
                 <div class="text-end">
-                    <a href="#" class="btn btn-outline-light me-2"
+                    
+                    <a href="{{route('perfilUsuario.index')}}" type="button" class="btn btn-outline-light me-2">Mi Perfil</a>
+
+                    <a href="#" class="btn btn-warning"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Salir
                         </a>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -23,7 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('layouts.admin.home');
+        $usuarios=DB::select('CALL `SP_USUARIOS`()');
+
+        return view('layouts.admin.home',compact('usuarios'));
     }
-    
+
+
+
 }

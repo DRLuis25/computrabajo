@@ -5,15 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Anuncio;
 use App\Models\valoracionAnuncio;
 use App\Models\Oficio;
+use App\Models\Departamento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AnuncioController extends Controller
 {
+    const PAGINACION = 5;
+
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     public function finalizar($id)
     {
         //Abrir anuncio
@@ -24,8 +28,10 @@ class AnuncioController extends Controller
     {
         //return request()->all();
         $anuncio_id = request()->anuncio_id;
+        $anuncio = Anuncio::find($anuncio_id);
         $termino = request()->termino;
-        return view('anuncio.valoracion',compact('anuncio_id','termino'));
+
+        return view('anuncio.valoracion',compact('anuncio','anuncio_id','termino'));
     }
     public function final(Request $request)
     {
@@ -69,23 +75,25 @@ class AnuncioController extends Controller
         $anuncio->save();
         return view('anuncio.final',compact('anuncio'));
     }
-    public function index()
+
+    public function index(Request $request)
     {
-        $anuncio = Anuncio::where('user_id', '=', Auth::user()->id)->get();
-        return view('anuncio.misanuncios', compact('anuncio'));
+        $buscarpor = $request->get('buscarpor');
+        $anuncio = Anuncio::where('titulo', 'like', '%'.$buscarpor.'%')->where('user_id', '=', Auth::user()->id)->paginate($this::PAGINACION);
+        return view('anuncio.misanuncios', compact('anuncio', 'buscarpor'));
     }
 
     public function publicar()
     {
         $oficio = Oficio::All();
-        return view('anuncio.publicaranuncio', compact('oficio'));
+        $departamento = Departamento::All();
+        return view('anuncio.publicaranuncio', compact('oficio', 'departamento'));
     }
 
     public function guardaranuncio(Request $request)
     {
         $data = request()->validate([
             'fecha_expiracion' => 'required',
-            'radioestado' => 'required',
             'radioemail' => 'required',
             'radiotelefono' => 'required',
             'radiodireccion' => 'required',
@@ -100,13 +108,12 @@ class AnuncioController extends Controller
         ],
         [
             'fecha_expiracion.required' => 'Ingrese la fecha',
-            'radioestado.required' => 'Seleccione el estado',
             'radioemail.required' => 'Seleccione si desea mostrar su email de contacto',
             'radiotelefono.required' => 'Seleccione si desea mostrar su telefono de contacto',
             'radiodireccion.required' => 'Seleccione si desea mostrar su dirección de contacto',
             'titulo.required' => 'Ingrese el título del aviso',
             'idoficio.required' => 'Seleccione el oficio',
-            'descripcion.required' => 'Ingrese una descripción para las tareas',
+            'descripcion.required' => 'Ingrese una descripción de las tareas a realizar',
             'min.required' => 'Ingrese el monto mínimo aofrecido',
             'max.required' => 'Ingrese el monto máximo aofrecido',
             'departamento_id.required' => 'Seleccione el departamento',
@@ -116,7 +123,7 @@ class AnuncioController extends Controller
 
         $anuncio = new Anuncio();
         $anuncio->fecha_expiracion = $request->fecha_expiracion;
-        $anuncio->estado = $request->radioestado;
+        $anuncio->estado = 0;
         $anuncio->ver_email = $request->radioemail;
         $anuncio->ver_celular = $request->radiotelefono;
         $anuncio->ver_direccion = $request->radiodireccion;
@@ -138,5 +145,41 @@ class AnuncioController extends Controller
     {
         $anuncio = Anuncio::findOrFail($id);
         return view('anuncio.editaranuncio', compact('anuncio'));
+    }
+
+    public function updateanuncio(Request $request, $id){
+        $data = request()->validate([
+            'fecha_expiracion' => 'required',
+            'radioemail' => 'required',
+            'radiotelefono' => 'required',
+            'radiodireccion' => 'required',
+            'titulo' => 'required',
+            'descripcion' => 'required',
+            'min' => 'required',
+            'max' => 'required',
+        ],
+        [
+            'fecha_expiracion.required' => 'Ingrese la fecha',
+            'radioemail.required' => 'Seleccione si desea mostrar su email de contacto',
+            'radiotelefono.required' => 'Seleccione si desea mostrar su telefono de contacto',
+            'radiodireccion.required' => 'Seleccione si desea mostrar su dirección de contacto',
+            'titulo.required' => 'Ingrese el título del aviso',
+            'descripcion.required' => 'Ingrese una descripción de las tareas a realizar',
+            'min.required' => 'Ingrese el monto mínimo aofrecido',
+            'max.required' => 'Ingrese el monto máximo aofrecido',
+        ]);
+
+        $anuncio = Anuncio::findOrFail($id);
+        $anuncio->fecha_expiracion = $request->fecha_expiracion;
+        $anuncio->ver_email = $request->radioemail;
+        $anuncio->ver_celular = $request->radiotelefono;
+        $anuncio->ver_direccion = $request->radiodireccion;
+        $anuncio->titulo = $request->titulo;
+        $anuncio->descripcion = $request->descripcion;
+        $anuncio->pago_propuesto_min = $request->min;
+        $anuncio->pago_propuesto_max = $request->max;
+        $anuncio->save();
+
+        return redirect()->route('anuncio.misanuncios');
     }
 }
