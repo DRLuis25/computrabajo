@@ -1,21 +1,21 @@
 @extends('welcome')
 @section('content')
-<form  >
-    <div class="buscador">
-        <div class="input-group">
-            <input type="search" class="form-control rounded" name="search" placeholder="Search" aria-label="Search"
-                aria-describedby="search-addon" />
-            <button type="submit" class="btn btn-primary">Buscar Empleos</button>
-        </div> <br>
-        <h6>
-            @if ($search)
-            <div class="alert alert-primary" role="alert">
-                Los resultados para tu busqueda '{{$search}}' son : 
-            </div>
-            @endif   
-        </h6>
-    </div>
-</form>
+    <form>
+        <div class="buscador">
+            <div class="input-group">
+                <input type="search" class="form-control rounded" name="search" placeholder="Search" aria-label="Search"
+                    aria-describedby="search-addon" />
+                <button type="submit" class="btn btn-primary">Buscar Empleos</button>
+            </div> <br>
+            <h6>
+                @if ($search)
+                    <div class="alert alert-primary" role="alert">
+                        Los resultados para tu busqueda '{{ $search }}' son :
+                    </div>
+                @endif
+            </h6>
+        </div>
+    </form>
 
     <div class="M_diseño">
         <section class="M_section">
@@ -26,7 +26,7 @@
                     <p>minimo</p>
                     <div class="input-group">
                         <span class="input-group-addon">S/.</span>
-                        <input type="text" class="form-control" name="importe">
+                        <input type="text" id="minimo" class="form-control" name="importe">
                     </div>
                 </div>
                 <div>
@@ -55,7 +55,7 @@
                 </label>
             </article>
             @foreach ($anuncios as $item)
-                <a href="{{route('contactarEmpleador.index',['ide'=>$item->id])}}" class="M_link">
+                <a href="{{ route('contactarEmpleador.index', ['ide' => $item->id]) }}" class="M_link">
                     <article class="resultados">
                         <div class="M_caja1">
                             <span class="titulo">{{ $item->titulo }}</span>
@@ -70,46 +70,46 @@
                             <span class="fa fa-user">
                                 <?php $num = $item->calificacion_empleador;
                                 if ($num == 0) {
-                        echo '<i class="fa fa-star" ></i>
-                                                                                          <i class="fa fa-star" ></i>
-                                                                                          <i class="fa fa-star" ></i>
-                                                                                          <i class="fa fa-star" ></i>
-                                                                                          <i class="fa fa-star" ></i>';
-                    }
+                                    echo '<i class="fa fa-star" ></i>
+                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                          <i class="fa fa-star" ></i>';
+                                }
                                 if ($num == 1) {
                                     echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
-                                          <i class="fa fa-star" ></i>
-                                          <i class="fa fa-star" ></i>
-                                          <i class="fa fa-star" ></i>
-                                          <i class="fa fa-star" ></i>';
+                                                                          <i class="fa fa-star" ></i>
+                                                                          <i class="fa fa-star" ></i>
+                                                                          <i class="fa fa-star" ></i>
+                                                                          <i class="fa fa-star" ></i>';
                                 }
                                 if ($num == 2) {
                                     echo '<i class="fa fa-star"  style="color: orange" ></i>
-                                          <i class="fa fa-star"  style="color: orange"  ></i>
-                                          <i class="fa fa-star" ></i>
-                                          <i class="fa fa-star" ></i>
-                                          <i class="fa fa-star" ></i>';
+                                                                          <i class="fa fa-star"  style="color: orange"  ></i>
+                                                                          <i class="fa fa-star" ></i>
+                                                                          <i class="fa fa-star" ></i>
+                                                                          <i class="fa fa-star" ></i>';
                                 }
                                 if ($num == 3) {
                                     echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
-                                          <i class="fa fa-star" id="2estrella"  style="color: orange"  ></i>
-                                          <i class="fa fa-star" id="3estrella"  style="color: orange" ></i>
-                                          <i class="fa fa-star" id="4estrella" ></i>
-                                          <i class="fa fa-star" id="5estrella" ></i>';
+                                                                          <i class="fa fa-star" id="2estrella"  style="color: orange"  ></i>
+                                                                          <i class="fa fa-star" id="3estrella"  style="color: orange" ></i>
+                                                                          <i class="fa fa-star" id="4estrella" ></i>
+                                                                          <i class="fa fa-star" id="5estrella" ></i>';
                                 }
                                 if ($num == 4) {
                                     echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
-                                          <i class="fa fa-star" style="color: orange"  ></i>
-                                          <i class="fa fa-star" style="color: orange" ></i>
-                                          <i class="fa fa-star" style="color: orange" ></i>
-                                          <i class="fa fa-star" ></i>';
+                                                                          <i class="fa fa-star" style="color: orange"  ></i>
+                                                                          <i class="fa fa-star" style="color: orange" ></i>
+                                                                          <i class="fa fa-star" style="color: orange" ></i>
+                                                                          <i class="fa fa-star" ></i>';
                                 }
                                 if ($num == 5) {
                                     echo '<i class="fa fa-star" style="color: orange" ></i>
-                                          <i class="fa fa-star" style="color: orange"  ></i>
-                                          <i class="fa fa-star" style="color: orange" ></i>
-                                          <i class="fa fa-star" style="color: orange" ></i>
-                                          <i class="fa fa-star" style="color: orange" ></i>';
+                                                                          <i class="fa fa-star" style="color: orange"  ></i>
+                                                                          <i class="fa fa-star" style="color: orange" ></i>
+                                                                          <i class="fa fa-star" style="color: orange" ></i>
+                                                                          <i class="fa fa-star" style="color: orange" ></i>';
                                 }
                                 ?>
                             </span>
@@ -119,6 +119,17 @@
                 </a>
             @endforeach
         </aside>
+        <div class="card-footer py-4">
+            <nav aria-label="...">
+                <ul class="pagination justify-content-end mb-0">
+                    {{-- {{ $anuncios->links() }} --}}
+                </ul>
+            </nav>
+        </div>
     </div>
+       
+
 
 @endsection
+
+
