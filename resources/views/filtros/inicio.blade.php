@@ -128,7 +128,13 @@
         </div>
     </div>
        
+<script>
+      window.addEventListener("load", function() {
+  document.getElementById('text-end').style.display = 'none';
+}); 
 
+
+</script> 
 
 @endsection
 
