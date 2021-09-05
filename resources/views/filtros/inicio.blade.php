@@ -55,7 +55,9 @@
                 </label>
             </article>
             @foreach ($anuncios as $item)
-                <a href="{{ route('contactarEmpleador.index', ['ide' => $item->id]) }}" class="M_link">
+
+                <a href="{{ route('contactarEmpleador.index', ['ide' => $item->id]) }}" class="M_link"
+                    id="M_link">
                     <article class="resultados">
                         <div class="M_caja1">
                             <span class="titulo">{{ $item->titulo }}</span>
@@ -71,45 +73,45 @@
                                 <?php $num = $item->calificacion_empleador;
                                 if ($num == 0) {
                                     echo '<i class="fa fa-star" ></i>
-                                                                                                                          <i class="fa fa-star" ></i>
-                                                                                                                          <i class="fa fa-star" ></i>
-                                                                                                                          <i class="fa fa-star" ></i>
-                                                                                                                          <i class="fa fa-star" ></i>';
+                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>';
                                 }
                                 if ($num == 1) {
                                     echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
-                                                                          <i class="fa fa-star" ></i>
-                                                                          <i class="fa fa-star" ></i>
-                                                                          <i class="fa fa-star" ></i>
-                                                                          <i class="fa fa-star" ></i>';
+                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>';
                                 }
                                 if ($num == 2) {
                                     echo '<i class="fa fa-star"  style="color: orange" ></i>
-                                                                          <i class="fa fa-star"  style="color: orange"  ></i>
-                                                                          <i class="fa fa-star" ></i>
-                                                                          <i class="fa fa-star" ></i>
-                                                                          <i class="fa fa-star" ></i>';
+                                                                                                                                                                                                                                          <i class="fa fa-star"  style="color: orange"  ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>';
                                 }
                                 if ($num == 3) {
                                     echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
-                                                                          <i class="fa fa-star" id="2estrella"  style="color: orange"  ></i>
-                                                                          <i class="fa fa-star" id="3estrella"  style="color: orange" ></i>
-                                                                          <i class="fa fa-star" id="4estrella" ></i>
-                                                                          <i class="fa fa-star" id="5estrella" ></i>';
+                                                                                                                                                                                                                                          <i class="fa fa-star" id="2estrella"  style="color: orange"  ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" id="3estrella"  style="color: orange" ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" id="4estrella" ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" id="5estrella" ></i>';
                                 }
                                 if ($num == 4) {
                                     echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
-                                                                          <i class="fa fa-star" style="color: orange"  ></i>
-                                                                          <i class="fa fa-star" style="color: orange" ></i>
-                                                                          <i class="fa fa-star" style="color: orange" ></i>
-                                                                          <i class="fa fa-star" ></i>';
+                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange"  ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>';
                                 }
                                 if ($num == 5) {
                                     echo '<i class="fa fa-star" style="color: orange" ></i>
-                                                                          <i class="fa fa-star" style="color: orange"  ></i>
-                                                                          <i class="fa fa-star" style="color: orange" ></i>
-                                                                          <i class="fa fa-star" style="color: orange" ></i>
-                                                                          <i class="fa fa-star" style="color: orange" ></i>';
+                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange"  ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>
+                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>';
                                 }
                                 ?>
                             </span>
@@ -118,24 +120,24 @@
                     </article>
                 </a>
             @endforeach
+            <div class="card-footer  py-3 bg-white border-top-0 ">
+                <nav aria-label="...">
+                    <ul class="pagination justify-content-end mb-0">
+                        {{ $anuncios->links() }}
+                    </ul>
+                </nav>
+            </div>
         </aside>
-        <div class="card-footer py-4">
-            <nav aria-label="...">
-                <ul class="pagination justify-content-end mb-0">
-                    {{-- {{ $anuncios->links() }} --}}
-                </ul>
-            </nav>
-        </div>
+        
     </div>
-       
-<script>
-      window.addEventListener("load", function() {
-  document.getElementById('text-end').style.display = 'none';
-}); 
 
 
-</script> 
+    <script>
+        window.addEventListener("load", function() {
+            document.getElementById('text-end').style.display = 'none';
+            //  $('#myModal').modal('show');
+
+        });
+    </script>
 
 @endsection
-
-
