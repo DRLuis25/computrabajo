@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Anuncio;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FiltrosController extends Controller
 {
@@ -15,6 +16,7 @@ class FiltrosController extends Controller
      */
     public function index(Request $request)
     {
+        
         if($request){
             $query = trim($request->get('search'));
 
@@ -22,16 +24,10 @@ class FiltrosController extends Controller
             ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador')
             ->where('anuncios.titulo','LIKE','%'.$query.'%')
             ->orderBy('anuncios.id','asc') 
-            ->get()
-            ;
-            
+            ->paginate(10);
             return view('filtros.inicio',['anuncios' => $anuncios, 'search'=>$query]);
         }
        
-      //  $anuncios = User::join('anuncios','users.id','=','anuncios.user_id')
-       //                                   ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador')
-        //                                  ->get();
-      //  return view('filtros.inicio',compact('anuncios'));
     }
 
     /**

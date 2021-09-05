@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anuncio;
 use App\Models\Propuestas;
 use App\Models\userAnuncio;
 use App\User;
@@ -24,17 +25,16 @@ class PropuestasController extends Controller
             return redirect()->guest('login');
         }
         $user_id = auth()->user()->id;
-        $existe_Usuario = DB::table('user_anuncio')->select('user_id')->where('user_anuncio.user_id', '=', $user_id)->first();
+        $anuncio_id=$_GET['ide'];
+        $detalles_Proyecto = Anuncio::where('id','=',$anuncio_id)->first();
+        $existe_Usuario = DB::table('user_anuncio')->select('user_id')->where([['user_anuncio.user_id', '=', $user_id],['user_anuncio.anuncio_id','=',$anuncio_id],])->first();
         if (!Auth::guest()) {
             if (!$existe_Usuario) {
-                return view('contactarEmpleador.Detalles');
+                return view('contactarEmpleador.Detalles',compact('detalles_Proyecto'));
             } else {
-               echo "EXISTE";
+                return redirect()->route('filtros.index');
             }
         }
-        //return view('auth.login');
-
-        //return view('contactarEmpleador.Detalles');
     }
 
 
@@ -69,7 +69,7 @@ class PropuestasController extends Controller
         $presupuesto = userAnuncio::join('anuncios', 'user_anuncio.anuncio_id', '=', 'anuncios.id')
             ->select('anuncios.pago_propuesto_min', 'anuncios.pago_propuesto_max')
             ->first();
-        $existe_Usuario = DB::table('user_anuncio')->select('user_id')->where('user_anuncio.user_id', '=', $user_id)->first();
+        $existe_Usuario = DB::table('user_anuncio')->select('user_id')->where([['user_anuncio.user_id', '=', $user_id],['user_anuncio.anuncio_id','=',$anuncio_id],])->first();
         // $existe_Usuario = intval($existe_Usuario);
         if (!$existe_Usuario ) {
             $data = request()->validate([
