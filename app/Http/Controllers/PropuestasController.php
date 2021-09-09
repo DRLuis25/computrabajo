@@ -27,10 +27,11 @@ class PropuestasController extends Controller
         $user_id = auth()->user()->id;
         $anuncio_id=$_GET['ide'];
         $detalles_Proyecto = Anuncio::where('id','=',$anuncio_id)->first();
+        $detalles_anunciante = User::where('id','=',$detalles_Proyecto->user_id)->first();
         $existe_Usuario = DB::table('user_anuncio')->select('user_id')->where([['user_anuncio.user_id', '=', $user_id],['user_anuncio.anuncio_id','=',$anuncio_id],])->first();
         if (!Auth::guest()) {
             if (!$existe_Usuario) {
-                return view('contactarEmpleador.Detalles',compact('detalles_Proyecto'));
+                return view('contactarEmpleador.Detalles',compact('detalles_Proyecto','detalles_anunciante'));
             } else {
                 return redirect()->route('filtros.index');
             }
