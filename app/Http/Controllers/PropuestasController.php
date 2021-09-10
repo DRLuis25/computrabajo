@@ -100,10 +100,9 @@ class PropuestasController extends Controller
         $tiem = $request->dias;
         $ultimo = userAnuncio::latest('id')->first();
 
-        $total_postulantes = userAnuncio::count('user_id');
-        $suma = userAnuncio::sum('importe');
+        $total_postulantes = userAnuncio::where('anuncio_id','=',$anuncio_id)->count('user_id');
+        $suma = userAnuncio::where('anuncio_id','=',$anuncio_id)->sum('importe');
         $promedio = $suma / $total_postulantes;
-
 
         return view('contactarEmpleador.Propuestas', compact('ultimo', 'desc', 'monto', 'tiem', 'datos_otros_usuarios_postulantes', 'total_postulantes', 'presupuesto', 'promedio'));
     }

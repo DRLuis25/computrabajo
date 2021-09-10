@@ -62,7 +62,30 @@
                         <div class="M_caja1">
                             <span class="titulo">{{ $item->titulo }}</span>
                             <span>{{ $item->pago_propuesto_min . ' - ' . $item->pago_propuesto_max . ' ' }}soles</span>
-                            <span class="M_hace">publicado hace 2 minutos</span>
+                            <span class="M_hace">
+                                publicado hace
+                                <?php
+                                date_default_timezone_set('America/Lima');
+                                $fecha_actual = date('d-m-Y H:i:s');
+                                $fecha_publica = date_format($item->created_at, 'Y-m-d H:i:s');
+                                $start_date = new DateTime($fecha_publica);
+                                $since_start = $start_date->diff(new DateTime($fecha_actual));
+                                if($since_start->s != 0 && $since_start->i==0 && $since_start->h == 0 && $since_start->d == 0 &&  $since_start->m == 0 && $since_start->y==0){
+                                    echo $since_start->s.' segundos';
+                                }else if($since_start->i!=0 && $since_start->h == 0 && $since_start->d == 0 &&  $since_start->m == 0 && $since_start->y==0) {
+                                    echo $since_start->i.' minutos';
+                                }else if( $since_start->h != 0 && $since_start->d == 0 &&  $since_start->m == 0 && $since_start->y==0) {
+                                    echo $since_start->h.' horas';
+                                }else if($since_start->d != 0 &&  $since_start->m == 0 && $since_start->y==0) {
+                                    echo $since_start->d.' dias';
+                                }else if($since_start->m != 0 && $since_start->y==0) {
+                                    echo $since_start->m.' meses';
+                                }else if($since_start->y!=0) {
+                                    echo $since_start->y.' años';
+                                }
+                                
+                                ?>
+                                 </span>
                         </div>
                         <div class="M_caja2">
                             <span>{{ $item->descripcion }}</span>
@@ -73,45 +96,45 @@
                                 <?php $num = $item->calificacion_empleador;
                                 if ($num == 0) {
                                     echo '<i class="fa fa-star" ></i>
-                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
-                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
-                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
-                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>';
+                                                                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>';
                                 }
                                 if ($num == 1) {
                                     echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>';
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>';
                                 }
                                 if ($num == 2) {
                                     echo '<i class="fa fa-star"  style="color: orange" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star"  style="color: orange"  ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>';
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star"  style="color: orange"  ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>';
                                 }
                                 if ($num == 3) {
                                     echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" id="2estrella"  style="color: orange"  ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" id="3estrella"  style="color: orange" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" id="4estrella" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" id="5estrella" ></i>';
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" id="2estrella"  style="color: orange"  ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" id="3estrella"  style="color: orange" ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" id="4estrella" ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" id="5estrella" ></i>';
                                 }
                                 if ($num == 4) {
                                     echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange"  ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>';
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange"  ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" ></i>';
                                 }
                                 if ($num == 5) {
                                     echo '<i class="fa fa-star" style="color: orange" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange"  ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>
-                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>';
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange"  ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>
+                                                                                                                                                                                                                                                                                                                                          <i class="fa fa-star" style="color: orange" ></i>';
                                 }
                                 ?>
                             </span>
@@ -128,7 +151,7 @@
                 </nav>
             </div>
         </aside>
-        
+
     </div>
 
 
