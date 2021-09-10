@@ -104,7 +104,6 @@ class PropuestasController extends Controller
         $suma = userAnuncio::where('anuncio_id','=',$anuncio_id)->sum('importe');
         $promedio = $suma / $total_postulantes;
 
-
         return view('contactarEmpleador.Propuestas', compact('ultimo', 'desc', 'monto', 'tiem', 'datos_otros_usuarios_postulantes', 'total_postulantes', 'presupuesto', 'promedio'));
     }
 

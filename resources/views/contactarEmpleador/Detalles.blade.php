@@ -184,6 +184,5 @@ if ($num == 5) {
                     Swal.fire('Su propuesta debe tener almenos 50 caracteres!')
                 }
         })
-        
     </script>
 @endsection
