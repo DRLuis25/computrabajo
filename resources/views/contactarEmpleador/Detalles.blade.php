@@ -11,9 +11,8 @@
 
                 <div class="Detalles_derecha">
                     <div class="D_min">
-                        <span>Presupuesto: {{ $detalles_Proyecto->pago_propuesto_min }} -
-                            {{ $detalles_Proyecto->pago_propuesto_max }}
-                            S/.</span>
+                        <span>Presupuesto: S/. {{ $detalles_Proyecto->pago_propuesto_min }} -
+                            {{ $detalles_Proyecto->pago_propuesto_max }}</span>
                     </div>
                     <div class="D_min">
                         <span>La Licitación termina el {{ $detalles_Proyecto->fecha_expiracion }}</span>
@@ -31,58 +30,59 @@
                 <b>Detalles del Anunciante</b>
             </div>
             <div style="padding: 2vh 1vw;"><?php
-           $nombre  = $detalles_anunciante->name;
-           $mi = $detalles_anunciante->created_at;
-           $miembro = strstr($mi, ' ', true); 
-           $user = strstr($nombre, ' ', true); 
-                ?>
-                <span> <i class="fa fa-user"></i>&nbsp;{{$user}}  {{$detalles_anunciante->apellidos}}</span><br>
+$nombre = $detalles_anunciante->name;
+$mi = $detalles_anunciante->created_at;
+$miembro = strstr($mi, ' ', true);
+$user = strstr($nombre, ' ', true);
+?>
+                <span> <i class="fa fa-user"></i>&nbsp;{{ $user }}
+                    {{ $detalles_anunciante->apellidos }}</span><br>
                 <span> <i class="fa fa-check"> </i>&nbsp;</i><?php $num = $detalles_anunciante->calificacion_empleador;
-                    if ($num == 0) {
-                        echo '<i class="fa fa-star" ></i>
+if ($num == 0) {
+    echo '<i class="fa fa-star" ></i>
                                                                                                                                                                                                                                                                               <i class="fa fa-star" ></i>
                                                                                                                                                                                                                                                                               <i class="fa fa-star" ></i>
                                                                                                                                                                                                                                                                               <i class="fa fa-star" ></i>
                                                                                                                                                                                                                                                                               <i class="fa fa-star" ></i>';
-                    }
-                    if ($num == 1) {
-                        echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
+}
+if ($num == 1) {
+    echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" ></i>';
-                    }
-                    if ($num == 2) {
-                        echo '<i class="fa fa-star"  style="color: orange" ></i>
+}
+if ($num == 2) {
+    echo '<i class="fa fa-star"  style="color: orange" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star"  style="color: orange"  ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" ></i>';
-                    }
-                    if ($num == 3) {
-                        echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
+}
+if ($num == 3) {
+    echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" id="2estrella"  style="color: orange"  ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" id="3estrella"  style="color: orange" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" id="4estrella" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" id="5estrella" ></i>';
-                    }
-                    if ($num == 4) {
-                        echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
+}
+if ($num == 4) {
+    echo '<i class="fa fa-star" id="1estrella" style="color: orange" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" style="color: orange"  ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" style="color: orange" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" style="color: orange" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" ></i>';
-                    }
-                    if ($num == 5) {
-                        echo '<i class="fa fa-star" style="color: orange" ></i>
+}
+if ($num == 5) {
+    echo '<i class="fa fa-star" style="color: orange" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" style="color: orange"  ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" style="color: orange" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" style="color: orange" ></i>
                                                                                                                                                                                                                               <i class="fa fa-star" style="color: orange" ></i>';
-                    }
-                    ?></span><br>
-                <span><i class="fa fa-map-marker"></i>&nbsp; {{$detalles_anunciante->direccion}}</span><br>
-                <span><i class="fa fa-clock-o"></i>&nbsp;Miembro desde  {{$miembro}}</span>
+}
+?></span><br>
+                <span><i class="fa fa-map-marker"></i>&nbsp; {{ $detalles_anunciante->direccion }}</span><br>
+                <span><i class="fa fa-clock-o"></i>&nbsp;Miembro desde {{ $miembro }}</span>
             </div>
         </div>
         {{-- Llenar oferta de Trabajo --}}
@@ -120,7 +120,7 @@
                     <br>
                     <div class="dettallesinferior">
                         <h5>Describe tu propuesta</h5>
-                        <textarea class="form-control" rows="3" name="descripcion"></textarea>
+                        <textarea class="form-control" rows="3" name="descripcion" id="descripcion"></textarea>
                     </div>
 
                     <div class="acomodarboton">
@@ -151,7 +151,7 @@
             </div>
         </div>
     </div>
-    
+
     <script>
         window.addEventListener("load", function() {
             formulario.importe.addEventListener("keypress", soloNumeros, false);
@@ -165,5 +165,25 @@
                 e.preventDefault();
             }
         }
+        const importe = document.getElementById("importe")
+        const dias = document.getElementById("dias")
+        const descripcion = document.getElementById("descripcion")
+        const form = document.getElementById("formulario")
+
+        form.addEventListener("submit", e=>{
+        
+            if (importe.value.length < 1 || dias.value.length < 1 || descripcion.value.length <1 ) {
+                e.preventDefault() 
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Para continuar...',
+                    text: 'Por favor llene todos los campos!'
+                })
+            } else if (descripcion.value.length >= 1 && descripcion.value.length < 50){
+                    e.preventDefault() 
+                    Swal.fire('Su propuesta debe tener almenos 50 caracteres!')
+                }
+        })
+        
     </script>
 @endsection
