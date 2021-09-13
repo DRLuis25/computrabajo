@@ -17,6 +17,7 @@ class PropuestasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
 
@@ -25,15 +26,15 @@ class PropuestasController extends Controller
             return redirect()->guest('login');
         }
         $user_id = auth()->user()->id;
-        $anuncio_id=$_GET['ide'];
-        $detalles_Proyecto = Anuncio::where('id','=',$anuncio_id)->first();
-        $detalles_anunciante = User::where('id','=',$detalles_Proyecto->user_id)->first();
-        $existe_Usuario = DB::table('user_anuncio')->select('user_id')->where([['user_anuncio.user_id', '=', $user_id],['user_anuncio.anuncio_id','=',$anuncio_id],])->first();
+        $anuncio_id = $_GET['ide'];
+        $detalles_Proyecto = Anuncio::where('id', '=', $anuncio_id)->first();
+        $detalles_anunciante = User::where('id', '=', $detalles_Proyecto->user_id)->first();
+        $existe_Usuario = DB::table('user_anuncio')->select('user_id')->where([['user_anuncio.user_id', '=', $user_id], ['user_anuncio.anuncio_id', '=', $anuncio_id],])->first();
         if (!Auth::guest()) {
             if (!$existe_Usuario) {
-                return view('contactarEmpleador.Detalles',compact('detalles_Proyecto','detalles_anunciante'));
+                return view('contactarEmpleador.Detalles', compact('detalles_Proyecto', 'detalles_anunciante'));
             } else {
-                return redirect()->route('filtros.index');
+                return redirect()->back()->with('success', 'Ya postulo a ese trabajo, por favor postule a otro'); 
             }
         }
     }
@@ -70,9 +71,9 @@ class PropuestasController extends Controller
         $presupuesto = userAnuncio::join('anuncios', 'user_anuncio.anuncio_id', '=', 'anuncios.id')
             ->select('anuncios.pago_propuesto_min', 'anuncios.pago_propuesto_max')
             ->first();
-        $existe_Usuario = DB::table('user_anuncio')->select('user_id')->where([['user_anuncio.user_id', '=', $user_id],['user_anuncio.anuncio_id','=',$anuncio_id],])->first();
+        $existe_Usuario = DB::table('user_anuncio')->select('user_id')->where([['user_anuncio.user_id', '=', $user_id], ['user_anuncio.anuncio_id', '=', $anuncio_id],])->first();
         // $existe_Usuario = intval($existe_Usuario);
-        if (!$existe_Usuario ) {
+        if (!$existe_Usuario) {
             $data = request()->validate([
                 'importe' => 'required',
                 'dias' => 'required',
@@ -100,8 +101,8 @@ class PropuestasController extends Controller
         $tiem = $request->dias;
         $ultimo = userAnuncio::latest('id')->first();
 
-        $total_postulantes = userAnuncio::where('anuncio_id','=',$anuncio_id)->count('user_id');
-        $suma = userAnuncio::where('anuncio_id','=',$anuncio_id)->sum('importe');
+        $total_postulantes = userAnuncio::where('anuncio_id', '=', $anuncio_id)->count('user_id');
+        $suma = userAnuncio::where('anuncio_id', '=', $anuncio_id)->sum('importe');
         $promedio = $suma / $total_postulantes;
 
         return view('contactarEmpleador.Propuestas', compact('ultimo', 'desc', 'monto', 'tiem', 'datos_otros_usuarios_postulantes', 'total_postulantes', 'presupuesto', 'promedio'));
