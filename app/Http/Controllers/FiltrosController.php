@@ -17,13 +17,34 @@ class FiltrosController extends Controller
     public function index(Request $request)
     {
         
-        if($request){
+        if($request->get('select')=='antiguo'){
+                $query = trim($request->get('select'));
+                $anuncios =User::join('anuncios','users.id','=','anuncios.user_id') 
+                ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador','anuncios.created_at')
+                ->orderBy('anuncios.created_at','asc') 
+                ->paginate(10);
+                return view('filtros.inicio',['anuncios' => $anuncios, 'select'=>$query]);
+        }else if($request->get('select')=='pbajo'){
+            $query = trim($request->get('select'));
+            $anuncios =User::join('anuncios','users.id','=','anuncios.user_id') 
+            ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador','anuncios.created_at')
+            ->orderBy('anuncios.pago_propuesto_min','asc') 
+            ->paginate(10);
+            return view('filtros.inicio',['anuncios' => $anuncios, 'select'=>$query]); 
+        }else if($request->get('select')=='palto'){
+            $query = trim($request->get('select'));
+            $anuncios =User::join('anuncios','users.id','=','anuncios.user_id') 
+            ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador','anuncios.created_at')
+            ->orderBy('anuncios.pago_propuesto_min','desc') 
+            ->paginate(10);
+            return view('filtros.inicio',['anuncios' => $anuncios, 'select'=>$query]);
+        }
+        else{
             $query = trim($request->get('search'));
-
             $anuncios =User::join('anuncios','users.id','=','anuncios.user_id') 
             ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador','anuncios.created_at')
             ->where('anuncios.titulo','LIKE','%'.$query.'%')
-            ->orderBy('anuncios.id','asc') 
+            ->orderBy('anuncios.created_at','desc') 
             ->paginate(10);
             return view('filtros.inicio',['anuncios' => $anuncios, 'search'=>$query]);
         }
