@@ -26,5 +26,6 @@ Route::group([
     'middleware' => 'auth:api'
     ], function() {
     Route::post('/user/logout', 'LoginController@logout');
-    Route::resource('anuncios', 'AnuncioAPIController');
 });
+//Temporal para pruebas
+Route::resource('anuncios', 'AnuncioAPIController');

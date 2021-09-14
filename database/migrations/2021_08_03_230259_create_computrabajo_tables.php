@@ -59,7 +59,7 @@ class CreateComputrabajoTables extends Migration
             $table->unsignedBigInteger('ciudad_id');
             $table->unsignedBigInteger('distrito_id');
             $table->string('titulo');
-            $table->string('descripcion');
+            $table->longText('descripcion');
             $table->timestamp('fecha_expiracion');
             $table->double('pago_propuesto_min');
             $table->double('pago_propuesto_max');
