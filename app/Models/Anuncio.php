@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Anuncio
  * @package App\Models
- * @version August 5, 2021, 3:09 am UTC
+ * @version September 20, 2021, 12:35 am UTC
  *
- * @property \App\Models\Ciudad $ciudad
+ * @property \App\Models\Ciudade $ciudad
  * @property \App\Models\Departamento $departamento
  * @property \App\Models\Distrito $distrito
  * @property \App\Models\Oficio $oficio

@@ -75,6 +75,7 @@ class CreateComputrabajoTables extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+        //User-anuncio: los que postulan
         Schema::create('user_anuncio', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
@@ -89,10 +90,11 @@ class CreateComputrabajoTables extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+        //Los que se aceptan para el anuncio
         Schema::create('detalle_anuncio', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('anuncio_id');
-            $table->unsignedBigInteger('user_id'); //El que publica el anuncio
+            $table->unsignedBigInteger('user_id'); //El que postula el anuncio
             $table->double('importe');
             $table->string('descripcion');
             $table->BigInteger('dia');
@@ -101,24 +103,32 @@ class CreateComputrabajoTables extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
+        Schema::create('criterios', function (Blueprint $table) {
+            $table->id();
+            $table->string('descripcion');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+        //Valoracion cuando se finaliza el anuncio
         Schema::create('valoracion_anuncios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('anuncio_id');
             $table->char('estado_finalizado',1);
             $table->boolean('a_tiempo')->default(true);
-            $table->double('valoracion_calidad');
-            $table->double('valoracion_comunicacion');
-            $table->double('valoracion_pericia');
-            $table->double('valoracion_profesionalismo');
-            $table->double('valoracion_contratar');
             $table->string('comentario')->nullable();
-            //$table->string('descripcion');
-            //$table->double('importe');
-            //$table->timestamp('tiempo');
             $table->foreign('anuncio_id')->references('id')->on('anuncios');
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        Schema::create('valoracion_anuncio_criterio', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('valoracion_anuncio_id');
+            $table->unsignedBigInteger('criterio_id');
+            $table->double('valoracion');
+            $table->foreign('valoracion_anuncio_id')->references('id')->on('valoracion_anuncios');
+            $table->foreign('criterio_id')->references('id')->on('criterios');
+            $table->timestamps();
         });
     }
 
