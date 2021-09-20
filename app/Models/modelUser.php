@@ -128,6 +128,11 @@ class modelUser extends Model
         return $this->hasMany(\App\Models\UserAnuncio::class, 'user_id');
     }
 
+    public function userAnunciosFinalizado()
+    {
+        return $this->hasMany(\App\Models\UserAnuncio::class, 'user_id');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/

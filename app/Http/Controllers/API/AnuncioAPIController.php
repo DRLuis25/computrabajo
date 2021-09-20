@@ -34,7 +34,7 @@ class AnuncioAPIController extends AppBaseController
             $query->limit($request->get('limit'));
         }
 
-        $anuncios = $query->get();
+        $anuncios = $query->with('colaboradores','ciudad','departamento','distrito')->get();
 
         return $this->sendResponse($anuncios->toArray(), 'Anuncios retrieved successfully');
     }
@@ -68,12 +68,12 @@ class AnuncioAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Anuncio $anuncio */
-        $anuncio = Anuncio::find($id);
-
+        $anuncio = Anuncio::with('colaboradores','ciudad','departamento','distrito')->find($id);
         if (empty($anuncio)) {
             return $this->sendError('Anuncio not found');
         }
-
+        $anuncio->creado_el = $anuncio->created_at->diffForHumans();
+        $anuncio->estado = $anuncio->estado_anuncio;
         return $this->sendResponse($anuncio->toArray(), 'Anuncio retrieved successfully');
     }
 

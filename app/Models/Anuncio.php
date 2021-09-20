@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Anuncio
  * @package App\Models
- * @version August 5, 2021, 3:09 am UTC
+ * @version September 20, 2021, 12:35 am UTC
  *
- * @property \App\Models\Ciudad $ciudad
+ * @property \App\Models\Ciudade $ciudad
  * @property \App\Models\Departamento $departamento
  * @property \App\Models\Distrito $distrito
  * @property \App\Models\Oficio $oficio
@@ -99,7 +99,7 @@ class Anuncio extends Model
         'ciudad_id' => 'required',
         'distrito_id' => 'required',
         'titulo' => 'required|string|max:255',
-        'descripcion' => 'required|string|max:255',
+        'descripcion' => 'required|string',
         'fecha_expiracion' => 'required',
         'pago_propuesto_min' => 'required|numeric',
         'pago_propuesto_max' => 'required|numeric',
@@ -148,6 +148,10 @@ class Anuncio extends Model
     {
         return $this->belongsTo(\App\Models\Distrito::class, 'distrito_id');
     }
+    public function getubicacionAttribute()
+    {
+        return "asd";
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -187,5 +191,9 @@ class Anuncio extends Model
     public function valoracionAnuncios()
     {
         return $this->hasMany(\App\Models\ValoracionAnuncio::class, 'anuncio_id');
+    }
+    public function colaboradores()
+    {
+        return $this->belongsToMany(\App\User::class, 'user_anuncio');
     }
 }

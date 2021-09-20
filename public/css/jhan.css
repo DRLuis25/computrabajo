@@ -1,129 +1,168 @@
-
-
 /*Navegacion de botones  */
 
-.navegacionBotones{
+.navegacionBotones {
     margin-left: 8vw;
 }
+.primera_Caja{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+#card-header{
+    display: grid;
+    grid-template-columns: auto auto;
+   
+}
+.Detalles_derecha{
+    display: grid;
+    grid-template-rows: auto auto;
+}
+ .D_min{
+     display: grid;
+     justify-content: end;
+} 
+.D_min>span{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
 
 /*Termina navegacion de botones */
 
 /* Fuente de letras*/
-h1,h2,h3,h4,h5,p{
-    font-family:'Cambria', Courier, monospace;
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+    font-family: "Cambria", Courier, monospace;
     font-weight: bold;
 }
 /*Termina fuente de letras */
-.cajaPadre{
-    display: flex;
-    flex-direction: row;
-    background:#f0f0f0;
+
+
+
+.cajaPadre {
+    display: grid;
+    grid-template-columns: auto auto;
+    background: red;
+    background: #f0f0f0;
 }
-.izquierda{
+/* Detalles Producto */
+#card{
+    width: 60vw;
+    margin-left: 7.5vw;
+    margin-top: 20px;
+    margin-bottom: 3vh;
+    box-shadow: 0px 0px 5px 1px#b1abab;
+}
+/* Haga una oferta de Trabajo */
+.izquierda {
     margin-left: 7.5vw;
     width: 60vw;
     background: #ffffff;
     box-shadow: 0px 0px 5px 1px#b1abab;
 }
-.detallessuperior1{
-    padding-top: 1vh;
-    padding-bottom: 2vh;
-    box-shadow: 0px 0px 5px 1px#b1abab;
+.detallessuperior1 {
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+    box-shadow: 0px 0px 0px 0.5px#b1abab;
 }
-.detallessuperior1>h2{
+.detallessuperior1 > h2 {
     margin-left: 2vw;
     font-size: 23px;
-   
 }
-.detallessuperior2>h3{
+.detallessuperior2 > h3 {
     margin-top: 1vh;
     margin-left: 2vw;
     font-size: 20px;
 }
 
-.dettallesinferior>h5{
+.dettallesinferior > h5 {
     margin-left: 2vw;
-    
 }
-.dettallesinferior>.form-control{
+.dettallesinferior > .form-control {
     margin-left: 2vw;
     width: 55vw;
     height: 25vh;
 }
-.dettallesinferior>input{
-justify-content: flex-end;
+.dettallesinferior > input {
+    justify-content: flex-end;
 }
 
-/*Derecha(aside)  */
-
-
-.derecha{
-    margin-left: 2vw;
+/*Derecha detalle Cliente  */
+.derecha1 {
+    width: 22vw;
+    background: #ffffff;
+    margin-top:4vh;
+    margin-bottom: 4vh;
+    box-shadow: 0px 0px 5px 1px#b1abab;
+}
+/*como escribir...  */
+.derecha2 {
     width: 22vw;
     background: #ffffff;
     box-shadow: 0px 0px 5px 1px#b1abab;
 }
-.EncabezadoAside{
+.EncabezadoAside {
     height: 8vh;
     box-shadow: 0px 0px 5px 1px#b1abab;
-    }
-.EncabezadoAside>p{
+}
+.EncabezadoAside > p {
     margin-left: 1vw;
     padding-top: 2vh;
 }
-.cuerpo{
+.cuerpo {
     margin-right: 1vw;
 }
-.cuerpo>span{
+.cuerpo > span {
     margin-left: 3.5vw;
     font-weight: bold;
 }
 /*Termina aside */
 
-
 /* Input de boostrap */
-.inputs{
+.inputs {
     display: flex;
     flex-direction: row;
 }
-.inputs>div>.p1{
+.inputs > div > .p1 {
     margin-left: 2vw;
 }
-.inputs>div>.p2{
+.inputs > div > .p2 {
     margin-left: 7vw;
 }
-.input-group{
+.input-group {
     margin-top: -2vh;
     width: 20vw;
 }
-.input-group>.input-group-addon{
+.input-group > .input-group-addon {
     background: #f0f0f0;
     margin-left: 2vw;
     padding-top: 1vh;
     padding-right: 1vw;
     padding-left: 1vw;
 }
-.acomodarboton{
+.acomodarboton {
     display: flex;
     margin-top: 2vh;
     margin-right: 3vw;
     margin-bottom: 2vh;
     justify-content: flex-end;
-
 }
 
 /* Pantalla de Propuestas */
-.tupropuesta{
+.tupropuesta {
     margin-top: 1.5vh;
     margin-left: 8vw;
     font-weight: bold;
 }
-.D_CajaPadre{
+.D_CajaPadre {
     display: flex;
     flex-direction: row;
 }
 
-.D_Izquierda{
+.D_Izquierda {
     display: flex;
     flex-direction: column;
     margin-left: 7.5vw;
@@ -132,32 +171,29 @@ justify-content: flex-end;
     background: #ffffff;
     padding: 10px;
     box-shadow: 0px 0px 5px 1px#b1abab;
-   
 }
-.caja1{
+.caja1 {
     display: grid;
     align-items: end;
     grid-template-columns: 3vw 8vw 40vw auto;
-  
 }
-.caja1>i{
+.caja1 > i {
     font-size: 35px;
 }
 
-.caja2{
+.caja2 {
     display: grid;
     padding: 0 3.5vw 0 3.5vw;
     grid-template-columns: auto auto;
     justify-content: space-between;
 }
-.D_botones{
+.D_botones {
     margin-top: 16vh;
     margin-left: 45vw;
 }
 
-
 /* Caja de Promedios */
-.D_Derecha{
+.D_Derecha {
     margin-left: 2vw;
     padding: 20px;
     width: 22vw;
@@ -165,17 +201,14 @@ justify-content: flex-end;
     background: #ffffff;
     box-shadow: 0px 0px 5px 1px#b1abab;
 }
-.D_Derecha>div>h6{
+.D_Derecha > div > h6 {
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
-    
+    font-family: "Times New Roman", Times, serif;
 }
-.D_Derecha>div{
-    display:grid;
-    grid-template-columns: auto ;
-    
+.D_Derecha > div {
+    display: grid;
+    grid-template-columns: auto;
 }
-.D_Derecha>div>span{
+.D_Derecha > div > span {
     margin-top: -2vh;
-    
 }
