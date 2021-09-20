@@ -11,8 +11,8 @@ class RdiariosController extends Controller
     public function index($mes, $dia, Request $request)
     {
         if($request->ajax()){
-            $publicados = DB::select('call SP_T_ASIGNADOS(?,?)', array($mes,$dia));
-            $enespera = DB::select('call SP_T_EN_ESPERA(?,?)', array($mes,$dia));
+            $publicados = DB::connection('admin_user')->select('call SP_T_ASIGNADOS(?,?)', array($mes,$dia));
+            $enespera = DB::connection('admin_user')->select('call SP_T_EN_ESPERA(?,?)', array($mes,$dia));
             foreach ($publicados as $key) {
                 $x =(array)$key;
             }
@@ -39,9 +39,9 @@ class RdiariosController extends Controller
 
         if($request->ajax()){
 
-        $norealizados = DB::select('call SP_TRABAJOS_NOREALIZADOS(?)', array($mes));
-        $enproceso = DB::select('call SP_T_EN_PROCESO(?)', array($mes));
-        $realizado = DB::select('call SP_T_REALIZADOS(?)', array($mes));
+        $norealizados = DB::connection('admin_user')->select('call SP_TRABAJOS_NOREALIZADOS(?)', array($mes));
+        $enproceso = DB::connection('admin_user')->select('call SP_T_EN_PROCESO(?)', array($mes));
+        $realizado = DB::connection('admin_user')->select('call SP_T_REALIZADOS(?)', array($mes));
             foreach ($norealizados as $key) {
                 $x =(array)$key;
             }

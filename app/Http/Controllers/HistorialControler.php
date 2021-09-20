@@ -15,12 +15,12 @@ class HistorialControler extends Controller
         // $anunciouser =Anuncio::where('user_id','=',$id)->get();
         $duser =User::findOrFail($id);
         // dd($anunciouser);s
-        $anunciouser=DB::select('call SP_HISTORIAL_EMPLEADOR(?)', array($id));
+        $anunciouser=DB::connection('admin_user')->select('call SP_HISTORIAL_EMPLEADOR(?)', array($id));
 
         // $anunciouser =Anuncio::where('user_id','=',$id)->get();
         $duser1 =User ::findOrFail($id);
         // dd($anunciouser);
-        $anunciouser1=DB::select('call SP_HISTORIAL_COLABORADOR(?)', array($id));
+        $anunciouser1=DB::connection('admin_user')->select('call SP_HISTORIAL_COLABORADOR(?)', array($id));
 
 
         return view('layouts.admin.historial',compact('anunciouser','duser','anunciouser1','duser1'));
