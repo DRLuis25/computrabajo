@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\FiltrosApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,5 @@ Route::group([
 });
 //Temporal para pruebas
 Route::resource('anuncios', 'AnuncioAPIController');
+
+Route::apiResource('filtros', 'FiltrosApiController');

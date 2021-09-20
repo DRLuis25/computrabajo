@@ -3,8 +3,8 @@
 @section('content')
     <div class="cajaPadre">
         {{-- Dettalles del Proecto --}}
-        <div class="card">
-            <div class="card-header" style="background:white;">
+        <div class="card" id="card">
+            <div class="card-header" style="background:white;" id="card-header">
                 <div>
                     <h4>Detalles del Proyecto</h4>
                 </div>

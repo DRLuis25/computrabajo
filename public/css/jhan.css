@@ -7,7 +7,7 @@
     display: grid;
     grid-template-columns: auto auto;
 }
-.card-header{
+#card-header{
     display: grid;
     grid-template-columns: auto auto;
    
@@ -49,7 +49,7 @@ p {
     background: #f0f0f0;
 }
 /* Detalles Producto */
-.card{
+#card{
     width: 60vw;
     margin-left: 7.5vw;
     margin-top: 20px;

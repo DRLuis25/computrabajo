@@ -14,9 +14,9 @@ class FiltrosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index( Request $request )
     {
-        
+
         if($request->get('select')=='antiguo'){
                 $query = trim($request->get('select'));
                 $anuncios =User::join('anuncios','users.id','=','anuncios.user_id') 
@@ -47,7 +47,7 @@ class FiltrosController extends Controller
             ->orderBy('anuncios.created_at','desc') 
             ->paginate(10);
             return view('filtros.inicio',['anuncios' => $anuncios, 'search'=>$query]);
-        }
+        } 
        
     }
 
