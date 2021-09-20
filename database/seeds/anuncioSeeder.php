@@ -2,6 +2,7 @@
 
 use App\Models\Anuncio;
 use App\Models\Ciudad;
+use App\Models\Criterio;
 use App\Models\Departamento;
 use App\Models\detalleAnuncio;
 use App\Models\Distrito;
@@ -19,6 +20,21 @@ class anuncioSeeder extends Seeder
      */
     public function run()
     {
+        Criterio::create([
+            'descripcion'=> 'Calidad'
+        ]);
+        Criterio::create([
+            'descripcion'=> 'Comunicación'
+        ]);
+        Criterio::create([
+            'descripcion'=> 'Pericia'
+        ]);
+        Criterio::create([
+            'descripcion'=> 'Profesionalismo'
+        ]);
+        Criterio::create([
+            'descripcion'=> '¿Contratar de nuevo?'
+        ]);
         $anuncio = Anuncio::create([
             'user_id' => '1',
             'oficio_id' => '32',
