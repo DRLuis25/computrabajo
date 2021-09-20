@@ -14,7 +14,7 @@
                             <div class="col-md-10">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-sm-12 col-lg-6">
                                             <div class="">
                                                 <p style="margin: 0;
                                                 text-align: justify;">
@@ -22,7 +22,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-sm-12 col-lg-6">
                                             <div class="container">
                                                 <table class="table">
                                                     <tbody>
@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-sm-12 text-center col-md-12 col-lg-2">
                                 <div >
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -60,7 +60,7 @@
                 <h5>Colaboradores</h5>
                 <div class="container row">
                     @foreach ($anuncio->userAnuncios as $item)
-                    <div class="card col-3 text-center">
+                    <div class="card col-sm-12 col-md-6 col-lg-4 col-xl-3 text-center">
                         <img class="card-img-top" src="https://freepikpsd.com/media/2019/10/default-user-profile-image-png-6-Transparent-Images.png" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{$item->user->full_name}}</h5>
@@ -71,13 +71,21 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
                                     <div class="form-group">
-                                        <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
-                                        <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
-                                        <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
-                                        <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
-                                        <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
+                                        @php
+                                            $rating = $item->user->calificacion_colaborador;
+                                        @endphp
+                                        @for ($i = 0; $i < 5; $i++)
+                                            @if ($rating>0)
+                                                <i class="fa fa-star" aria-hidden="true" style="color:orange"></i>
+                                            @else
+                                                <i class="fa fa-star" aria-hidden="true" style="color:gray"></i>
+                                            @endif
+                                            @php
+                                                $rating--;
+                                            @endphp
+                                        @endfor
                                         &nbsp;
-                                        <label for="">{{$anuncio->detalleAnuncios[0]->user->detalleAnuncios->count()}} @if ($anuncio->detalleAnuncios[0]->user->detalleAnuncios->count() == 1)
+                                        <label for="">{{$item->user->userAnunciosFinalizado->count()}} @if ($item->user->userAnunciosFinalizado->count() == 1)
                                             evaluación
                                             @else
                                             evaluaciones
@@ -133,36 +141,6 @@
 </div>
 @push('scripts')
     <script>
-        $(function () {
-            $('#finalizarAnuncio-form').on('submit', function(e){
-            //e.preventDefault();
-            console.log($('#finalizarAnuncio-form').serialize());
-                /* $.ajax({
-                    url: '{{route('anuncio.final')}}', //this is the submit URL
-                    type: 'POST', //or POST
-                    headers: {
-                        'X-CSRF-Token': '{{ csrf_token() }}',
-                    },
-                    data: $('#createProcess-form').serialize(),
-                    success: function(data){
-                        if(data.status==200){
-                            console.log(data);
-                            alert('Registrado correctamente');
-                            $('#createProcess-form').trigger('reset');
-                            $('#processModal').modal('toggle');
-                            $('.data-table-process').DataTable().ajax.reload();
-                            console.log("reload");
-                            //replaceDiagram(); Update Mapa proceso
-                        }
-                        else if (data.status==500) {
-                            console.log(data.e);
-                            alert("Error al registrar. Registro duplicado");
-                        }
-
-                    },
-                }); */
-            });
-        })
 
         var exampleModal = document.getElementById('exampleModal')
         exampleModal.addEventListener('show.bs.modal', function (event) {

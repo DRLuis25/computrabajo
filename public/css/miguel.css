@@ -1,4 +1,8 @@
 
+.seleccionando{
+    padding: 0;
+    margin: 0;
+}
 .M_link{
     text-decoration: none;
     color: black;
@@ -7,6 +11,7 @@
     color: black;
 }
 .buscador{
+    margin-top: 4vh;
     width: 50vw;
     margin-left: 27vw;
 }
@@ -56,8 +61,8 @@
     display: grid;
     grid-template-rows:10vh 20vh auto ;
     padding: 10px;
-    height: 40vh;
-    border-bottom: 1px solid #b1abab;
+    height: 35vh;
+    border-top: 1px solid #b1abab;
 }
 .resultados:hover{
     background: #f0f0f0;
@@ -88,7 +93,9 @@
     grid-template-columns: 15vw auto;
     align-content: center;
     justify-content:start;
-   
-   
+    margin-top: -3vh; 
 }
+.paginate{
+    background: yellow;
 
+}

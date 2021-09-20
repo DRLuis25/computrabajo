@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anuncio;
+use App\Models\Criterio;
 use App\Models\valoracionAnuncio;
 use App\Models\Oficio;
 use App\Models\Departamento;
+use App\Models\valoracionAnuncioCriterio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,49 +32,50 @@ class AnuncioController extends Controller
         $anuncio_id = request()->anuncio_id;
         $anuncio = Anuncio::find($anuncio_id);
         $termino = request()->termino;
+        $criterios = Criterio::all();
 
-        return view('anuncio.valoracion',compact('anuncio','anuncio_id','termino'));
+        return view('anuncio.valoracion',compact('anuncio','anuncio_id','termino','criterios'));
     }
     public function final(Request $request)
     {
+        $criterios = Criterio::all();
+        //return $request->star;
+        //return $request->star['1'];
         //return request()->all();
         $valoracion = valoracionAnuncio::firstOrCreate(['anuncio_id'=>$request->anuncio_id],
         [
             'anuncio_id' => $request->anuncio_id,
             'estado_finalizado' => $request->estado_finalizado,
             'a_tiempo' => $request->a_tiempo,
-            'valoracion_calidad' => $request->star ?? 0,
-            'valoracion_comunicacion' => $request->star2 ?? 0,
-            'valoracion_pericia' => $request->star3?? 0,
-            'valoracion_profesionalismo' => $request->star4 ?? 0,
-            'valoracion_contratar' => $request->star5 ?? 0,
             'comentario' => $request->comentario
         ]);
         $valoracion->anuncio_id = $request->anuncio_id;
         $valoracion->estado_finalizado = $request->estado_finalizado;
         $valoracion->a_tiempo = $request->a_tiempo;
-        $valoracion->valoracion_calidad = $request->star ?? 0;
-        $valoracion->valoracion_comunicacion = $request->star2 ?? 0;
-        $valoracion->valoracion_pericia = $request->star3?? 0;
-        $valoracion->valoracion_profesionalismo = $request->star4 ?? 0;
-        $valoracion->valoracion_contratar = $request->star5 ?? 0;
         $valoracion->comentario = $request->comentario;
         $valoracion->save();
         /*$valoracion = valoracionAnuncio::create([
             'anuncio_id' => $request->anuncio_id,
             'estado_finalizado' => $request->estado_finalizado,
             'a_tiempo' => $request->a_tiempo,
-            'valoracion_calidad' => $request->star ?? 0,
-            'valoracion_comunicacion' => $request->star2 ?? 0,
-            'valoracion_pericia' => $request->star3?? 0,
-            'valoracion_profesionalismo' => $request->star4 ?? 0,
-            'valoracion_contratar' => $request->star5 ?? 0,
             'comentario' => $request->comentario
         ]);*/
         //return $valoracion->anuncio->detalleAnuncios[0]->user->name;
-        $anuncio = $valoracion->anuncio;
-        $anuncio->estado = 2;
-        $anuncio->save();
+        foreach ($criterios as $key => $item) {
+            valoracionAnuncioCriterio::create([
+                'valoracion_anuncio_id' => $valoracion->id,
+                'criterio_id' => $item->id,
+                'valoracion' => $request->star[$item->id] ?? 0
+            ]);
+        }
+        try {
+            $anuncio = $valoracion->anuncio;
+            $anuncio->estado = 2;
+            $anuncio->save(); //Aquí se llamaría al trigger
+        } catch (\Exception $e) {
+
+            return $e->getMessage();
+        }
         return view('anuncio.final',compact('anuncio'));
     }
 
