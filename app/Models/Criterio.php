@@ -8,17 +8,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Criterio
  * @package App\Models
- * @version September 20, 2021, 12:33 am UTC
+ * @version September 21, 2021, 3:46 am UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection $valoracionAnuncioCriterios
  * @property string $descripcion
+ * @property integer $peso
  */
 class Criterio extends Model
 {
     use SoftDeletes;
-    protected $connection = 'normal_user';
 
     public $table = 'criterios';
+    protected $connection = 'normal_user';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -29,7 +30,8 @@ class Criterio extends Model
 
 
     public $fillable = [
-        'descripcion'
+        'descripcion',
+        'peso'
     ];
 
     /**
@@ -39,7 +41,8 @@ class Criterio extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'descripcion' => 'string'
+        'descripcion' => 'string',
+        'peso' => 'integer'
     ];
 
     /**
@@ -49,6 +52,7 @@ class Criterio extends Model
      */
     public static $rules = [
         'descripcion' => 'required|string|max:255',
+        'peso' => 'required|integer',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
