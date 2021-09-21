@@ -22,7 +22,9 @@
             <br>
             <h5>Correo Electrónico: </h5>
             <input class="form-control" type="text" value="{{$usuario->email }}" readonly>
+            <br>
         </div>
+
 
         <div style="float: right; width:300px">
             <br>
@@ -31,14 +33,14 @@
 
             <br>
             <h5>Acerca de mí: </h5>
-            <input class="form-control" type="text" value="{{$usuario->acerca_de_mi }}" readonly>
+            <textarea class="form-control" style="resize:none;" readonly rows="5">{{$usuario->acerca_de_mi }}</textarea>
+            {{-- <input class="form-control" type="textarea" value="{{$usuario->acerca_de_mi }}" readonly> --}}
 
             <br>
             <h5>Experiencia: </h5>
             <input class="form-control" type="text" value="{{$usuario->experiencia }}" readonly>
-
         </div>
-
+        
        
         
     </div>
