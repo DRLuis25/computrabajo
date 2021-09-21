@@ -23,7 +23,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="form-group"><a class="btn btn-primary" href="{{route('home')}}">Ir a mis anuncios</a></div>
+                                    <div class="form-group"><a class="btn btn-primary" href="{{route('anuncio.misanuncios')}}">Ir a mis anuncios</a></div>
                                 </div>
                         </div>
                     </div><!-- End callout -->

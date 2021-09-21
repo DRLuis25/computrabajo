@@ -39,41 +39,40 @@ class AnuncioController extends Controller
     public function final(Request $request)
     {
         $criterios = Criterio::all();
-        //return $request->star;
-        //return $request->star['1'];
-        //return request()->all();
-        $valoracion = valoracionAnuncio::firstOrCreate(['anuncio_id'=>$request->anuncio_id],
-        [
-            'anuncio_id' => $request->anuncio_id,
-            'estado_finalizado' => $request->estado_finalizado,
-            'a_tiempo' => $request->a_tiempo,
-            'comentario' => $request->comentario
-        ]);
-        $valoracion->anuncio_id = $request->anuncio_id;
-        $valoracion->estado_finalizado = $request->estado_finalizado;
-        $valoracion->a_tiempo = $request->a_tiempo;
-        $valoracion->comentario = $request->comentario;
-        $valoracion->save();
-        /*$valoracion = valoracionAnuncio::create([
-            'anuncio_id' => $request->anuncio_id,
-            'estado_finalizado' => $request->estado_finalizado,
-            'a_tiempo' => $request->a_tiempo,
-            'comentario' => $request->comentario
-        ]);*/
-        //return $valoracion->anuncio->detalleAnuncios[0]->user->name;
-        foreach ($criterios as $key => $item) {
-            valoracionAnuncioCriterio::create([
-                'valoracion_anuncio_id' => $valoracion->id,
-                'criterio_id' => $item->id,
-                'valoracion' => $request->star[$item->id] ?? 0
-            ]);
-        }
         try {
-            $anuncio = $valoracion->anuncio;
-            $anuncio->estado = 2;
-            $anuncio->save(); //Aquí se llamaría al trigger
-        } catch (\Exception $e) {
+            \DB::beginTransaction();
+            /*$valor acion = valoracionAnuncio::firstOrCreate(['anuncio_id'=>$request->anuncio_id],
+                [
+                    'anuncio_id' => $request->anuncio_id,
+                    'estado_finalizado' => $request->estado_finalizado,
+                    'a_tiempo' => $request->a_tiempo,
+                    'comentario' => $request->comentario
+                ]);
+                $valoracion->anuncio_id = $request->anuncio_id;
+                $valoracion->estado_finalizado = $request->estado_finalizado;
+                $valoracion->a_tiempo = $request->a_tiempo;
+                $valoracion->comentario = $request->comentario;
+                $valoracion->save(); */
+            $valoracion = valoracionAnuncio::create([
+                'anuncio_id' => $request->anuncio_id,
+                'estado_finalizado' => $request->estado_finalizado,
+                'a_tiempo' => $request->a_tiempo,
+                'comentario' => $request->comentario
+            ]);
+            foreach ($criterios as $key => $item) {
+                valoracionAnuncioCriterio::create([
+                    'valoracion_anuncio_id' => $valoracion->id,
+                    'criterio_id' => $item->id,
+                    'valoracion' => $request->star[$item->id] ?? 0
+                ]);
+            }
+                $anuncio = $valoracion->anuncio;
+                $anuncio->estado = 2;
+                $anuncio->save(); //Aquí se llamaría al trigger
+            \DB::commit();
 
+        } catch (\Exception $e) {
+            \DB::rollback();
             return $e->getMessage();
         }
         return view('anuncio.final',compact('anuncio'));

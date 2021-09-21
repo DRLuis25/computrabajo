@@ -16,9 +16,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Criterio extends Model
 {
     use SoftDeletes;
+    protected $connection = 'normal_user';
 
     public $table = 'criterios';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
