@@ -76,6 +76,7 @@
             </div>
         </div>
     </div>
+
     @endforeach
 
     <div>
@@ -83,7 +84,7 @@
     </div>
     @foreach ($publicacion as $item)
         
-    
+
     <div class="container border">
         <div>
             <div class="d-flex align-items-stretch">
@@ -132,8 +133,9 @@
             </div>
         </div>
     </div>
+ 
     @endforeach
-
+    
 </div>
 
 <div class="col-sm-2 col-md-2 border" style="margin:0% 0% 0% 2%">
@@ -167,5 +169,8 @@
 
 </div>
 </div>
+
+
+ 
 
 @endsection
