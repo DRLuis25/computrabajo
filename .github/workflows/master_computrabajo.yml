@@ -56,5 +56,5 @@
           with:
             app-name: 'computrabajo'
             slot-name: 'production'
-            publish-profile: ${{ secrets.AzureAppService_PublishProfile_7c110d789a5047df9027581b2ef85829 }}
+            publish-profile: ${{ secrets.AzureAppService_PublishProfile_d51ebfd187074fe3ab2f5432904d03aa }}
             package: .
