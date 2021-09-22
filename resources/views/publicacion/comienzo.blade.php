@@ -31,7 +31,8 @@
         <div>
             <div class="d-flex align-items-stretch">
                 <div class="col-1">
-                    <i class="fas fa-address-card fa-4x"></i>
+                    <br><br>
+                    <img src="{{ asset('images/user.jpg') }}" alt="Imagen no encontrada." style="width: 100px">
                 </div>
                 <div class="col-1"></div>
                 <div class="col-2">
