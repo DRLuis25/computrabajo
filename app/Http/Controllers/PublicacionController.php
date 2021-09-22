@@ -92,7 +92,9 @@ class PublicacionController extends Controller
         //Abrir anuncio
         $publicacion = userAnuncio::where('anuncio_id','=',$id)->where('temporal','=','1')->get();
         $temporal= detalleAnuncio::where('anuncio_id','=',$id)->get();
-        return view('publicacion.comienzo',compact('publicacion','temporal'));
+        $anuncio=Anuncio::findorFail($id);
+        $estadoAnuncio=$anuncio->estado;
+        return view('publicacion.comienzo',compact('publicacion','temporal','estadoAnuncio'));
     }
     public function contrato($idusuario,$idanuncion,$importe,$descripcion,$dias){
         $contrato= new detalleAnuncio();
@@ -139,6 +141,6 @@ class PublicacionController extends Controller
             $publicacion[0]->temporal="0";
             $publicacion[0]->save();
         }
-        return redirect()->route('publicacion.comienzo',$anuncioID);
+        return redirect()->route('publicacion.comienzo',$anuncioID)->with('datos', 'Personal contratado !!!');
     }
 }
