@@ -119,4 +119,26 @@ class PublicacionController extends Controller
         return redirect()->route('publicacion.comienzo',$idanuncion);
         //return view('publicacion.comienzo',compact('publicacion'))->with('anuncio_id',$id);
     }
+
+    public function contratito(Request $request){
+        foreach($request->contratos as $item){
+            list($anuncioID,$userID)=explode("+",$item);
+            $publicacion = userAnuncio::where('anuncio_id','=',$anuncioID)->where('user_id','=',$userID)->get();
+            $contrato= new detalleAnuncio();
+            
+            $contrato->anuncio_id=$anuncioID;
+            $contrato->user_id=$userID;
+            $contrato->importe=$publicacion[0]->importe;
+            $contrato->descripcion=$publicacion[0]->descripcion;
+            $contrato->dia=$publicacion[0]->tiempo;
+            $contrato->save();
+
+            $anuncio=Anuncio::findorFail($anuncioID);
+            $anuncio->estado="1";
+            $anuncio->save();
+            $publicacion[0]->temporal="0";
+            $publicacion[0]->save();
+        }
+        return redirect()->route('publicacion.comienzo',$anuncioID);
+    }
 }

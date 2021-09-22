@@ -82,8 +82,10 @@
     <div>
         <h3 class="card-title">Propuestas</h3>
     </div>
+    <form  method="get" action="{{route('contratito')}}">
     @foreach ($publicacion as $item)
-        
+    <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="{{$item->anuncio_id."+".$item->user_id}}" name="contratos[]">    
 
     <div class="container border">
         <div>
@@ -102,15 +104,13 @@
                 <div class="col-4">
                     <br>
                     <p>{{$item->descripcion}}</p>
-                    
                     <p>Desde {{$item->anuncio->ciudad->nombre}}</p>
                     <div class="button-group mb-1">
-                            <form  method="get" action="{{route('contrato',[$item->user_id,$item->anuncio_id,$item->importe,$item->descripcion,$item->tiempo])}}">
-                            <button type="submit" class="btn btn-primary btn-sm">Contratar</button>
+                            
+                            
                             <a href="https://wa.me/+51941881489"  target="_blank" class="btn btn-success btn-sm" ><i class="fab fa-whatsapp"></i>Whatsapp</a>
-                            </form>
+                            
                     </div>
-                    
                 </div>
                 <div class="col-3">
                     <br>
@@ -133,10 +133,18 @@
             </div>
         </div>
     </div>
- 
+    </div>
     @endforeach
     
+    <div  id="botones" style="display: none;">
+
+        <button type="submit" class="btn btn-primary btn-sm"  >Contratar</button>
+        
+    </div>
+    
+    
 </div>
+</form>
 
 <div class="col-sm-2 col-md-2 border" style="margin:0% 0% 0% 2%">
     <form action="">
@@ -165,12 +173,23 @@
         </form>
 </div>
 
-
-
 </div>
 </div>
-
-
- 
-
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        $('[name="contratos[]"]').click(function() {
+            // Funcion para verificar checked 
+            var arr = $('[name="contratos[]"]:checked').map(function(){
+            return this.value;
+            }).get();
+            if(arr.length>0){
+                document.getElementById("botones").style.display ="block";
+            }else{
+                document.getElementById("botones").style.display ="none";
+            }
+        });
+    });
+</script>
 @endsection
+
+
