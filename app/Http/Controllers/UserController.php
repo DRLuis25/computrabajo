@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\modelUser;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Oficio;
+use App\Models\userOficio;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 
 class UserController extends Controller
@@ -96,6 +100,7 @@ class UserController extends Controller
             'experiencia.required' => 'Complete el campo',
             'oficios.required' => 'Debe seleccionar al menos una opción',
         ]);
+
         
         $usuario = modelUser::findOrFail($id);
         $usuario->dni = $request->dni;
@@ -106,6 +111,15 @@ class UserController extends Controller
         $usuario->experiencia = $request->experiencia;
         $usuario->save();
 
+        $userOficio = DB::table('user_oficio')->where('user_id',$usuario->id)->delete();
+        
+        foreach($request->oficios as $new){
+            $nuevosOficios = new userOficio();
+            $nuevosOficios->user_id = $usuario->id;
+            $nuevosOficios->oficio_id = $new;
+            $nuevosOficios->save();
+        }
+        
         return redirect()->route('perfilUsuario.index');
     }
 

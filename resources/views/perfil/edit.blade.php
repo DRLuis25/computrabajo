@@ -76,7 +76,7 @@
 
             <div class="form-group">
                 <label for="oficios">Oficio: </label>
-                <select multiple class="form-control @error('oficios') is-invalid @enderror" name="oficios" style="height: 148px">
+                <select multiple class="form-control @error('oficios') is-invalid @enderror" name="oficios[]" style="height: 148px">
                     @foreach ($oficios as $oficio)
                         <option value={{$oficio->id}} 
                             
