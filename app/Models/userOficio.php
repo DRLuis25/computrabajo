@@ -27,8 +27,6 @@ class userOficio extends Model
 
     protected $dates = ['deleted_at'];
 
-
-
     public $fillable = [
         'user_id',
         'oficio_id'

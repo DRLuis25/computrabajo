@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\modelUser;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Oficio;
+use App\Models\userOficio;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 
 class UserController extends Controller
@@ -63,8 +68,8 @@ class UserController extends Controller
     {
         //
         $usuario = modelUser::findOrFail($id);
-        return view('perfil.editarPerfil', compact('usuario'));
-
+        $oficios = Oficio::all();
+        return view('perfil.edit', compact('usuario','oficios'));
     }
 
     /**
@@ -78,21 +83,27 @@ class UserController extends Controller
     {
         
         $data = request()->validate([
+            'dni' => 'required',
             'name' => 'required',
             'apellidos' => 'required',
             'direccion' => 'required',
             'acerca' => 'required',
             'experiencia' => 'required',
+            'oficios' => 'required'
         ],
         [
+            'dni.required' => 'Ingrese el número de documento',
             'name.required' => 'Ingrese el nombre',
             'apellidos.required' => 'Ingrese los apellidos',
             'direccion.required' => 'Ingrese la direccion',
             'acerca.required' => 'Complete el campo',
             'experiencia.required' => 'Complete el campo',
+            'oficios.required' => 'Debe seleccionar al menos una opción',
         ]);
 
+        
         $usuario = modelUser::findOrFail($id);
+        $usuario->dni = $request->dni;
         $usuario->name = $request->name;
         $usuario->apellidos = $request->apellidos;
         $usuario->direccion = $request->direccion;
@@ -100,6 +111,15 @@ class UserController extends Controller
         $usuario->experiencia = $request->experiencia;
         $usuario->save();
 
+        $userOficio = DB::table('user_oficio')->where('user_id',$usuario->id)->delete();
+        
+        foreach($request->oficios as $new){
+            $nuevosOficios = new userOficio();
+            $nuevosOficios->user_id = $usuario->id;
+            $nuevosOficios->oficio_id = $new;
+            $nuevosOficios->save();
+        }
+        
         return redirect()->route('perfilUsuario.index');
     }
 
@@ -116,14 +136,10 @@ class UserController extends Controller
     public function desactivar($id)
     {
         //
-
         $user=User::findOrFail($id);
-
-
         $user->delete();
 
         return redirect()->route('admin.home');
-
     }
 
 }

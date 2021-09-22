@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\userAnuncio;
 use App\Models\detalleAnuncio;
+use App\Models\Anuncio;
 
 
 class PublicacionController extends Controller
@@ -91,7 +92,9 @@ class PublicacionController extends Controller
         //Abrir anuncio
         $publicacion = userAnuncio::where('anuncio_id','=',$id)->where('temporal','=','1')->get();
         $temporal= detalleAnuncio::where('anuncio_id','=',$id)->get();
-        return view('publicacion.comienzo',compact('publicacion','temporal'));
+        $anuncio=Anuncio::findorFail($id);
+        $estadoAnuncio=$anuncio->estado;
+        return view('publicacion.comienzo',compact('publicacion','temporal','estadoAnuncio'));
     }
     public function contrato($idusuario,$idanuncion,$importe,$descripcion,$dias){
         $contrato= new detalleAnuncio();
@@ -107,7 +110,9 @@ class PublicacionController extends Controller
         dd($publicacion) */
 
         $publicacion = userAnuncio::where('anuncio_id','=',$idanuncion)->where('user_id','=',$idusuario)->get();
-        
+        $anuncio=Anuncio::findorFail($idanuncion);
+        $anuncio->estado="1";
+        $anuncio->save();
         $publicacion[0]->temporal="0";
         $publicacion[0]->save();
         
@@ -115,5 +120,27 @@ class PublicacionController extends Controller
         //$publicacion->save(); 
         return redirect()->route('publicacion.comienzo',$idanuncion);
         //return view('publicacion.comienzo',compact('publicacion'))->with('anuncio_id',$id);
+    }
+
+    public function contratito(Request $request){
+        foreach($request->contratos as $item){
+            list($anuncioID,$userID)=explode("+",$item);
+            $publicacion = userAnuncio::where('anuncio_id','=',$anuncioID)->where('user_id','=',$userID)->get();
+            $contrato= new detalleAnuncio();
+            
+            $contrato->anuncio_id=$anuncioID;
+            $contrato->user_id=$userID;
+            $contrato->importe=$publicacion[0]->importe;
+            $contrato->descripcion=$publicacion[0]->descripcion;
+            $contrato->dia=$publicacion[0]->tiempo;
+            $contrato->save();
+
+            $anuncio=Anuncio::findorFail($anuncioID);
+            $anuncio->estado="1";
+            $anuncio->save();
+            $publicacion[0]->temporal="0";
+            $publicacion[0]->save();
+        }
+        return redirect()->route('publicacion.comienzo',$anuncioID)->with('datos', 'Personal contratado !!!');
     }
 }

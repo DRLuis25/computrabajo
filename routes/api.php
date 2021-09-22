@@ -30,6 +30,10 @@ Route::group([
 });
 //Temporal para pruebas
 Route::resource('anuncios', 'AnuncioAPIController');
+Route::post('/anuncios/finalizar-anuncio','AnuncioAPIController@finalizarAnuncio');
+Route::apiResource('filtros', 'FiltrosApiController');
+
 
 Route::apiResource('filtros', 'FiltrosApiController');
 Route::apiResource('useranuncio','UserAnuncioAPIController');
+

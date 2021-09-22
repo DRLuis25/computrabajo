@@ -39,7 +39,7 @@ Route::post('/anuncio/finalizar/final','AnuncioController@final')->name('anuncio
 //Ruta Jai ver propuestas
 Route::get('/publicacion/{id}','PublicacionController@comienzo')->name('publicacion.comienzo');
 Route::get('/publicacion/contrato/{id}/{id2}/{id3}/{id4}/{id5}','PublicacionController@contrato')->name('contrato');
-
+Route::get('/publicacion','PublicacionController@contratito')->name('contratito');
 
 
 Route::get('/anuncio/publicar','AnuncioController@publicar')->name('anuncio.publicaranuncio');
@@ -49,11 +49,12 @@ Route::put('/anuncio/updateanuncio/{id}','AnuncioController@updateanuncio')->nam
 
 // Mostrar Datos
 Route::get('getCiudad/{idDepartamento}', 'DatosController@listarCiudades');
-
 Route::get('getDistrito/{idCiudad}', 'DatosController@listarDistritos');
 
 
+//Rutas Ricardo
 Route::resource('perfilUsuario', 'UserController');
+Route::resource('perfilPassword', 'PerfilController');
 
 
 /*rutas Jhan */
