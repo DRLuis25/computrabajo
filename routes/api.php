@@ -33,3 +33,4 @@ Route::resource('anuncios', 'AnuncioAPIController');
 
 Route::apiResource('filtros', 'FiltrosApiController');
 Route::apiResource('useranuncio','UserAnuncioAPIController');
+Route::resource('criterios', 'CriterioAPIController');
