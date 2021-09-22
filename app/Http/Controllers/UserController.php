@@ -55,7 +55,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
@@ -81,7 +81,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $data = request()->validate([
             'dni' => 'required',
             'name' => 'required',
