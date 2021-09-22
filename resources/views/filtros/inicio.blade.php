@@ -31,22 +31,24 @@
     <div class="M_diseño">
 
         <section class="M_section">
-            <h4>Filtros</h4> <br>
-            <h5>Rango de Precios</h5>
+            <h4><b>Información</b></h4> <br>
+            
             <div class="M_rango">
                 <div>
-                    <p>minimo</p>
-                    <div class="input-group">
-                        <span class="input-group-addon">S/.</span>
-                        <input type="text" id="minimo" class="form-control" name="importe">
-                    </div>
+                    <h5><b>Empleos</b></h5>
+                    <ul>
+                      <li>Postula seguro</li>
+                      <li>Pagos diarios</li>
+                      <li>Pagos en efectivo</li>
+                      <li>Pagos mediante app (yape,tunki). </li>
+                      <li>Trabajos a tu medida</li>
+                     
+                        
+                    </ul>
                 </div>
                 <div>
-                    <p>maximo</p>
-                    <div class="input-group">
-                        <span class="input-group-addon">S/.</span>
-                        <input type="text" class="form-control" name="importe">
-                    </div>
+                    <h5><b>Recomendaciones</b></h5>
+                    <span>Postule al trabajo que mejor se adecue a sus preferencias y habilidades,sea respetuoso, recuerde que esta sujeto a una calificación.</span>
                 </div>
             </div>
         </section>

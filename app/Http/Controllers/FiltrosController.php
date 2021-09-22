@@ -21,21 +21,21 @@ class FiltrosController extends Controller
                 $query = trim($request->get('select'));
                 $anuncios =User::join('anuncios','users.id','=','anuncios.user_id') 
                 ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador','anuncios.created_at')
-                ->orderBy('anuncios.created_at','asc') 
+                ->orderBy('anuncios.created_at','asc') -> where('anuncios.estado','=','0')
                 ->paginate(10);
                 return view('filtros.inicio',['anuncios' => $anuncios, 'select'=>$query]);
         }else if($request->get('select')=='pbajo'){
             $query = trim($request->get('select'));
             $anuncios =User::join('anuncios','users.id','=','anuncios.user_id') 
             ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador','anuncios.created_at')
-            ->orderBy('anuncios.pago_propuesto_min','asc') 
+            ->orderBy('anuncios.pago_propuesto_min','asc') -> where('anuncios.estado','=','0')
             ->paginate(10);
             return view('filtros.inicio',['anuncios' => $anuncios, 'select'=>$query]); 
         }else if($request->get('select')=='palto'){
             $query = trim($request->get('select'));
             $anuncios =User::join('anuncios','users.id','=','anuncios.user_id') 
             ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador','anuncios.created_at')
-            ->orderBy('anuncios.pago_propuesto_min','desc') 
+            ->orderBy('anuncios.pago_propuesto_min','desc') -> where('anuncios.estado','=','0')
             ->paginate(10);
             return view('filtros.inicio',['anuncios' => $anuncios, 'select'=>$query]);
         }
@@ -43,7 +43,7 @@ class FiltrosController extends Controller
             $query = trim($request->get('search'));
             $anuncios =User::join('anuncios','users.id','=','anuncios.user_id') 
             ->select('anuncios.id','anuncios.titulo','anuncios.descripcion','anuncios.pago_propuesto_min','anuncios.pago_propuesto_max','users.calificacion_empleador','anuncios.created_at')
-            ->where('anuncios.titulo','LIKE','%'.$query.'%')
+            ->where('anuncios.titulo','LIKE','%'.$query.'%')-> where('anuncios.estado','=','0')
             ->orderBy('anuncios.created_at','desc') 
             ->paginate(10);
             return view('filtros.inicio',['anuncios' => $anuncios, 'search'=>$query]);
