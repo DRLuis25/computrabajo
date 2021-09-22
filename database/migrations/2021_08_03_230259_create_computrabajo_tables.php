@@ -43,7 +43,7 @@ class CreateComputrabajoTables extends Migration
             $table->softDeletes();
         });
         Schema::create('user_oficio', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('oficio_id');
             $table->foreign('user_id')->references('id')->on('users');
@@ -51,6 +51,7 @@ class CreateComputrabajoTables extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+        
         Schema::create('anuncios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id'); //El que publica el anuncio
@@ -130,6 +131,7 @@ class CreateComputrabajoTables extends Migration
             $table->foreign('criterio_id')->references('id')->on('criterios');
             $table->timestamps();
         });
+
     }
 
     /**

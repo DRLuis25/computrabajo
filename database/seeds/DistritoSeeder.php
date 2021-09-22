@@ -9114,8 +9114,6 @@ class DistritoSeeder extends Seeder
         $distrito->ciudad_id = 182;
         $distrito->save();
 
-
-
         $distrito = new Distrito();
         $distrito->nombre = "NUEVO PROGRESO";
         $distrito->ciudad_id = 183;
