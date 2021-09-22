@@ -1,7 +1,7 @@
 @extends('welcome')
 @section('content')
     
-    <div style="margin: 0px 350px 600px 350px">
+    <div style="margin: 0px 350px 800px 350px">
 
         <div style="text-align: right">
             <a href="{{route('perfilPassword.edit', Auth::user()->id)}}" class="btn btn-warning">CAMBIAR CONTRASEÑA</a>
@@ -31,11 +31,10 @@
             <br>
         </div>
 
-
         <div style="float: right; width:300px">
             <br>
             <h5>Fecha de Nacimiento: </h5>
-            <input class="form-control" type="text" value={{$usuario->fecha_nacimiento}} readonly>
+            <input class="form-control" type="text" value="{{$usuario->fecha_nacimiento}}" readonly>
 
             <br>
             <h5>Acerca de mí: </h5>
@@ -44,6 +43,10 @@
             <br>
             <h5>Experiencia: </h5>
             <textarea class="form-control" style="resize:none;" readonly rows="5">{{$usuario->experiencia }}</textarea>
+
+            <br>
+            <h5>Oficios: </h5>
+            <textarea class="form-control" style="overflow-y: scroll;" readonly rows="5"></textarea>
         </div>
     </div>     
 @endsection
