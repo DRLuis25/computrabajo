@@ -46,7 +46,20 @@
 
             <br>
             <h5>Oficios: </h5>
-            <textarea class="form-control" style="overflow-y: scroll;" readonly rows="5"></textarea>
+            @if (count($usuario->userOficios)>0)
+
+                <select multiple class="form-control" id="oficios" readonly>
+                    @foreach ($usuario->userOficios as $oficio)
+                        <option value={{$oficio->oficio->id}}>
+                            {{$oficio->oficio->nombre}}
+                        </option>
+                    @endforeach
+                </select>
+                
+            @else
+                No existen oficios registrados.
+            @endif
+            
         </div>
     </div>     
 @endsection

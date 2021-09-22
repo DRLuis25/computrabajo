@@ -73,22 +73,30 @@
                 @enderror
             </div>
             <br>
-            {{-- <div class="form-group">
-                <label for="exampleFormControlSelect2">Habilidades: </label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
-                  <option>Obrero</option>
-                  <option>Constructor</option>
-                  <option>Albañil</option>
-                  <option>Pintor</option>
-                  <option>Gasfitero</option>
+
+            <div class="form-group">
+                <label for="oficios">Oficio: </label>
+                <select multiple class="form-control @error('oficios') is-invalid @enderror" name="oficios" style="height: 148px">
+                    @foreach ($oficios as $oficio)
+                        <option value={{$oficio->id}} 
+                            
+                            @foreach ($usuario->userOficios as $oficio2)
+                                @if($oficio2->oficio->id == $oficio->id)
+                                    selected
+                                @endif
+                            @endforeach
+                        >
+                            {{$oficio->nombre}}
+                        </option>
+                    @endforeach
                 </select>
-            </div> --}}
-
-            {{-- <div class="form-group">
-                <label for="exampleFormControlInput5">Oficio: </label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div> --}}
-
+                @error('oficios')
+                        <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                @enderror
+            </div>
+            <br>
             <button type="submit" class="btn btn-primary"> Actualizar Datos </button>
 
         </form>

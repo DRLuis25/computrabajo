@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\modelUser;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Oficio;
 
 
 class UserController extends Controller
@@ -63,8 +64,8 @@ class UserController extends Controller
     {
         //
         $usuario = modelUser::findOrFail($id);
-        return view('perfil.edit', compact('usuario'));
-
+        $oficios = Oficio::all();
+        return view('perfil.edit', compact('usuario','oficios'));
     }
 
     /**
@@ -76,6 +77,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $data = request()->validate([
             'dni' => 'required',
             'name' => 'required',
@@ -83,6 +85,7 @@ class UserController extends Controller
             'direccion' => 'required',
             'acerca' => 'required',
             'experiencia' => 'required',
+            'oficios' => 'required'
         ],
         [
             'dni.required' => 'Ingrese el número de documento',
@@ -91,8 +94,9 @@ class UserController extends Controller
             'direccion.required' => 'Ingrese la direccion',
             'acerca.required' => 'Complete el campo',
             'experiencia.required' => 'Complete el campo',
+            'oficios.required' => 'Debe seleccionar al menos una opción',
         ]);
-
+        
         $usuario = modelUser::findOrFail($id);
         $usuario->dni = $request->dni;
         $usuario->name = $request->name;
@@ -118,7 +122,6 @@ class UserController extends Controller
     public function desactivar($id)
     {
         //
-
         $user=User::findOrFail($id);
         $user->delete();
 
