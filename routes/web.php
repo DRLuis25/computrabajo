@@ -49,11 +49,12 @@ Route::put('/anuncio/updateanuncio/{id}','AnuncioController@updateanuncio')->nam
 
 // Mostrar Datos
 Route::get('getCiudad/{idDepartamento}', 'DatosController@listarCiudades');
-
 Route::get('getDistrito/{idCiudad}', 'DatosController@listarDistritos');
 
 
+//Rutas Ricardo
 Route::resource('perfilUsuario', 'UserController');
+Route::resource('perfilPassword', 'PerfilController');
 
 
 /*rutas Jhan */

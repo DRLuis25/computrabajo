@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $user = new User();
+        $user->dni = "12345678";
         $user->name = "Luis Guillermo";
         $user->apellidos = "Delgado Rodriguez";
         $user->email = "ldelgado@unitru.edu.pe";
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
         $user->save();
         
         $user = new User();
+        $user->dni = "12345678";
         $user->name = "Bryan Alejandro";
         $user->apellidos = "Romero Osorio";
         $user->email = "bromero@unitru.edu.pe";
@@ -35,6 +37,7 @@ class UserSeeder extends Seeder
         $user->save();
 
         $user = new User();
+        $user->dni = "12345678";
         $user->name = "Maximo Alexander";
         $user->apellidos = "Fernández Munóz";
         $user->email = "mfernandezm@unitru.edu.pe";
@@ -46,6 +49,7 @@ class UserSeeder extends Seeder
         $user->save();
 
         $user = new User();
+        $user->dni = "70337220";
         $user->name = "Ricardo Martín";
         $user->apellidos = "Rubio Cabanillas";
         $user->email = "rrubioc@unitru.edu.pe";
@@ -57,6 +61,7 @@ class UserSeeder extends Seeder
         $user->save();
 
         $user = new User();
+        $user->dni = "12345678";
         $user->name = "Jhan Jeyson";
         $user->apellidos = "Gutierrez Flores";
         $user->email = "jgutierrezf@unitru.edu.pe";
@@ -68,6 +73,7 @@ class UserSeeder extends Seeder
         $user->save();
 
         $user = new User();
+        $user->dni = "12345678";
         $user->name = "Jair Gerardo";
         $user->apellidos = "Rodriguez Cruz";
         $user->email = "jrodriguezcr@unitru.edu.pe";
@@ -79,6 +85,7 @@ class UserSeeder extends Seeder
         $user->save();
 
         $user = new User();
+        $user->dni = "12345678";
         $user->name = "Miguel Enrique";
         $user->apellidos = "Zavaleta Rojas";
         $user->email = "mzavaleta@unitru.edu.pe";

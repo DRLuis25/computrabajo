@@ -1,18 +1,28 @@
 @extends('welcome')
 @section('content')
     
-    <div style="margin-left: 200px; margin-right: 200px">
+    <div style="margin-left: 300px; margin-right: 300px">
 
         <a href="{{route('perfilUsuario.index')}}" class="btn btn-success" style="float: right">Cancelar</a>
 
         <h1 style="text-align: center">Datos del Perfil</h1>
 
-        <h2>Información Personal: </h2>
+        <h3>Información Personal: </h3>
 
         <form action="{{route('perfilUsuario.update',$usuario->id)}}" method="POST">
             @csrf
             @method('PUT')
-            
+
+            <div class="form-group">
+                <label for="name">Dni: </label>
+                <input type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{$usuario->dni}}">
+                  @error('dni')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                              {{ $message }}
+                          </div>
+                  @enderror
+            </div>
+            <br>
             <div class="form-group">
               <label for="name">Nombres: </label>
               <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$usuario->name}}">
@@ -25,7 +35,7 @@
             <br>
             <div class="form-group">
                 <label for="apellidos">Apellidos: </label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" name="apellidos" value="{{$usuario->apellidos}}">
+                <input type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" value="{{$usuario->apellidos}}">
                 @error('apellidos')
                         <div id="validationServer03Feedback" class="invalid-feedback">
                             {{ $message }}
@@ -55,7 +65,7 @@
             <br>
             <div class="form-group">
                 <label for="experiencia">Experiencia: </label>
-                <textarea type="text" class="form-control @error('name') is-invalid @enderror" name="experiencia">{{$usuario->experiencia}}</textarea>
+                <textarea type="text" class="form-control @error('experiencia') is-invalid @enderror" name="experiencia">{{$usuario->experiencia}}</textarea>
                 @error('experiencia')
                         <div id="validationServer03Feedback" class="invalid-feedback">
                             {{ $message }}

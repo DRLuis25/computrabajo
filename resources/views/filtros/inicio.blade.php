@@ -3,6 +3,7 @@
 
 
     <form>
+        <br>
         <div class="buscador">
             <div class="input-group">
                 <input type="search" class="form-control rounded" name="search" placeholder="Search" aria-label="Search"

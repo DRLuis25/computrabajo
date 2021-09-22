@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\modelUser;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-
-class UserController extends Controller
+class PerfilController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,6 @@ class UserController extends Controller
     public function index()
     {
         //
-        $usuario = modelUser::findOrFail(Auth::user()->id);
-        return view('perfil.index',compact('usuario'));
     }
 
     /**
@@ -50,7 +48,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -63,8 +61,7 @@ class UserController extends Controller
     {
         //
         $usuario = modelUser::findOrFail($id);
-        return view('perfil.edit', compact('usuario'));
-
+        return view('perfil.password', compact('usuario'));
     }
 
     /**
@@ -74,35 +71,43 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
-        $data = request()->validate([
-            'dni' => 'required',
-            'name' => 'required',
-            'apellidos' => 'required',
-            'direccion' => 'required',
-            'acerca' => 'required',
-            'experiencia' => 'required',
+        //
+        $data=request()->validate([
+            'password1'=>'required|max:60',
+            'password2'=>'required|max:60',
+            'password3'=>'required|max:60',
         ],
         [
-            'dni.required' => 'Ingrese el número de documento',
-            'name.required' => 'Ingrese el nombre',
-            'apellidos.required' => 'Ingrese los apellidos',
-            'direccion.required' => 'Ingrese la direccion',
-            'acerca.required' => 'Complete el campo',
-            'experiencia.required' => 'Complete el campo',
+            'password1.required'=>'Ingrese la contraseña actual',
+            'password1.max'=>'Maximo 60 caracteres',
+            'password2.required'=>'Ingrese la nueva contraseña',
+            'password2.max'=>'Maximo 60 caracteres',
+            'password3.required'=>'Ingrese nuevamente su nueva contraseña',
+            'password3.max'=>'Maximo 60 caracteres',
+
         ]);
 
         $usuario = modelUser::findOrFail($id);
-        $usuario->dni = $request->dni;
-        $usuario->name = $request->name;
-        $usuario->apellidos = $request->apellidos;
-        $usuario->direccion = $request->direccion;
-        $usuario->acerca_de_mi = $request->acerca;
-        $usuario->experiencia = $request->experiencia;
-        $usuario->save();
 
-        return redirect()->route('perfilUsuario.index');
+        if(  Hash::check($request->password1, $usuario->password) )
+        {
+            if( $request->password2 == $request->password3 )
+            {
+                $usuario->password = Hash::make($request->password2);
+                $usuario->save();
+                return redirect()->route('perfilPassword.edit',$usuario)->with('datos', 'Contraseña cambiada correctamente !!!');
+            }
+            else
+            {
+                return redirect()->route('perfilPassword.edit',$usuario)->with('datos', 'Las nuevas contraseñas no coinciden !!!');
+            }
+        }
+        else{
+            return redirect()->route('perfilPassword.edit',$usuario)->with('datos', 'Ingrese contraseña correcta !!!');
+        }
     }
 
     /**
@@ -115,14 +120,4 @@ class UserController extends Controller
     {
         //
     }
-    public function desactivar($id)
-    {
-        //
-
-        $user=User::findOrFail($id);
-        $user->delete();
-
-        return redirect()->route('admin.home');
-    }
-
 }
