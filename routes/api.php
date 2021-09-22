@@ -32,3 +32,4 @@ Route::group([
 Route::resource('anuncios', 'AnuncioAPIController');
 
 Route::apiResource('filtros', 'FiltrosApiController');
+Route::apiResource('useranuncio','UserAnuncioAPIController');
