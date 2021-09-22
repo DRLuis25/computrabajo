@@ -21,19 +21,24 @@ class anuncioSeeder extends Seeder
     public function run()
     {
         Criterio::create([
-            'descripcion'=> 'Calidad'
+            'descripcion'=> 'Calidad',
+            'peso' => '5'
         ]);
         Criterio::create([
-            'descripcion'=> 'Comunicación'
+            'descripcion'=> 'Comunicación',
+            'peso' => '4'
         ]);
         Criterio::create([
-            'descripcion'=> 'Pericia'
+            'descripcion'=> 'Pericia',
+            'peso' => '2'
         ]);
         Criterio::create([
-            'descripcion'=> 'Profesionalismo'
+            'descripcion'=> 'Profesionalismo',
+            'peso' => '4'
         ]);
         Criterio::create([
-            'descripcion'=> '¿Contratar de nuevo?'
+            'descripcion'=> '¿Contratar de nuevo?',
+            'peso' => '5'
         ]);
         $anuncio = Anuncio::create([
             'user_id' => '1',
