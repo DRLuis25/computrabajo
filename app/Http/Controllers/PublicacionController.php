@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\userAnuncio;
 use App\Models\detalleAnuncio;
+use App\Models\Anuncio;
 
 
 class PublicacionController extends Controller
@@ -107,7 +108,9 @@ class PublicacionController extends Controller
         dd($publicacion) */
 
         $publicacion = userAnuncio::where('anuncio_id','=',$idanuncion)->where('user_id','=',$idusuario)->get();
-        
+        $anuncio=Anuncio::findorFail($idanuncion);
+        $anuncio->estado="1";
+        $anuncio->save();
         $publicacion[0]->temporal="0";
         $publicacion[0]->save();
         
