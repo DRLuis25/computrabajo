@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Anuncio;
 use App\Models\userAnuncio;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserAnuncioAPIController extends Controller
 {
@@ -15,8 +18,9 @@ class UserAnuncioAPIController extends Controller
      */
     public function index()
     {
-        $UserAnuncio = userAnuncio::all();
-       return response()->json($UserAnuncio);
+        
+         $UserAnuncio = userAnuncio::all();
+       return response()->json($UserAnuncio); 
     }
 
     /**
@@ -39,8 +43,8 @@ class UserAnuncioAPIController extends Controller
     {
         //Validacion
         $request->validate([
-            'user_id' => 'required',
-            'anuncio_id'=> 'required',
+            /* 'user_id' => 'required',
+            'anuncio_id'=> 'required', */
             'descripcion' =>'required',
             'importe' => 'required',
             'tiempo' => 'required'
@@ -48,8 +52,8 @@ class UserAnuncioAPIController extends Controller
 
         //Save to BD
         $UserAnuncio = userAnuncio::create([
-            'user_id' => $request-> user_id,
-            'anuncio_id' => $request->anuncio_id,
+            'user_id' => 1,//$request-> user_id,
+            'anuncio_id' => 1,//$request->anuncio_id,
             'descripcion' => $request->descripcion,
             'importe' => $request->importe,
             'tiempo' => $request->tiempo
@@ -66,7 +70,10 @@ class UserAnuncioAPIController extends Controller
      */
     public function show($id)
     {
-        //
+       
+        $anuncios =DB::table('anuncios')->where('id',$id)->first();
+        return response()->json($anuncios);
+        
     }
 
     /**

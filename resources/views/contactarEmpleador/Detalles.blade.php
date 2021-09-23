@@ -108,8 +108,8 @@ if ($num == 5) {
                             </div>
                         </div>
                         <input name="id_oc" type="hidden" value="<?php echo $_GET['ide']; ?>">
-                        <div>
-                            <p class="p2">Este trabajo se entregara en</p>
+                        <div >
+                            <p class="p2" >Este trabajo se entregara en</p>
                             <div class="input-group" style="margin-left:7Vw;">
                                 <input type="text" class="form-control" name="dias" id="dias">
                                 <span class="input-group-addon">Dias</span>
