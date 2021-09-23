@@ -51,7 +51,7 @@ class CreateComputrabajoTables extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-        
+
         Schema::create('anuncios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id'); //El que publica el anuncio
@@ -107,6 +107,7 @@ class CreateComputrabajoTables extends Migration
         Schema::create('criterios', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
+            $table->integer('peso');
             $table->timestamps();
             $table->softDeletes();
         });

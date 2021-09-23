@@ -10,7 +10,7 @@
             <div class="col-7">
 
                 <form action="" id="form-consulta">
-                    <div class="form-group row">
+                    <div class="form-group row " style="margin-left: 50px">
                         <select name="mes" id="mes" class="form-control col-3" required>
                             <option value="">Seleccione un mes</option>
                             <option value="01">Enero</option>
@@ -61,12 +61,18 @@
                         <input type="submit" value="Consultar" class="btn btn-primary col-2">
                     </div>
                 </form>
-                <h5>TRABAJOS PUBLICADOS</h5>
+                <div style="margin-left: 80px;">
+                    <h5>TRABAJOS PUBLICADOS:</h5>
+                    <div class="mb-3 col-6">
+                        <label for="exampleInputEmail1" class="form-label"></label>
+                        <input type="text" value="" class="form-control" id="direccion" aria-describedby="emailHelp" disabled style="margin-left: 80px;width:100px">
+                    </div>
+                </div>
             </div>
 
-            <div class="col-3">
-                <div  class="chart-container" style="position: relative;  width:25vw">
-                    <canvas id="myChart"></canvas>
+            <div class="col-5 row">
+                <div  class="chart-container" style="position: relative;  width:25vw;r ">
+                    <canvas id="myChart" ></canvas>
                 </div>
             </div>
         </div>
