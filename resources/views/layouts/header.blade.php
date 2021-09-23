@@ -47,7 +47,7 @@
             <div class="text-end" >
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="{{route("anuncio.misanuncios")}}" class="nav-link px-2 text-secondary">Empleador</a></li>
-                    <li><a href="{{route("anuncio.misanuncios")}}" class="nav-link px-2 text-secondary">Colaborador</a></li>
+                    <li><a href="{{route("postulacion.index")}}" class="nav-link px-2 text-secondary">Colaborador</a></li>
                 </ul>
             </div>
         </div>
