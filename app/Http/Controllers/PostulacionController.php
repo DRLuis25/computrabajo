@@ -1,26 +1,35 @@
 <?php
 
-namespace App\Http\Controllers\API;
-
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
 use App\Models\Anuncio;
+use App\Models\Propuestas;
 use App\Models\userAnuncio;
-use App\User;
+use App\Models\modelUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class UserAnuncioAPIController extends Controller
+class PostulacionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        //
+        if (Auth::guest()) {
+            return redirect()->guest('login');
+        }
+        $user_id = auth()->user()->id;
+        $search=$request->search;
+        $postulaAnuncio=UserAnuncio::where("user_id","=",$user_id)->where("temporal","=","1")->where('descripcion','LIKE','%'.$search.'%')->paginate(10);
         
-         $UserAnuncio = userAnuncio::all();
-       return response()->json($UserAnuncio); 
+        
+        return view('postulacion.index',compact('postulaAnuncio','search'));
+            
+        
     }
 
     /**
@@ -41,25 +50,7 @@ class UserAnuncioAPIController extends Controller
      */
     public function store(Request $request)
     {
-        //Validacion
-        $request->validate([
-            /* 'user_id' => 'required',
-            'anuncio_id'=> 'required', */
-            'descripcion' =>'required',
-            'importe' => 'required',
-            'tiempo' => 'required'
-        ]);
-
-        //Save to BD
-        $UserAnuncio = userAnuncio::create([
-            'user_id' => 1,//$request-> user_id,
-            'anuncio_id' => 1,//$request->anuncio_id,
-            'descripcion' => $request->descripcion,
-            'importe' => $request->importe,
-            'tiempo' => $request->tiempo
-        ]);
-
-        return response()->json($UserAnuncio);
+        //
     }
 
     /**
@@ -70,10 +61,7 @@ class UserAnuncioAPIController extends Controller
      */
     public function show($id)
     {
-       
-        $anuncios =DB::table('anuncios')->where('id',$id)->first();
-        return response()->json($anuncios);
-        
+        //
     }
 
     /**

@@ -34,7 +34,7 @@
         <div style="float: right; width:300px">
             <br>
             <h5>Fecha de Nacimiento: </h5>
-            <input class="form-control" type="text" value="{{$usuario->fecha_nacimiento}}" readonly>
+            <input class="form-control" type="text" value="{{$usuario->fecha_nacimiento->format('d-m-Y')}}" readonly>
 
             <br>
             <h5>Acerca de mí: </h5>

@@ -55,7 +55,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
@@ -81,9 +81,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $data = request()->validate([
             'dni' => 'required',
+            'fecha' => 'required|max:10',
             'name' => 'required',
             'apellidos' => 'required',
             'direccion' => 'required',
@@ -93,6 +94,8 @@ class UserController extends Controller
         ],
         [
             'dni.required' => 'Ingrese el número de documento',
+            'fecha.required' => 'Seleccione una fecha',
+            'fecha.max' => "Debe ingresar una fecha válida",
             'name.required' => 'Ingrese el nombre',
             'apellidos.required' => 'Ingrese los apellidos',
             'direccion.required' => 'Ingrese la direccion',
@@ -104,6 +107,7 @@ class UserController extends Controller
         
         $usuario = modelUser::findOrFail($id);
         $usuario->dni = $request->dni;
+        $usuario->fecha_nacimiento = $request->fecha;
         $usuario->name = $request->name;
         $usuario->apellidos = $request->apellidos;
         $usuario->direccion = $request->direccion;

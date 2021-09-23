@@ -22,7 +22,7 @@ class ChistorialController extends Controller
         //                         INNER JOIN ciudades C ON A.ciudad_id = C.id
         //                         LEFT JOIN users U ON U.id = DA.user_id
         // WHERE U.id = ".$id.";");
-        $anunciouser=DB::select('call SP_TRABAJOS_PUBLICADOS(?)', array($id));
+        $anunciouser=DB::connection('admin_user')->select('call SP_TRABAJOS_PUBLICADOS(?)', array($id));
         return view('layouts.admin.chistorial',compact('anunciouser','duser'));
     }
 }

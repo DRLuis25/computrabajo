@@ -24,6 +24,16 @@
             </div>
             <br>
             <div class="form-group">
+                <label for="name">Fecha de Nacimiento: (d/m/a)</label>
+                <input type="text" maxlength="10" class="form-control @error('fecha') is-invalid @enderror" name="fecha" value="{{$usuario->fecha_nacimiento->format('d-m-Y')}}">
+                  @error('fecha')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                              {{ $message }}
+                          </div>
+                  @enderror
+            </div>
+            <br>
+            <div class="form-group">
               <label for="name">Nombres: </label>
               <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$usuario->name}}">
                 @error('name')

@@ -10,20 +10,35 @@
             <div class="col-7">
 
                 <form action="" id="form-consulta">
-                    <div class="form-group row">
-                        <select name="mes" id="mes" class="form-control col-3" required>
+                    <div class="form-group row" style="margin-left: 100px; margin-top:49px">
+                        <select name="mes" id="mes" class="form-control col-4" required>
                             <option value="">Seleccione un mes</option>
                             <option value="01">Enero</option>
+                            <option value="02">Febrero</option>
+                            <option value="03">Marzo</option>
+                            <option value="04">Abril</option>
+                            <option value="05">Mayo</option>
+                            <option value="06">Junio</option>
+                            <option value="07">Julio</option>
                             <option value="08">Agosto</option>
+                            <option value="09">Septiembre</option>
+
                         </select>
 
                         <input type="submit" value="Consultar" class="btn btn-primary col-2">
                     </div>
                 </form>
-                <h5>TRABAJOS TOTALES</h5>
+
+                <div style="margin-left: 100px;">
+                    <h5>TRABAJOS TOTALES</h5>
+                    <div class="mb-3 col-6">
+                        <label for="exampleInputEmail1" class="form-label"></label>
+                        <input type="text" value="" class="form-control" id="direccion" aria-describedby="emailHelp" disabled style="margin-left: 80px;width:100px">
+                    </div>
+                </div>
             </div>
 
-            <div class="col-3">
+            <div class="col-3" >
                 <div  class="chart-container" style="position: relative;  width:25vw">
                     <canvas id="myChart"></canvas>
                 </div>
