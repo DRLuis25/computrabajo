@@ -3,7 +3,6 @@
 @section('content')
     <div class="navegacionBotones">
         {{-- <button type="button" class="btn btn-primary">Detalles</button> --}}
-        <button type="button" class="btn btn-warning">Propuestas</button>
     </div>
     <div class="d-flex justify-content-center">
         <h3 class="text-center">Bienvenido {{ auth()->user()->name }} </h3>
