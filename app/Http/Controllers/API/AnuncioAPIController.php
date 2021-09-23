@@ -8,6 +8,10 @@ use App\Models\Anuncio;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Symfony\Component\ErrorHandler\Debug;
+use App\Models\Criterio;
+use App\Models\valoracionAnuncio;
+use App\Models\valoracionAnuncioCriterio;
 
 /**
  * Class AnuncioController
@@ -123,5 +127,45 @@ class AnuncioAPIController extends AppBaseController
         $anuncio->delete();
 
         return $this->sendSuccess('Anuncio deleted successfully');
+    }
+    public function finalizarAnuncio(Request $request)
+    {
+        /*
+        {"idAnuncio":9,"termino":"1","valoracion":{"1":2,"2":3},"comentario":""}
+        */
+        $out = new \Symfony\Component\Console\Output\ConsoleOutput();
+        $out->writeln($request);
+        //Finalizar anuncio
+        $criterios = Criterio::all();
+        try {
+            \DB::beginTransaction();
+            $valoracion = valoracionAnuncio::create([
+                'anuncio_id' => $request->idAnuncio,
+                'estado_finalizado' => $request->termino,
+                'a_tiempo' => $request->termino,
+                'comentario' => $request->comentario
+            ]);
+            foreach ($criterios as $key => $item) {
+                valoracionAnuncioCriterio::create([
+                    'valoracion_anuncio_id' => $valoracion->id,
+                    'criterio_id' => $item->id,
+                    'valoracion' => $request->valoracion[$item->id] ?? 0
+                ]);
+            }
+                $anuncio = $valoracion->anuncio;
+                $anuncio->estado = 2;
+                $anuncio->save(); //Aquí se llamaría al trigger
+            \DB::commit();
+            return response([
+                'text' => 'Anuncio actualizado correctamente'
+            ],200);
+        } catch (\Exception $e) {
+            \DB::rollback();
+            return response([
+                'text' => 'Anuncio actualizado correctamente',
+                'error'=> $e->getMessage()
+            ],500);
+        }
+
     }
 }

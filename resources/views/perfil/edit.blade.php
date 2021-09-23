@@ -1,18 +1,38 @@
 @extends('welcome')
 @section('content')
     
-    <div style="margin-left: 200px; margin-right: 200px">
+    <div style="margin-left: 300px; margin-right: 300px">
 
         <a href="{{route('perfilUsuario.index')}}" class="btn btn-success" style="float: right">Cancelar</a>
 
         <h1 style="text-align: center">Datos del Perfil</h1>
 
-        <h2>Información Personal: </h2>
+        <h3>Información Personal: </h3>
 
         <form action="{{route('perfilUsuario.update',$usuario->id)}}" method="POST">
             @csrf
             @method('PUT')
-            
+
+            <div class="form-group">
+                <label for="name">Dni: </label>
+                <input type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{$usuario->dni}}">
+                  @error('dni')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                              {{ $message }}
+                          </div>
+                  @enderror
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="name">Fecha de Nacimiento: (d/m/a)</label>
+                <input type="text" maxlength="10" class="form-control @error('fecha') is-invalid @enderror" name="fecha" value="{{$usuario->fecha_nacimiento->format('d-m-Y')}}">
+                  @error('fecha')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                              {{ $message }}
+                          </div>
+                  @enderror
+            </div>
+            <br>
             <div class="form-group">
               <label for="name">Nombres: </label>
               <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$usuario->name}}">
@@ -25,7 +45,7 @@
             <br>
             <div class="form-group">
                 <label for="apellidos">Apellidos: </label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" name="apellidos" value="{{$usuario->apellidos}}">
+                <input type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" value="{{$usuario->apellidos}}">
                 @error('apellidos')
                         <div id="validationServer03Feedback" class="invalid-feedback">
                             {{ $message }}
@@ -55,7 +75,7 @@
             <br>
             <div class="form-group">
                 <label for="experiencia">Experiencia: </label>
-                <textarea type="text" class="form-control @error('name') is-invalid @enderror" name="experiencia">{{$usuario->experiencia}}</textarea>
+                <textarea type="text" class="form-control @error('experiencia') is-invalid @enderror" name="experiencia">{{$usuario->experiencia}}</textarea>
                 @error('experiencia')
                         <div id="validationServer03Feedback" class="invalid-feedback">
                             {{ $message }}
@@ -63,22 +83,30 @@
                 @enderror
             </div>
             <br>
-            {{-- <div class="form-group">
-                <label for="exampleFormControlSelect2">Habilidades: </label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
-                  <option>Obrero</option>
-                  <option>Constructor</option>
-                  <option>Albañil</option>
-                  <option>Pintor</option>
-                  <option>Gasfitero</option>
+
+            <div class="form-group">
+                <label for="oficios">Oficio: </label>
+                <select multiple class="form-control @error('oficios') is-invalid @enderror" name="oficios[]" style="height: 148px">
+                    @foreach ($oficios as $oficio)
+                        <option value={{$oficio->id}} 
+                            
+                            @foreach ($usuario->userOficios as $oficio2)
+                                @if($oficio2->oficio->id == $oficio->id)
+                                    selected
+                                @endif
+                            @endforeach
+                        >
+                            {{$oficio->nombre}}
+                        </option>
+                    @endforeach
                 </select>
-            </div> --}}
-
-            {{-- <div class="form-group">
-                <label for="exampleFormControlInput5">Oficio: </label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div> --}}
-
+                @error('oficios')
+                        <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                @enderror
+            </div>
+            <br>
             <button type="submit" class="btn btn-primary"> Actualizar Datos </button>
 
         </form>

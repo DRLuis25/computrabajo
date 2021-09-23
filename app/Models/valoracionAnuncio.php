@@ -22,6 +22,7 @@ class valoracionAnuncio extends Model
     use SoftDeletes;
 
     public $table = 'valoracion_anuncios';
+    protected $connection = 'normal_user';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';

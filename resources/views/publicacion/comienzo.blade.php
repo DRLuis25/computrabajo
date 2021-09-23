@@ -17,6 +17,11 @@
             </div>
         </div>
     </div>
+    @if (session('datos'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{session('datos')}}
+    </div>
+    @endif
 </header>
 
 <div class="row">
@@ -31,7 +36,8 @@
         <div>
             <div class="d-flex align-items-stretch">
                 <div class="col-1">
-                    <i class="fas fa-address-card fa-4x"></i>
+                    <br><br>
+                    <img src="{{ asset('images/user.jpg') }}" alt="Imagen no encontrada." style="width: 100px">
                 </div>
                 <div class="col-1"></div>
                 <div class="col-2">
@@ -76,19 +82,23 @@
             </div>
         </div>
     </div>
-    @endforeach
 
+    @endforeach
+    <input type="hidden" value="{{$estadoAnuncio}}" class="hidden" id="valor">
     <div>
         <h3 class="card-title">Propuestas</h3>
     </div>
+    <form  method="get" action="{{route('contratito')}}">
     @foreach ($publicacion as $item)
-        
-    
+    <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="{{$item->anuncio_id."+".$item->user_id}}" id="desactivar" name="contratos[]" >    
+
     <div class="container border">
         <div>
             <div class="d-flex align-items-stretch">
                 <div class="col-1">
-                    <i class="fas fa-address-card fa-4x"></i>
+                    <br><br>
+                    <img src="{{ asset('images/user.jpg') }}" alt="Imagen no encontrada." style="width: 100px">
                 </div>
                 <div class="col-1"></div>
                 <div class="col-2">
@@ -101,15 +111,13 @@
                 <div class="col-4">
                     <br>
                     <p>{{$item->descripcion}}</p>
-                    
                     <p>Desde {{$item->anuncio->ciudad->nombre}}</p>
                     <div class="button-group mb-1">
-                            <form  method="get" action="{{route('contrato',[$item->user_id,$item->anuncio_id,$item->importe,$item->descripcion,$item->tiempo])}}">
-                            <button type="submit" class="btn btn-primary btn-sm">Contratar</button>
+                            
+                            
                             <a href="https://wa.me/+51941881489"  target="_blank" class="btn btn-success btn-sm" ><i class="fab fa-whatsapp"></i>Whatsapp</a>
-                            </form>
+                            
                     </div>
-                    
                 </div>
                 <div class="col-3">
                     <br>
@@ -132,9 +140,18 @@
             </div>
         </div>
     </div>
+    </div>
     @endforeach
+    
+    <div  id="botones" style="display: none;">
 
+        <button type="submit" class="btn btn-primary btn-sm"  >Contratar</button>
+        
+    </div>
+    
+    
 </div>
+</form>
 
 <div class="col-sm-2 col-md-2 border" style="margin:0% 0% 0% 2%">
     <form action="">
@@ -148,24 +165,39 @@
                 </div>
             </div>
             <br>
-            <div>
-                <p>Calificacion</p>
-                <div class="input-group mb-3">
-                    <input type="number" class="form-control" placeholder="Minimo" min="1" pattern="^[0-9]+" >
-                    <span class="input-group-text">-</span>
-                    <input type="number" class="form-control" placeholder="Maximo"  min="1" pattern="^[0-9]+">
-                </div>
-            </div>
-            <br>
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-success">Buscar</button>
             </div>
         </form>
 </div>
 
-
-
 </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // validar para contratar anuncios
+        let temporal=document.getElementById('valor').value;
+        console.log(temporal)
+        if(temporal==1 || temporal==2){
+        let emailInput = document.getElementById('desactivar');
+        emailInput.disabled = true;
+        }
 
+        $('[name="contratos[]"]').click(function() {
+            // Funcion para verificar checked 
+            var arr = $('[name="contratos[]"]:checked').map(function(){
+            return this.value;
+            }).get();
+            if(arr.length>0){
+                document.getElementById("botones").style.display ="block";
+            }else{
+                document.getElementById("botones").style.display ="none";
+            }
+        });
+
+    });
+
+</script>
 @endsection
+
+
