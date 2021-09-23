@@ -34,6 +34,16 @@ Route::post('/anuncios/finalizar-anuncio','AnuncioAPIController@finalizarAnuncio
 Route::apiResource('filtros', 'FiltrosApiController');
 
 
+// Mostrar Datos
+Route::get('/getOficio', 'DatosAPIController@listarOficios');
+Route::get('/getDepartamentos', 'DatosAPIController@listarDepartamentos');
+Route::get('/getCiudad/{idDepartamento}', 'DatosAPIController@listarCiudades');
+Route::get('/getDistrito/{idCiudad}', 'DatosAPIController@listarDistritos');
+Route::post('/anuncios/guardar-anuncio','AnuncioAPIController@guardarAnuncio');
+Route::post('/anuncios/actualizar-anuncio','AnuncioAPIController@actualizarAnuncio');
+
+
+
 Route::apiResource('filtros', 'FiltrosApiController');
 Route::apiResource('useranuncio','UserAnuncioAPIController');
 

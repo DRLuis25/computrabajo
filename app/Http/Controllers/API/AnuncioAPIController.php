@@ -38,7 +38,7 @@ class AnuncioAPIController extends AppBaseController
             $query->limit($request->get('limit'));
         }
 
-        $anuncios = $query->with('colaboradores','ciudad','departamento','distrito')->get();
+        $anuncios = $query->with('colaboradores','ciudad','departamento','distrito', 'oficio')->get();
 
         return $this->sendResponse($anuncios->toArray(), 'Anuncios retrieved successfully');
     }
@@ -72,7 +72,7 @@ class AnuncioAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Anuncio $anuncio */
-        $anuncio = Anuncio::with('colaboradores','ciudad','departamento','distrito')->find($id);
+        $anuncio = Anuncio::with('colaboradores','ciudad','departamento','distrito', 'oficio')->find($id);
         if (empty($anuncio)) {
             return $this->sendError('Anuncio not found');
         }
@@ -167,5 +167,59 @@ class AnuncioAPIController extends AppBaseController
             ],500);
         }
 
+    }
+
+    public function guardarAnuncio(Request $request){
+        try {
+        $anuncio = new Anuncio();
+        $anuncio->fecha_expiracion = $request->fecha;
+        $anuncio->estado = 0;
+        $anuncio->ver_email = $request->email;
+        $anuncio->ver_celular = $request->telefono;
+        $anuncio->ver_direccion = $request->direccion;
+        $anuncio->titulo = $request->titulo;
+        $anuncio->oficio_id = $request->oficio;
+        $anuncio->descripcion = $request->descripcion;
+        $anuncio->pago_propuesto_min = $request->minimo;
+        $anuncio->pago_propuesto_max = $request->maximo;
+        $anuncio->departamento_id = $request->idDepartamento;
+        $anuncio->ciudad_id = $request->idCiudad;
+        $anuncio->distrito_id = $request->idDistrito;
+        $anuncio->user_id = '1';
+        $anuncio->save();
+        return response([
+            'text' => 'Anuncio guardado correctamente',
+            'data' => $anuncio
+        ],200);
+    } catch (\Exception $e) {
+        return response([
+            'text' => 'Error - anuncio no guardado',
+            'error'=> $e->getMessage()
+        ],500);
+    }
+    }
+
+    public function actualizarAnuncio(Request $request){
+        try {
+        $anuncio = Anuncio::findOrFail($request->id);
+        $anuncio->fecha_expiracion = $request->fecha_expiracion;
+        $anuncio->ver_email = $request->email;
+        $anuncio->ver_celular = $request->telefono;
+        $anuncio->ver_direccion = $request->direccion;
+        $anuncio->titulo = $request->titulo;
+        $anuncio->descripcion = $request->descripcion;
+        $anuncio->pago_propuesto_min = $request->minimo;
+        $anuncio->pago_propuesto_max = $request->maximo;
+        $anuncio->save();
+        return response([
+            'text' => 'Anuncio actualizado correctamente',
+            'data' => $anuncio
+        ],200);
+    } catch (\Exception $e) {
+        return response([
+            'text' => 'Error - anuncio no actualizado',
+            'error'=> $e->getMessage()
+        ],500);
+    }
     }
 }
