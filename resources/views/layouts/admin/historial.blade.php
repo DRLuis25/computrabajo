@@ -49,7 +49,7 @@
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="card-body" >
 
-                        <table class="table" id="datosusuarios" class="table datosusuarios ">
+                        <table class="table tabla1"  id="tabla1" class="table datosusuarios ">
                             <thead class="thead-dark">
                             <tr>
 
@@ -84,7 +84,7 @@
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     <div class="card-body" >
-                        <table class="table" id="datosusuarios1" class="table datosusuarios1">
+                        <table class="table tabla2"  id="tabla2" id="datosusuarios1" class="table datosusuarios1">
                             <thead class="thead-dark">
                             <tr>
 
@@ -122,6 +122,87 @@
               </div>
 
             </div>
+
+
+@endsection
+
+@section('js')
+    <script>
+
+
+
+        $(document).ready(function() {
+            $('.tabla1').DataTable(
+                {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'pageLength',
+                        {
+                            extend: 'excelHtml5',
+                            title: '',
+                            exportOptions: {
+                                columns: function (idx, data, node) {
+                                    if (node.innerHTML == "Accion" || node.hidden)
+                                        return false;
+                                    return true;
+                                }
+                            }
+                        },
+
+                        {
+                            extend: 'pdfHtml5',
+                            title: '',
+                            exportOptions: {
+                                columns: function (idx, data, node) {
+                                    if (node.innerHTML == "Accion" || node.hidden)
+                                        return false;
+                                    return true;
+                                }
+                            }
+                        }
+
+                    ]
+                }
+            );
+        } );
+
+
+
+        $(document).ready(function() {
+            $('.tabla2').DataTable(
+                {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'pageLength',
+                        {
+                            extend: 'excelHtml5',
+                            title: '',
+                            exportOptions: {
+                                columns: function (idx, data, node) {
+                                    if (node.innerHTML == "Accion" || node.hidden)
+                                        return false;
+                                    return true;
+                                }
+                            }
+                        },
+
+                        {
+                            extend: 'pdfHtml5',
+                            title: '',
+                            exportOptions: {
+                                columns: function (idx, data, node) {
+                                    if (node.innerHTML == "Accion" || node.hidden)
+                                        return false;
+                                    return true;
+                                }
+                            }
+                        }
+
+                    ]
+                }
+            );
+        } );
+    </script>
 
 
 @endsection

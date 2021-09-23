@@ -63,7 +63,7 @@
 
 
                     <div style="text-align: center" >
-                        <button type="submit" class="btn btn-danger">Submit</button>
+                        <button type="submit" class="btn btn-danger">Editar</button>
                     <a type="button" class="btn btn-primary" href="{{ route('admin.home') }}" >Cancelar</a>
                     </div>
                 </form>
