@@ -22,7 +22,7 @@
                             <option value="07">Julio</option>
                             <option value="08">Agosto</option>
                             <option value="09">Septiembre</option>
-                            
+
                         </select>
 
                         <input type="submit" value="Consultar" class="btn btn-primary col-2">
